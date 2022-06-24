@@ -40,7 +40,8 @@ class Connection
 	/* Esta es una función que devuelve una matriz de tablas que son públicas. */
 	static public function publicAccess()
 	{
-		$tables = ["users"];
+		/* Crear una matriz con un elemento. */
+		$tables = ["facturas"];
 		return $tables;
 	}
 
