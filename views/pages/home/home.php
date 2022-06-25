@@ -21,7 +21,12 @@
             <div class="mb-1 breadcrumb-right">
               <div class="dropdown">
                 <button class="btn-icon btn btn-dark btn-round btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="grid"></i></button>
-                <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="app-todo.html"><i class="me-1" data-feather="check-square"></i><span class="align-middle">Todo</span></a><a class="dropdown-item" href="app-chat.html"><i class="me-1" data-feather="message-square"></i><span class="align-middle">Chat</span></a><a class="dropdown-item" href="app-email.html"><i class="me-1" data-feather="mail"></i><span class="align-middle">Email</span></a><a class="dropdown-item" href="app-calendar.html"><i class="me-1" data-feather="calendar"></i><span class="align-middle">Calendar</span></a></div>
+                <div class="dropdown-menu dropdown-menu-end">
+                  <a class="dropdown-item" href="factura/consultar">
+                    <i class="me-1" data-feather="check-square">
+
+                    </i><span class="align-middle">Consultar Factura</span></a>
+</div>
               </div>
             </div>
           </div>
@@ -164,7 +169,7 @@
                   aria-expanded="false"
                   aria-controls="faq-payment-one"
                 >
-                  Does my subscription automatically renew?
+                 Modulo Consultar Factura
                 </button>
               </h2>
 
@@ -175,10 +180,7 @@
                 data-bs-parent="#faq-payment-qna"
               >
                 <div class="accordion-body">
-                  Pastry pudding cookie toffee bonbon jujubes jujubes powder topping. Jelly beans gummi bears sweet roll
-                  bonbon muffin liquorice. Wafer lollipop sesame snaps. Brownie macaroon cookie muffin cupcake candy
-                  caramels tiramisu. Oat cake chocolate cake sweet jelly-o brownie biscuit marzipan. Jujubes donut
-                  marzipan chocolate bar. Jujubes sugar plum jelly beans tiramisu icing cheesecake.
+                 Este modulo nos ayuda a buscar una factura en la base de datos. para poder usar este modulo se debe contar con la clave y el # de transaccion, asi msmo se debe seleccionar un metodo de busqueda ya sea FACTURA O NOTA DE CREDITO 
                 </div>
               </div>
             </div>
@@ -1020,7 +1022,7 @@
             <i data-feather="phone-call" class="font-medium-3"></i>
           </div>
           <h4>+ (810) 2548 2568</h4>
-          <span class="text-body">We are always happy to help!</span>
+          <span class="text-body">¡Siempre estamos felices de ayudar!</span>
         </div>
       </div>
     </div>
@@ -1031,7 +1033,7 @@
             <i data-feather="mail" class="font-medium-3"></i>
           </div>
           <h4>hello@help.com</h4>
-          <span class="text-body">Best way to get answer faster!</span>
+          <span class="text-body">¡La mejor manera de obtener una respuesta más rápida!</span>
         </div>
       </div>
     </div>
