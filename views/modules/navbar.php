@@ -105,8 +105,9 @@
           <ul class="nav navbar-nav flex-row">
             <li class="nav-item me-auto"><a class="navbar-brand" href="index-2.html"><span class="brand-logo">
                  </span>
-               
-                <h2 style="color:#fff" class="brand-text mb-0">ROCCA</h2></a></li>
+                 <img style="width: 100px;
+  height: auto;"  src="../../app-assets/images/logos/logonuevo.png">
+               </a></li>
             <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pe-0" data-bs-toggle="collapse"><i class="d-block d-xl-none text-dark toggle-icon font-medium-4" data-feather="x"></i></a></li>
           </ul>
         </div>

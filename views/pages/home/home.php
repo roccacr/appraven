@@ -1008,9 +1008,9 @@
 <section class="faq-contact">
   <div class="row mt-5 pt-75">
     <div class="col-12 text-center">
-      <h2>You still have a question?</h2>
+      <h2>¿Aún tienes una pregunta?</h2>
       <p class="mb-3">
-        If you cannot find a question in our FAQ, you can always contact us. We will answer to you shortly!
+      Si no puede encontrar una pregunta en nuestras preguntas frecuentes, siempre puede contactarnos. ¡Te responderemos en breve!
       </p>
     </div>
     <div class="col-sm-6">
