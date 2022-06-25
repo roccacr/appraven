@@ -5,10 +5,10 @@
         <div class="auth-wrapper auth-basic px-2">
             <div class="auth-inner my-2">
                 <!-- Login basic -->
-                <div class="card mb-0" style="border-radius: 7px;
-background: linear-gradient(145deg, #181f34, #141a2c);
-box-shadow:  23px 23px 46px #0f1320,
-             -23px -23px 46px #1d2742;">
+                <div class="card mb-0" style="border-radius: 17px;
+background: #161d31;
+box-shadow:  16px 16px 30px #0a0d16,
+             -16px -16px 30px #222d4c;">
                     <div class="card-body">
                         <a href="/" class="brand-logo">
                         <img style="width: 150px;
