@@ -70,7 +70,7 @@ box-shadow:  16px 16px 30px #0a0d16,
               role="tab"
             >
               <i data-feather="credit-card" class="font-medium-3 me-1"></i>
-              <span class="fw-bold">Infomacion</span>
+              <span class="fw-bold"> Información</span>
             </a>
           </li>
 
@@ -155,8 +155,8 @@ box-shadow:  16px 16px 30px #0a0d16,
               <i data-feather="credit-card" class="font-medium-4"></i>
             </div>
             <div>
-              <h4  class="mb-0">Infomacion</h4>
-              <span>Which license do I need?</span>
+              <h4  class="mb-0"> Información</h4>
+              <span>¿Qué necesito saber?</span>
             </div>
           </div>
 
@@ -197,7 +197,7 @@ box-shadow:  16px 16px 30px #0a0d16,
                   aria-expanded="true"
                   aria-controls="faq-payment-two"
                 >
-                  Can I store the item on an intranet so everyone has access?
+                Modulo Subsidiaria
                 </button>
               </h2>
               <div
@@ -207,9 +207,7 @@ box-shadow:  16px 16px 30px #0a0d16,
                 data-bs-parent="#faq-payment-qna"
               >
                 <div class="accordion-body">
-                  Sweet pie candy jelly. Sesame snaps biscuit sugar plum. Sweet roll topping fruitcake. Caramels
-                  liquorice biscuit ice cream fruitcake cotton candy tart. Donut caramels gingerbread jelly-o
-                  gingerbread pudding. Gummi bears pastry marshmallow candy canes pie. Pie apple pie carrot cake.
+                 Administrar las subcidiarias de la empresa, este modulo agrega y gestiona la misma
                 </div>
               </div>
             </div>
