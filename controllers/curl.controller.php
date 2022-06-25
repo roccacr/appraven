@@ -6,7 +6,7 @@ class CurlController{
 	static public function request($url,$method,$fields){
 		$curl = curl_init();
 		curl_setopt_array($curl, array(
-		  CURLOPT_URL => 'http://api-crm-prueba.com/'.$url,
+		  CURLOPT_URL => 'https://api-appraven.appsngs.com/'.$url,
 		  CURLOPT_RETURNTRANSFER => true,
 		  CURLOPT_ENCODING => '',
 		  CURLOPT_MAXREDIRS => 10,
