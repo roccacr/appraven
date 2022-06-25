@@ -7,12 +7,13 @@
                 <!-- Login basic -->
                 <div class="card mb-0">
                     <div class="card-body">
-                        <a href="index-2.html" class="brand-logo">
-
-                            <h2 class="brand-text text-dark ms-1">Rocca Development Group</h2>
+                        <a href="/" class="brand-logo">
+                        <img style="width: 150px;
+                                 height: auto;"  src="../../app-assets/images/logos/logonuevo.png">
+                            <!-- <h2 class="brand-text text-dark ms-1">Rocca Development Group</h2> -->
                         </a>
 
-                        <h4 class="card-title mb-1">Bienvenido a Rocca! 👋</h4>
+                        <h4 class="card-title mb-1">Bienvenido de nuevo! 👋</h4>
                         <p class="card-text mb-2">Inicia sesión en tu cuenta</p>
 
                         <form class="auth-login-form mt-2 needs-validation" method="POST" novalidate>
@@ -38,8 +39,6 @@
                                     <div class="invalid-feedback">Por favor rellene este campo.</div>
                                 </div>
                             </div>
-
-                           
                             <button style="color:black" class="btn btn-dark w-100" tabindex="4">Iniciar Sesión</button>
                         </form>
                         <?php
