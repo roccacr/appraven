@@ -151,7 +151,7 @@ if (isset($_POST["clave"]) || isset($_POST["transaccion"]) || isset($_POST["cust
                         <td><?php echo $data->usuario; ?></td>
                       </tr>
                     <?php
-                    } ?>
+                    }else{ ?>
                     <tr>
                       <td><span class="fw-bold"><?php echo $data->clave; ?></span>
                       </td>
@@ -164,8 +164,8 @@ if (isset($_POST["clave"]) || isset($_POST["transaccion"]) || isset($_POST["cust
                       <td><?php echo $data->xml_firmado; ?> </td>
                       <td><?php echo $data->usuario; ?></td>
                     </tr>
-
-                  <?php } ?>
+                  <?php
+                } } ?>
                 </tbody>
               </table>
             </div>
