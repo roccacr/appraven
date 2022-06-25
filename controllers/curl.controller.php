@@ -2,7 +2,8 @@
 class CurlController{
 	/*============================================
 	Peticiones a la API
-	=============================================*/	
+	=============================================*/
+	
 	static public function request($url,$method,$fields){
 		$curl = curl_init();
 		curl_setopt_array($curl, array(
