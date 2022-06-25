@@ -805,7 +805,6 @@ box-shadow:  16px 16px 30px #0a0d16,
   </div>
 </section>
 <!--/ contact us -->
-
         </div>
       </div>
     </div>

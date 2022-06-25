@@ -21,14 +21,10 @@ foreach ($routesArray as $key => $value) {
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimal-ui">
-  <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
-  <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
-  <meta name="author" content="PIXINVENT">
+
   <title>FACTURA</title>
   <link rel="apple-touch-icon" href="app-assets/images/ico/apple-icon-120.html">
-  <link rel="shortcut icon" type="image/x-icon" href="https://pixinvent.com/demo/vuexy-html-bootstrap-admin-template/app-assets/images/ico/favicon.ico">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
-
+ 
   <!-- BEGIN: Vendor CSS-->
   <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/vendors.min.css">
   <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/charts/apexcharts.css">
@@ -79,7 +75,8 @@ foreach ($routesArray as $key => $value) {
       $routesArray[1] == "admins" ||
       $routesArray[1] == "invoice"||
       $routesArray[1] == "logout" ||
-      $routesArray[1] == "factura"
+      $routesArray[1] == "factura"||
+      $routesArray[1] == "usuario"
     ) {
       include "views/pages/" . $routesArray[1] . "/" . $routesArray[1] . ".php";
     } else {
@@ -95,11 +92,39 @@ foreach ($routesArray as $key => $value) {
   <?php include "views/modules/footer.php"; ?>
   <script src="app-assets/vendors/js/vendors.min.js"></script>
   <script src="app-assets/vendors/js/ui/jquery.sticky.js"></script>
-  <script src="app-assets/vendors/js/charts/apexcharts.min.js"></script>
+
+    <!-- END: Vendor CSS-->
+    <!-- BEGIN: Page Vendor JS-->
+    <script src="../../../app-assets/vendors/js/ui/jquery.sticky.js"></script>
+    <script src="../../../app-assets/vendors/js/tables/datatable/jquery.dataTables.min.js"></script>
+    <script src="../../../app-assets/vendors/js/tables/datatable/dataTables.bootstrap5.min.js"></script>
+    <script src="../../../app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js"></script>
+    <script src="../../../app-assets/vendors/js/tables/datatable/responsive.bootstrap5.min.js"></script>
+    <script src="../../../app-assets/vendors/js/tables/datatable/datatables.checkboxes.min.js"></script>
+    <script src="../../../app-assets/vendors/js/tables/datatable/datatables.buttons.min.js"></script>
+    <script src="../../../app-assets/vendors/js/tables/datatable/jszip.min.js"></script>
+    <script src="../../../app-assets/vendors/js/tables/datatable/pdfmake.min.js"></script>
+    <script src="../../../app-assets/vendors/js/tables/datatable/vfs_fonts.js"></script>
+    <script src="../../../app-assets/vendors/js/tables/datatable/buttons.html5.min.js"></script>
+    <script src="../../../app-assets/vendors/js/tables/datatable/buttons.print.min.js"></script>
+    <script src="../../../app-assets/vendors/js/tables/datatable/dataTables.rowGroup.min.js"></script>
+    <script src="../../../app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js"></script>
+
+
   <script src="app-assets/vendors/js/extensions/toastr.min.js"></script>
   <script src="app-assets/js/core/app-menu.min.js"></script>
   <script src="app-assets/js/core/app.min.js"></script>
+
+
+  
   <script src="app-assets/js/scripts/customizer.min.js"></script>
+
+
+
+
+
+
+  
   <!-- <script src="app-assets/js/scripts/pages/dashboard-ecommerce.min.js"></script> -->
   <script src="../../../app-assets/vendors/js/forms/validation/jquery.validate.min.js"></script>
   <script src="../../../app-assets/js/scripts/pages/auth-login.js"></script>
