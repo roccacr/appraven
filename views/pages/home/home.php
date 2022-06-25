@@ -85,12 +85,12 @@ box-shadow:  16px 16px 30px #0a0d16,
               role="tab"
             >
               <i data-feather="shopping-bag" class="font-medium-3 me-1"></i>
-              <span class="fw-bold">Delivery</span>
+              <span class="fw-bold">TI</span>
             </a>
           </li>
 
           <!-- cancellation and return -->
-          <li class="nav-item">
+          <li class="nav-item" hidden>
             <a
               class="nav-link"
               id="cancellation-return"
@@ -105,7 +105,7 @@ box-shadow:  16px 16px 30px #0a0d16,
           </li>
 
           <!-- my order -->
-          <li class="nav-item">
+          <li class="nav-item"hidden>
             <a
               class="nav-link"
               id="my-order"
@@ -120,7 +120,7 @@ box-shadow:  16px 16px 30px #0a0d16,
           </li>
 
           <!-- product and services-->
-          <li class="nav-item">
+          <li class="nav-item"hidden>
             <a
               class="nav-link"
               id="product-services"
@@ -187,164 +187,38 @@ box-shadow:  16px 16px 30px #0a0d16,
                 </div>
               </div>
             </div>
+
+
             <div class="card accordion-item">
-              <h2 class="accordion-header" id="paymentTwo">
+              <h2 class="accordion-header" id="paymenttwo">
                 <button
-                  class="accordion-button"
+                  class="accordion-button collapsed"
                   data-bs-toggle="collapse"
                   role="button"
                   data-bs-target="#faq-payment-two"
-                  aria-expanded="true"
+                  aria-expanded="false"
                   aria-controls="faq-payment-two"
                 >
-                Modulo Subsidiaria
+                 Modulo Subsidiaria
                 </button>
               </h2>
+
               <div
                 id="faq-payment-two"
-                class="collapse show"
-                aria-labelledby="paymentTwo"
-                data-bs-parent="#faq-payment-qna"
-              >
-                <div class="accordion-body">
-                 Administrar las subcidiarias de la empresa, este modulo agrega y gestiona la misma
-                </div>
-              </div>
-            </div>
-            <div class="card accordion-item">
-              <h2 class="accordion-header" id="paymentThree">
-                <button
-                  class="accordion-button collapsed"
-                  data-bs-toggle="collapse"
-                  role="button"
-                  data-bs-target="#faq-payment-three"
-                  aria-expanded="false"
-                  aria-controls="faq-payment-three"
-                >
-                  What does non-exclusive mean?
-                </button>
-              </h2>
-              <div
-                id="faq-payment-three"
-                class="collapse"
-                aria-labelledby="paymentThree"
-                data-bs-parent="#faq-payment-qna"
-              >
-                <div class="accordion-body">
-                  Tart gummies dragée lollipop fruitcake pastry oat cake. Cookie jelly jelly macaroon icing jelly beans
-                  soufflé cake sweet. Macaroon sesame snaps cheesecake tart cake sugar plum. Dessert jelly-o sweet
-                  muffin chocolate candy pie tootsie roll marzipan.
-                </div>
-              </div>
-            </div>
-            <div class="card accordion-item">
-              <h2 class="accordion-header" id="paymentFour">
-                <button
-                  class="accordion-button collapsed"
-                  data-bs-toggle="collapse"
-                  role="button"
-                  data-bs-target="#faq-payment-four"
-                  aria-expanded="false"
-                  aria-controls="faq-payment-four"
-                >
-                  Is the Regular License the same thing as an editorial license?
-                </button>
-              </h2>
-              <div
-                id="faq-payment-four"
                 class="collapse accordion-collapse"
-                aria-labelledby="paymentFour"
+                aria-labelledby="paymenttwo"
                 data-bs-parent="#faq-payment-qna"
               >
                 <div class="accordion-body">
-                  Cheesecake muffin cupcake dragée lemon drops tiramisu cake gummies chocolate cake. Marshmallow tart
-                  croissant. Tart dessert tiramisu marzipan lollipop lemon drops. Cake bonbon bonbon gummi bears topping
-                  jelly beans brownie jujubes muffin. Donut croissant jelly-o cake marzipan. Liquorice marzipan cookie
-                  wafer tootsie roll. Tootsie roll sweet cupcake.
-                </div>
-              </div>
-            </div>
-            <div class="card accordion-item">
-              <h2 class="accordion-header" id="paymentFive">
-                <button
-                  class="accordion-button collapsed"
-                  data-bs-toggle="collapse"
-                  role="button"
-                  data-bs-target="#faq-payment-five"
-                  aria-expanded="false"
-                  aria-controls="faq-payment-five"
-                >
-                  Which license do I need for an end product that is only accessible to paying users?
-                </button>
-              </h2>
-              <div
-                id="faq-payment-five"
-                class="collapse accordion-collapse"
-                aria-labelledby="paymentFive"
-                data-bs-parent="#faq-payment-qna"
-              >
-                <div class="accordion-body">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                  dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                  aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur.
-                </div>
-              </div>
-            </div>
-            <div class="card accordion-item">
-              <h2 class="accordion-header" id="paymentSix">
-                <button
-                  class="accordion-button collapsed"
-                  data-bs-toggle="collapse"
-                  role="button"
-                  data-bs-target="#faq-payment-six"
-                  aria-expanded="false"
-                  aria-controls="faq-payment-six"
-                >
-                  Which license do I need to use an item in a commercial?
-                </button>
-              </h2>
-              <div
-                id="faq-payment-six"
-                class="collapse accordion-collapse"
-                aria-labelledby="paymentSix"
-                data-bs-parent="#faq-payment-qna"
-              >
-                <div class="accordion-body">
-                  At tempor commodo ullamcorper a lacus vestibulum. Ultrices neque ornare aenean euismod. Dui vivamus
-                  arcu felis bibendum. Turpis in eu mi bibendum neque egestas congue. Nullam ac tortor vitae purus
-                  faucibus ornare suspendisse sed.
-                </div>
-              </div>
-            </div>
-            <div class="card accordion-item">
-              <h2 class="accordion-header" id="paymentSeven">
-                <button
-                  class="accordion-button collapsed"
-                  data-bs-toggle="collapse"
-                  role="button"
-                  data-bs-target="#faq-payment-seven"
-                  aria-expanded="false"
-                  aria-controls="faq-payment-seven"
-                >
-                  Can I re-distribute an item? What about under an Extended License?
-                </button>
-              </h2>
-              <div
-                id="faq-payment-seven"
-                class="collapse"
-                aria-labelledby="paymentSeven"
-                data-bs-parent="#faq-payment-qna"
-              >
-                <div class="accordion-body">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                  dolore magna aliqua. Euismod lacinia at quis risus sed vulputate odio ut enim. Dictum at tempor
-                  commodo ullamcorper a lacus vestibulum.
+                Informacion de Subsidiarias
                 </div>
               </div>
             </div>
           </div>
         </div>
+
+
+
 
         <!-- delivery panel -->
         <div class="tab-pane" id="faq-delivery" role="tabpanel" aria-labelledby="delivery" aria-expanded="false">
@@ -354,8 +228,8 @@ box-shadow:  16px 16px 30px #0a0d16,
               <i data-feather="shopping-bag" class="font-medium-4"></i>
             </div>
             <div>
-              <h4 class="mb-0">Delivery</h4>
-              <span>Which license do I need?</span>
+              <h4 class="mb-0">TI</h4>
+              <span>Gestion del sistema?</span>
             </div>
           </div>
 
@@ -371,7 +245,7 @@ box-shadow:  16px 16px 30px #0a0d16,
                   aria-expanded="false"
                   aria-controls="faq-delivery-one"
                 >
-                  Where has my order reached?
+                 Gestion de Usuarios
                 </button>
               </h2>
 
@@ -382,121 +256,11 @@ box-shadow:  16px 16px 30px #0a0d16,
                 data-bs-parent="#faq-delivery-qna"
               >
                 <div class="accordion-body">
-                  Pastry pudding cookie toffee bonbon jujubes jujubes powder topping. Jelly beans gummi bears sweet roll
-                  bonbon muffin liquorice. Wafer lollipop sesame snaps. Brownie macaroon cookie muffin cupcake candy
-                  caramels tiramisu. Oat cake chocolate cake sweet jelly-o brownie biscuit marzipan. Jujubes donut
-                  marzipan chocolate bar. Jujubes sugar plum jelly beans tiramisu icing cheesecake.
+                 Administra el acceso de los usuarios otorgando permisos de acceso y mantenimiento
                 </div>
               </div>
             </div>
-            <div class="card accordion-item">
-              <h2 class="accordion-header" id="deliveryTwo">
-                <button
-                  class="accordion-button collapsed"
-                  data-bs-toggle="collapse"
-                  role="button"
-                  data-bs-target="#faq-delivery-two"
-                  aria-expanded="false"
-                  aria-controls="faq-delivery-two"
-                >
-                  The shipment status shows that it has been returned/cancelled. What does it mean and who do I contact?
-                </button>
-              </h2>
-              <div
-                id="faq-delivery-two"
-                class="collapse accordion-collapse"
-                aria-labelledby="deliveryTwo"
-                data-bs-parent="#faq-delivery-qna"
-              >
-                <div class="accordion-body">
-                  Sweet pie candy jelly. Sesame snaps biscuit sugar plum. Sweet roll topping fruitcake. Caramels
-                  liquorice biscuit ice cream fruitcake cotton candy tart. Donut caramels gingerbread jelly-o
-                  gingerbread pudding. Gummi bears pastry marshmallow candy canes pie. Pie apple pie carrot cake.
-                </div>
-              </div>
-            </div>
-            <div class="card accordion-item">
-              <h2 class="accordion-header" id="deliveryThree">
-                <button
-                  class="accordion-button collapsed"
-                  data-bs-toggle="collapse"
-                  role="button"
-                  data-bs-target="#faq-delivery-three"
-                  aria-expanded="false"
-                  aria-controls="faq-delivery-three"
-                >
-                  What if my shipment is marked as lost?
-                </button>
-              </h2>
-              <div
-                id="faq-delivery-three"
-                class="collapse"
-                aria-labelledby="deliveryThree"
-                data-bs-parent="#faq-delivery-qna"
-              >
-                <div class="accordion-body">
-                  Tart gummies dragée lollipop fruitcake pastry oat cake. Cookie jelly jelly macaroon icing jelly beans
-                  soufflé cake sweet. Macaroon sesame snaps cheesecake tart cake sugar plum. Dessert jelly-o sweet
-                  muffin chocolate candy pie tootsie roll marzipan. Carrot cake marshmallow pastry. Bonbon biscuit
-                  pastry topping toffee dessert gummies. Topping apple pie pie croissant cotton candy dessert tiramisu.
-                </div>
-              </div>
-            </div>
-            <div class="card accordion-item">
-              <h2 class="accordion-header" id="deliveryFour">
-                <button
-                  class="accordion-button collapsed"
-                  data-bs-toggle="collapse"
-                  role="button"
-                  data-bs-target="#faq-delivery-four"
-                  aria-expanded="false"
-                  aria-controls="faq-delivery-four"
-                >
-                  My shipment status shows that it’s out for delivery. By when will I receive it?
-                </button>
-              </h2>
-              <div
-                id="faq-delivery-four"
-                class="collapse"
-                aria-labelledby="deliveryFour"
-                data-bs-parent="#faq-delivery-qna"
-              >
-                <div class="accordion-body">
-                  Cheesecake muffin cupcake dragée lemon drops tiramisu cake gummies chocolate cake. Marshmallow tart
-                  croissant. Tart dessert tiramisu marzipan lollipop lemon drops. Cake bonbon bonbon gummi bears topping
-                  jelly beans brownie jujubes muffin. Donut croissant jelly-o cake marzipan. Liquorice marzipan cookie
-                  wafer tootsie roll. Tootsie roll sweet cupcake.
-                </div>
-              </div>
-            </div>
-            <div class="card accordion-item">
-              <h2 class="accordion-header" id="deliveryFive">
-                <button
-                  class="accordion-button collapsed"
-                  data-bs-toggle="collapse"
-                  role="button"
-                  data-bs-target="#faq-delivery-five"
-                  aria-expanded="false"
-                  aria-controls="faq-delivery-five"
-                >
-                  What do I need to do to get the shipment delivered within a specific timeframe?
-                </button>
-              </h2>
-              <div
-                id="faq-delivery-five"
-                class="collapse"
-                aria-labelledby="deliveryFive"
-                data-bs-parent="#faq-delivery-qna"
-              >
-                <div class="accordion-body">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                  dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                  aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-                  officia deserunt mollit anim id est laborum.
-                </div>
-              </div>
-            </div>
+
           </div>
         </div>
 
