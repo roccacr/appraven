@@ -180,7 +180,7 @@
                 data-bs-parent="#faq-payment-qna"
               >
                 <div class="accordion-body">
-                 Este modulo nos ayuda a buscar una factura en la base de datos. para poder usar este modulo se debe contar con la clave y el # de transaccion, asi msmo se debe seleccionar un metodo de busqueda ya sea FACTURA O NOTA DE CREDITO 
+                 Este modulo nos ayuda a buscar una factura en la base de datos. para poder usar este modulo se debe contar con la clave y el # de transaccion, asi mismo se debe seleccionar un metodo de busqueda ya sea FACTURA O NOTA DE CREDITO 
                 </div>
               </div>
             </div>
