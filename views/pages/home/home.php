@@ -31,7 +31,7 @@
   <div class="card faq-search">
     <div class="card-body text-center">
       <!-- main title -->
-      <h2 class="text-dark">Bienvenido al app de Rocca Development Group </h2>
+      <h2 class="text-dark">BIENVENIDOS AL APP RAVEN  PRODUCTOS FARMACÉUTICOS</h2>
 
       <!-- subtitle -->
       <p class="card-text mb-2">Sistema de facturación electrónica</p>
