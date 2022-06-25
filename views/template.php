@@ -17,6 +17,7 @@ foreach ($routesArray as $key => $value) {
 <html class="loading dark-layout" lang="en" data-layout="dark-layout" data-textdirection="ltr">
 
 <head>
+  <base href="<?php echo TemplateController::path() ?>">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimal-ui">
@@ -76,7 +77,9 @@ foreach ($routesArray as $key => $value) {
 
     if (
       $routesArray[1] == "admins" ||
-      $routesArray[1] == "invoice"
+      $routesArray[1] == "invoice"||
+      $routesArray[1] == "logout" ||
+      $routesArray[1] == "factura"
     ) {
       include "views/pages/" . $routesArray[1] . "/" . $routesArray[1] . ".php";
     } else {
