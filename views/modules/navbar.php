@@ -3,7 +3,7 @@
     <nav class="header-navbar navbar-expand-lg navbar navbar-fixed align-items-center navbar-shadow navbar-brand-center" data-nav="brand-center">
       <div class="navbar-header d-xl-block d-none">
        <img style="width: 150px;
-  height: auto;"  src="../../app-assets/images/logos/rocca.png">
+  height: auto;"  src="../../app-assets/images/logos/logonuevo.png">
       </div>
       <div class="navbar-container d-flex content">
         <div class="bookmark-wrapper d-flex align-items-center">
@@ -138,7 +138,6 @@
                   </line>
                   <line x1="16" y1="17" x2="8" y2="17">
                   </line>
-                  
                   <polyline points="10 9 9 9 8 9"></polyline></svg>
                   <span data-i18n="Pages">Factura</span></a>
                  <ul class="dropdown-menu" data-bs-popper="none">
@@ -149,7 +148,7 @@
                           <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
                           <line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
                           <span data-i18n="FAQ">Consultar factura</span>
-                        </a>
+                   </a>
                 </li>
               </ul>
             </li>
