@@ -32,7 +32,10 @@
           </div>
         </div>
         <div class="content-body"><!-- search header -->
-<section id="faq-search-filter">
+<section id="faq-search-filter" style="border-radius: 17px;
+background: #161d31;
+box-shadow:  16px 16px 30px #0a0d16,
+             -16px -16px 30px #222d4c;">
   <div class="card faq-search">
     <div class="card-body text-center">
       <!-- main title -->
@@ -180,7 +183,7 @@
                 data-bs-parent="#faq-payment-qna"
               >
                 <div class="accordion-body">
-                 Este modulo nos ayuda a buscar una factura en la base de datos. para poder usar este modulo se debe contar con la clave y el # de transaccion, asi mismo se debe seleccionar un metodo de busqueda ya sea FACTURA O NOTA DE CREDITO 
+                Este módulo nos ayuda a buscar una factura en la base de datos. Para poder usar este módulo se debe contar con la clave y el # de transacción, así mismo se debe seleccionar un método de búsqueda ya sea FACTURA O NOTA DE CRÉDITO 
                 </div>
               </div>
             </div>
