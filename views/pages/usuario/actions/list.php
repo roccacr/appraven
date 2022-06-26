@@ -7,12 +7,10 @@
                     <button class="dt-button create-new btn btn-dark" tabindex="0" aria-controls="DataTables_Table_0" type="button" data-bs-toggle="modal" data-bs-target="#modals-slide-in"><span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus me-50 font-small-4">
                                             <line x1="12" y1="5" x2="12" y2="19"></line>
                                             <line x1="5" y1="12" x2="19" y2="12"></line>
-                                        </svg>Add New Record</span></button> 
+                                        </svg>Add New Record</span></button>
                 </div>
                 <div class="card-datatable">
-                    
                     <div id="DataTables_Table_2_wrapper" class="dataTables_wrapper dt-bootstrap5">
-
                         <table id="DataTables_Table_2" class="table table-bordered  display nowrap" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
@@ -52,31 +50,46 @@
             <form class="add-new-record modal-content pt-0">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">×</button>
                 <div class="modal-header mb-1">
-                    <h5 class="modal-title" id="exampleModalLabel">New Record</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Nuevo Usuario</h5>
                 </div>
                 <div class="modal-body flex-grow-1">
                     <div class="mb-1">
-                        <label class="form-label" for="basic-icon-default-fullname">Full Name</label>
-                        <input type="text" class="form-control dt-full-name" id="basic-icon-default-fullname" placeholder="John Doe" aria-label="John Doe">
+                        <label class="form-label" for="basic-icon-default-fullname">Cedula</label>
+                        <input type="text" class="form-control dt-full-name" id="basic-icon-default-fullname" name="cedula" placeholder="#0000" aria-label="#0000">
                     </div>
                     <div class="mb-1">
-                        <label class="form-label" for="basic-icon-default-post">Post</label>
-                        <input type="text" id="basic-icon-default-post" class="form-control dt-post" placeholder="Web Developer" aria-label="Web Developer">
+                        <label class="form-label" for="basic-icon-default-post">Nombre</label>
+                        <input type="text" id="basic-icon-default-post" class="form-control dt-post" name="nombre" placeholder="Nombre" aria-label="Nombre">
                     </div>
                     <div class="mb-1">
-                        <label class="form-label" for="basic-icon-default-email">Email</label>
-                        <input type="text" id="basic-icon-default-email" class="form-control dt-email" placeholder="john.doe@example.com" aria-label="john.doe@example.com">
-                        <small class="form-text"> You can use letters, numbers &amp; periods </small>
+                        <label class="form-label" for="basic-icon-default-post">Apellido</label>
+                        <input type="text" id="basic-icon-default-post" class="form-control dt-post" name="apellido" placeholder="Apellido" aria-label="Apellido">
                     </div>
                     <div class="mb-1">
-                        <label class="form-label" for="basic-icon-default-date">Joining Date</label>
-                        <input type="text" class="form-control dt-date flatpickr-input" id="basic-icon-default-date" placeholder="MM/DD/YYYY" aria-label="MM/DD/YYYY" readonly="readonly">
+                        <label class="form-label" for="basic-icon-default-email">Correo</label>
+                        <input type="text" id="basic-icon-default-email" class="form-control dt-email" name="email" placeholder="ejemplo@example.com" aria-label="jejemplo@example.com">
+                        <small class="form-text"> Puedes usar letras, números y puntos </small>
                     </div>
-                    <div class="mb-4">
-                        <label class="form-label" for="basic-icon-default-salary">Salary</label>
-                        <input type="text" id="basic-icon-default-salary" class="form-control dt-salary" placeholder="$12000" aria-label="$12000">
+                    <div class="mb-1">
+                        <label class="form-label" for="basicSelect">Rol</label>
+                        <select class="form-select" id="basicSelect" name="rol" >
+                        <option value="">Opcion</option>
+                        <option value="1">IT</option>
+                        <option value="2">Usuario</option>
+                        </select>
                     </div>
-                    <button type="button" class="btn btn-dark data-submit me-1 waves-effect waves-float waves-light">Submit</button>
+                    <div class="mb-1">
+                        <label class="form-label" for="basic-icon-default-date">Contraseña</label>
+                        <input type="password" class="form-control dt-date flatpickr-input" name="pass" id="basic-icon-default-date" placeholder="*******" aria-label="*******" >
+                    </div>
+                    <div class="mb-1">
+                        <label class="form-label" for="basicSelect">Estado</label>
+                        <select class="form-select" id="basicSelect" name="estado">
+                        <option value="1">Activo</option>
+                        <option value="0">Inactivo</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-dark data-submit me-1 waves-effect waves-float waves-light">Submit</button>
                     <button type="reset" class="btn btn-outline-secondary waves-effect" data-bs-dismiss="modal">Cancel</button>
                 </div>
             </form>

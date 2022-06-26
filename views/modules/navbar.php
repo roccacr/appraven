@@ -149,7 +149,6 @@
                           <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
                           <line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
                           <span data-i18n="FAQ">Consultar factura</span>
-
                    </a>
                 </li>
               </ul>
@@ -166,13 +165,7 @@
                           <span data-i18n="FAQ">Lista de Usuarios</span>
                    </a>
                 </li>
-                <li class="<?php if (!empty($routesArray) && $routesArray[2] == "new"): ?>active<?php endif ?>"" data-menu="">
-                      <a class="dropdown-item d-flex align-items-center" href="/usuario/new" data-bs-toggle="" data-i18n="FAQ">
-                      <i data-feather='user-plus'></i>
-                          <span data-i18n="FAQ">Nuevo Usuario</span>
-                          
-                   </a>
-                </li>
+   
           </ul>
         </div>
       </div>
