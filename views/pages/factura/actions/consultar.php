@@ -1,17 +1,27 @@
 <?php
-
-$select = "consultarFacturas_permiso";
-$url = "permisos?select=".$select."&linkTo=id_user&equalTo=". $_SESSION["admin"]->id_user;
+/* Variable que se utiliza para almacenar el nombre de la columna que se va a utilizar para consultar
+la base de datos. */
+$select = "$consultarFacturas_permiso_va";
+/* Creación de una URL para consultar la base de datos sobre los permisos del usuario. */
+$url = "$tbl_permisos?select=".$select."&linkTo=$id_user_va&equalTo=". $_SESSION["admin"]->$id_user_va;
 $method = "GET";
+/* Una matriz vacía. */
 $fields = array();
+/* Realizar una solicitud al servidor para obtener los permisos del usuario. */
 $responsepermisos = CurlController::request($url,$method,$fields);
+/* Verificando si la respuesta del servidor es 200, lo que significa que la solicitud fue exitosa. */
 if($responsepermisos->status == 200){
+/* Obtener los resultados de la respuesta. */
   $permiso= $responsepermisos->results;
+ /* Recorriendo los resultados de la consulta. */
   foreach ($permiso as $data) {
- if ($data->consultarFacturas_permiso==1){
-  
+/* Comprobando si el usuario tiene permiso para ver la página. */
+ if ($data->$consultarFacturas_permiso_va==1){
+/* Comprobando si el formulario ha sido enviado. */
 if (isset($_POST["clave"]) || isset($_POST["transaccion"]) || isset($_POST["customOptionsCheckableRadios"])) {
+/* Comprobando si el botón de radio está marcado o no. */
   $factura = isset($_POST['customOptionsCheckableRadios']) ? "checked" : "unchecked";
+/* Comprobando si el botón de radio está marcado o no. */
   if ($factura === "unchecked") {
     echo '<div class="alert alert-warning" role="alert">
     <h4 class="alert-heading">Lo sentimos</h4>
@@ -20,38 +30,48 @@ if (isset($_POST["clave"]) || isset($_POST["transaccion"]) || isset($_POST["cust
     </div>
   </div>';
   }
+/* Comprobando si el botón de radio está marcado. */
   if ($factura === "checked") {
     $valor = $_POST['customOptionsCheckableRadios'];
+  /* Verificando si el valor del botón de radio es factura, si lo es, establece la tabla en facturas,
+  la clave en el valor de la entrada de clave y el tipoValor en Factura. */
     if ($valor == "factura") {
-      $tabla = "facturas";
+      $tabla = $tbl_facturas;
       $clave = $_POST["clave"];
       $tipoValor = "Factura";
-    } else {
-      $tabla = "creditonotas";
+    }/* Al verificar si el botón de opción no está marcado, si no está marcado, establecerá la tabla en
+    creditonotas, la clave en el valor de la entrada clave y el tipoValor en Nota de crédito. */
+     else {
+      $tabla = $tbl_creditonotas;
       $clave = $_POST["clave"];
       $tipoValor = "Nota de Credito";
     }
     $select = "*";
-    $url = "$tabla?select=*&linkTo=clave&equalTo=" . $clave;
+     /* Crear una URL para consultar la base de datos. */
+    $url = "$tabla?select=*&linkTo=$clave_factura&equalTo=" . $clave;
     $method = "GET";
     $fields = array();
     $response = CurlController::request($url, $method, $fields);
+  /* Verificando si la respuesta del servidor es 200, lo que significa que la solicitud fue exitosa. */
     if ($response->status == 200) {
+    /* Obtener los resultados de la respuesta. */
       $response = $response->results;
+   /* Recorriendo la respuesta del servidor. */
       foreach ($response as $data) {
         if ($valor == "factura") {
-          $yourURL = "/factura/factura/".base64_encode($clave)."~".$_SESSION["admin"]->token_user;
+          /* Redirigir a otra página. */
+          $yourURL = "/factura/factura/".base64_encode($clave)."~".$_SESSION["admin"]->$token_user_va;
           echo ("<script>location.href='$yourURL'</script>");
 
         }else{
-          $yourURL = "/factura/credito/".base64_encode($clave)."~".$_SESSION["admin"]->token_user;
+          $yourURL = "/factura/credito/".base64_encode($clave)."~".$_SESSION["admin"]->$token_user_va;
           echo ("<script>location.href='$yourURL'</script>");
         }
       }
     }else{
-    echo '<div class="alert alert-danger" role="alert">
-    <h4 class="alert-heading">Factura</h4>
-    <div class="alert-body">
+      echo '<div class="alert alert-danger" role="alert">
+     <h4 class="alert-heading">Factura</h4>
+     <div class="alert-body">
       No se encontro  ninguna factura con la clave : ' . $clave . ' ,  Tipo de transaccion : ' .  $tipoValor . ' Intentalo de nuevo 
     </div>
   </div>';
@@ -156,7 +176,8 @@ if (isset($_POST["clave"]) || isset($_POST["transaccion"]) || isset($_POST["cust
   ?>
 <!-- 
 //permisos fin -->
-  <?php }else{
+  <?php /* Comprobando si el usuario tiene permiso para ver la página. */
+  }else{
     echo '<div class="alert alert-danger" role="alert">
     <h4 class="alert-heading">Lo sentimos</h4>
     <div class="alert-body">
@@ -165,6 +186,7 @@ if (isset($_POST["clave"]) || isset($_POST["transaccion"]) || isset($_POST["cust
   </div>';
 }
  }
+/* Una llave de cierre para la instrucción `if (->status == 200){`. */
 }else{
    echo '<div class="alert alert-danger" role="alert">
    <h4 class="alert-heading">Lo sentimos</h4>

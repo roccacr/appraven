@@ -29,3 +29,16 @@ $crearUsuario_permiso_va         ="crearUsuario_permiso";
 $crearPermisos_permiso_va        ="crearPermisos_permiso";
 $editarUsuarios_permiso_va       ="editarUsuarios_permiso";
 $id_user_permiso_va              ="id_user";
+
+
+/* =======================================================================xxxxxxxxxxxxx
+                    TABLA FACTURAS
+=======================================================================xxxxxxxxxxxxx */
+$tbl_facturas ="facturas";
+$clave_factura ="clave";
+
+
+/* =======================================================================xxxxxxxxxxxxx
+                    TABLA CREDITO NOTAS
+=======================================================================xxxxxxxxxxxxx */
+$tbl_creditonotas ="creditonotas";
