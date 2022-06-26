@@ -18,7 +18,6 @@ if($responsepermisos->status == 200){
     $permisos_va= $data->$crearPermisos_permiso_va;
  if ($data->$consultarUsuarios_permiso_va==1){
 ?>
-
 <section id="row-grouping-datatable">
     <div class="row">
         <div class="col-12">
@@ -74,11 +73,11 @@ if($responsepermisos->status == 200){
                                            <?php }?>
                                             <td> <?php if ($editar_va==1){?>
                                                  <center>
-                                                <a href="/users/edit" data-bs-toggle="tooltip" data-bs-placement="left" title="" data-bs-original-title="Editar"><i data-feather='edit'></i>
+                                                <a href="/usuario/edit/<?php echo base64_encode($data->$id_user_va)?>~<?php echo base64_encode($_SESSION["admin"]->$token_user_va)?>" data-bs-toggle="tooltip" data-bs-placement="left" title="" data-bs-original-title="Editar"><i data-feather='edit'></i>
                                                 </a> </center>
                                             </td><?php }?>
                                             <td><?php if ($permisos_va==1){?>
-                                                     <a href="/users/edit" data-bs-toggle="tooltip" data-bs-placement="left" title="" data-bs-original-title="Permisos de usuario"><i data-feather='align-center'></i></a>
+                                                     <a href="/usuario/permisos/<?php echo base64_encode($data->$id_user_va)?>~<?php echo base64_encode($_SESSION["admin"]->$token_user_va)?>" data-bs-toggle="tooltip" data-bs-placement="left" title="" data-bs-original-title="Permisos de usuario"><i data-feather='align-center'></i></a>
                                             </td> <?php }?>
                                             </tr>
                                         <?php }

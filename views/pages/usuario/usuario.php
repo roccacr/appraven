@@ -1,13 +1,12 @@
-
 <!-- BEGIN: Content-->
 <div class="app-content content ">
-      <div class="content-overlay"></div>
-      <div class="header-navbar-shadow"></div>
-      <div class="content-wrapper container-xxl p-0">
+    <div class="content-overlay"></div>
+    <div class="header-navbar-shadow"></div>
+    <div class="content-wrapper container-xxl p-0">
 
-<?php
+        <?php
         if (isset($routesArray[2])) {
-            if ($routesArray[2] == "list" || $routesArray[2] == "permisos") {
+            if ($routesArray[2] == "list" || $routesArray[2] == "permisos" || $routesArray[2] == "edit") {
                 include "actions/" . $routesArray[2] . ".php";
             }
         } else {
