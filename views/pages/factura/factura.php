@@ -7,7 +7,7 @@
 
 <?php
         if (isset($routesArray[2])) {
-            if ($routesArray[2] == "consultar" || $routesArray[2] == "new") {
+            if ($routesArray[2] == "consultar" || $routesArray[2] == "factura" || $routesArray[2] == "credito") {
                 include "actions/" . $routesArray[2] . ".php";
             }
         } else {

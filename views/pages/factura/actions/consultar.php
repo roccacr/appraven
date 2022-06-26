@@ -1,5 +1,5 @@
-
 <?php
+
 $select = "consultarFacturas_permiso";
 $url = "permisos?select=".$select."&linkTo=id_user&equalTo=". $_SESSION["admin"]->id_user;
 $method = "GET";
@@ -9,7 +9,8 @@ if($responsepermisos->status == 200){
   $permiso= $responsepermisos->results;
   foreach ($permiso as $data) {
  if ($data->consultarFacturas_permiso==1){
- if (isset($_POST["clave"]) || isset($_POST["transaccion"]) || isset($_POST["customOptionsCheckableRadios"])) {
+  
+if (isset($_POST["clave"]) || isset($_POST["transaccion"]) || isset($_POST["customOptionsCheckableRadios"])) {
   $factura = isset($_POST['customOptionsCheckableRadios']) ? "checked" : "unchecked";
   if ($factura === "unchecked") {
     echo '<div class="alert alert-warning" role="alert">
@@ -37,79 +38,26 @@ if($responsepermisos->status == 200){
     $response = CurlController::request($url, $method, $fields);
     if ($response->status == 200) {
       $response = $response->results;
-?>
-      <div class="row" id="basic-table">
-        <div class="col-12">
-          <div class="card">
-            <div class="card-header">
-              <h4 class="card-title">Resultado de la busqueda</h4>
-            </div>
-            <div class="card-body">
-            </div>
-            <div class="table-responsive">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>Clave</th>
-                    <th>Subsidiaria</th>
-                    <th>Fecga de creacion</th>
-                    <th>estado</th>
-                    <th>Fecga de Modificaion</th>
-                    <th>id Netsuite</th>
-                    <th>xml Firmado</th>
-                    <th>Total Netsuite</th>
-                    <th>usuario</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php foreach ($response as $data) {
-                    if ($valor == "factura") {
-                  ?>
-                      <tr>
-                        <td><span class="fw-bold"><?php echo $data->clave; ?></span>
-                        </td>
-                        <td><?php echo $data->subsidiaria; ?></td>
-                        <td><?php echo $data->xml; ?> </td>
-                        <td><span class="badge rounded-pill badge-light-warning me-1"><?php echo $data->estado; ?></span></td>
-                        <td><?php echo $data->fecha_ultima_modificacion; ?> </td>
-                        <td><?php echo $data->id_netsuite; ?> </td>
-                        <td><?php echo $data->xml_firmado; ?></td>
-                        <td><?php echo $data->total_netsuite; ?> </td>
-                        <td><?php echo $data->usuario; ?></td>
-                      </tr>
-                    <?php
-                    }else{ ?>
-                    <tr>
-                      <td><span class="fw-bold"><?php echo $data->clave; ?></span>
-                      </td>
-                      <td><?php echo $data->subsidiaria; ?></td>
-                      <td><?php echo $data->xml; ?> </td>
-                      <td><span class="badge rounded-pill badge-light-warning me-1"><?php echo $data->estado; ?></span></td>
-                      <td><?php echo $data->fecha_creacion; ?> </td>
-                      <td><?php echo $data->fecha_ultima_modificacion; ?> </td>
-                      <td><?php echo $data->id_netsuite; ?></td>
-                      <td><?php echo $data->xml_firmado; ?> </td>
-                      <td><?php echo $data->usuario; ?></td>
-                    </tr>
-                  <?php
-                } } ?>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-<?php } else {
-      echo '<div class="alert alert-danger" role="alert">
-            <h4 class="alert-heading">Factura</h4>
-            <div class="alert-body">
-              No se encontro  ninguna factura con la clave : ' . $clave . ' ,  Tipo de transaccion : ' .  $tipoValor . ' Intentalo de nuevo 
-            </div>
-          </div>';
+      foreach ($response as $data) {
+        if ($valor == "factura") {
+          $yourURL = "/factura/factura/".base64_encode($clave)."~".$_SESSION["admin"]->token_user;
+          echo ("<script>location.href='$yourURL'</script>");
+
+        }else{
+          $yourURL = "/factura/credito/".base64_encode($clave)."~".$_SESSION["admin"]->token_user;
+          echo ("<script>location.href='$yourURL'</script>");
+        }
+      }
+    }else{
+    echo '<div class="alert alert-danger" role="alert">
+    <h4 class="alert-heading">Factura</h4>
+    <div class="alert-body">
+      No se encontro  ninguna factura con la clave : ' . $clave . ' ,  Tipo de transaccion : ' .  $tipoValor . ' Intentalo de nuevo 
+    </div>
+  </div>';
     }
   }
-} ?>
-
+}?>
 <section id="floating-label-input">
   <form method="post" class="needs-validation" novalidate enctype="multipart/form-data">
     <div class="row">
@@ -185,23 +133,7 @@ if($responsepermisos->status == 200){
     </div>
   </form>
 </section>
-<?php }else{
-     echo '<div class="alert alert-danger" role="alert">
-     <h4 class="alert-heading">Lo sentimos</h4>
-     <div class="alert-body">
-      No tienes permisos para ver esta vista, consulta con el administrador del sitio.
-     </div>
-   </div>';
-}
-  }
-}else{
-    echo '<div class="alert alert-danger" role="alert">
-    <h4 class="alert-heading">Lo sentimos</h4>
-    <div class="alert-body">
-    Todavía no tienes permisos para ver esta vista, consulta con el administrador del sitio.
-    </div>
-  </div>';
-}?>
+
 <script>
   if (window.history.replaceState) { // verificamos disponibilidad
     window.history.replaceState(null, null, window.location.href);
@@ -216,4 +148,28 @@ if($responsepermisos->status == 200){
 <script src="../../../app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js"></script>
 <!-- END: Page Vendor JS-->
 <script src="../../../app-assets/formulario/form.js?123">
+
 </script>
+
+
+<?php 
+  ?>
+<!-- 
+//permisos fin -->
+  <?php }else{
+    echo '<div class="alert alert-danger" role="alert">
+    <h4 class="alert-heading">Lo sentimos</h4>
+    <div class="alert-body">
+     No tienes permisos para ver esta vista, consulta con el administrador del sitio.
+    </div>
+  </div>';
+}
+ }
+}else{
+   echo '<div class="alert alert-danger" role="alert">
+   <h4 class="alert-heading">Lo sentimos</h4>
+   <div class="alert-body">
+   Todavía no tienes permisos para ver esta vista, consulta con el administrador del sitio.
+   </div>
+ </div>';
+}?>
