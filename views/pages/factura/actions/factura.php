@@ -134,7 +134,7 @@ if(isset($routesArray[3])==false ){
             </div>
             <div class="mt-md-0 mt-2">
               <h4 class="invoice-title">
-              NOTA DE CREDITO
+            FACTURA
                 <span class="invoice-number">#<?php echo $data->clave;?></span>
               </h4>
               <div class="invoice-date-wrapper">
