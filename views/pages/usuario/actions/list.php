@@ -3,11 +3,11 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header border-bottom">
-                    <h4 class="card-title">Row Grouping</h4>
+                    <h4 class="card-title">Informacion de Usuarios</h4>
                     <button class="dt-button create-new btn btn-dark" tabindex="0" aria-controls="DataTables_Table_0" type="button" data-bs-toggle="modal" data-bs-target="#modals-slide-in"><span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus me-50 font-small-4">
                                             <line x1="12" y1="5" x2="12" y2="19"></line>
                                             <line x1="5" y1="12" x2="19" y2="12"></line>
-                                        </svg>Add New Record</span></button>
+                                        </svg>Nuevo Usuario</span></button>
                 </div>
                 <div class="card-datatable">
                     <div id="DataTables_Table_2_wrapper" class="dataTables_wrapper dt-bootstrap5">
