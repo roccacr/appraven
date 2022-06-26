@@ -10,7 +10,6 @@ if (isset($_POST["clave"]) || isset($_POST["transaccion"]) || isset($_POST["cust
     Se debe seleccionar un tipo de factura para realizar la consulta, inténtalo de nuevo.
     </div>
   </div>';
-    return;
   }
   if ($factura === "checked") {
     $valor = $_POST['customOptionsCheckableRadios'];
