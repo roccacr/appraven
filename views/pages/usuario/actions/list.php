@@ -1,3 +1,9 @@
+<!-- <script src="../../../../app-assets/sweetalert2/sweetalert2.js?123"></script> -->
+<?php
+require_once "controllers/usuarios.controller.php";
+$create = new UsuariosController();
+$create -> crear();
+?>
 <section id="row-grouping-datatable">
     <div class="row">
         <div class="col-12">
@@ -14,23 +20,50 @@
                         <table id="DataTables_Table_2" class="table table-bordered  display nowrap" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
+                                    <th>Cedula</th>
                                     <th>Nombre</th>
-                                    <th>Puesto</th>
-                                    <th>Oficina</th>
-                                    <th>Edad</th>
-                                    <th>Fecha de Inicio</th>
-                                    <th>Salario</th>
+                                    <th>Apelido</th>
+                                    <th>rol</th>
+                                    <th>Correo</th>
+                                    <th>Estado</th>
+                                    <th>Accion</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Tiger Nixon</td>
-                                    <td>System Architect</td>
-                                    <td>Edinburgh</td>
-                                    <td>61</td>
-                                    <td>2011/04/25</td>
-                                    <td>$320,800</td>
-                                </tr>
+                                <?php 
+                                  $select = "*";
+                                  $url = "users";
+                                  $method = "GET";
+                                  $fields = array();
+                                  $response = CurlController::request($url, $method, $fields);
+                                  if ($response->status == 200) {
+                                    $response = $response->results;
+                                    foreach($response as $data){?>
+                                        <tr>
+                                            <td><?php echo $data->cedula_user;?></td>
+                                            <td><?php echo $data->nombre_user;?></td>
+                                            <td><?php echo $data->apellidos_user;?></td>
+                                            <td><?php echo $data->rol_id_user;?></td>
+                                            <td><?php echo $data->email_user;?></td>
+                                            <td><?php if($data->estado_user==1){?>
+                                                <span class="badge rounded-pill badge-light-success me-1">Activo</span></td>
+                                           <?php }else{?>
+                                                <span class="badge rounded-pill badge-light-warning me-1">Inactivo</td>
+                                           <?php }?>
+                                                <td> <a href="/users/edit" data-bs-toggle="tooltip" data-bs-placement="left" title="" data-bs-original-title="Editar"><i data-feather='edit'></i></a> / <a href="/users/edit" data-bs-toggle="tooltip" data-bs-placement="left" title="" data-bs-original-title="Permisos de usuario"><i data-feather='align-center'></i></a></td>
+                                        </tr>
+                                        <?php }
+                                    }else{?>
+                                        <tr>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                                <td>-</td>
+                                        </tr>
+                                  <?php  }?>
                             </tbody>
                         </table>
                         <br>
@@ -47,7 +80,7 @@
 
     <div class="modal modal-slide-in fade" id="modals-slide-in">
         <div class="modal-dialog sidebar-sm">
-            <form class="add-new-record modal-content pt-0">
+        <form class="add-new-record modal-content pt-0 needs-validation" method="post" novalidate>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">×</button>
                 <div class="modal-header mb-1">
                     <h5 class="modal-title" id="exampleModalLabel">Nuevo Usuario</h5>
@@ -55,39 +88,51 @@
                 <div class="modal-body flex-grow-1">
                     <div class="mb-1">
                         <label class="form-label" for="basic-icon-default-fullname">Cedula</label>
-                        <input type="text" class="form-control dt-full-name" id="basic-icon-default-fullname" name="cedula" placeholder="#0000" aria-label="#0000">
+                        <input  onchange="validateJS(event, 'text&number')" type="text" class="form-control dt-full-name" id="basic-icon-default-fullname" name="cedula" placeholder="#0000" required>
+                        <div class="valid-feedback">Valido.</div>
+                        <div class="invalid-feedback">Por favor rellene este campo.</div>
                     </div>
                     <div class="mb-1">
                         <label class="form-label" for="basic-icon-default-post">Nombre</label>
-                        <input type="text" id="basic-icon-default-post" class="form-control dt-post" name="nombre" placeholder="Nombre" aria-label="Nombre">
+                        <input  onchange="validateJS(event, 'text')" type="text" id="basic-icon-default-post" class="form-control dt-post" name="nombre" placeholder="Nombre" required>
+                        <div class="valid-feedback">Valido.</div>
+                        <div class="invalid-feedback">Por favor rellene este campo.</div>
                     </div>
                     <div class="mb-1">
                         <label class="form-label" for="basic-icon-default-post">Apellido</label>
-                        <input type="text" id="basic-icon-default-post" class="form-control dt-post" name="apellido" placeholder="Apellido" aria-label="Apellido">
+                        <input  onchange="validateJS(event, 'text')" type="text" id="basic-icon-default-post" class="form-control dt-post" name="apellido" placeholder="Apellido"  required>
+                        <div class="valid-feedback">Valido.</div>
+                        <div class="invalid-feedback">Por favor rellene este campo.</div>
                     </div>
                     <div class="mb-1">
                         <label class="form-label" for="basic-icon-default-email">Correo</label>
-                        <input type="text" id="basic-icon-default-email" class="form-control dt-email" name="email" placeholder="ejemplo@example.com" aria-label="jejemplo@example.com">
+                        <input  onchange="validateJS(event, 'email')" type="email" id="basic-icon-default-email" class="form-control dt-email" name="email" placeholder="ejemplo@example.com"  required>
                         <small class="form-text"> Puedes usar letras, números y puntos </small>
+                        <div class="valid-feedback">Valido.</div>
+                        <div class="invalid-feedback">Por favor rellene este campo.</div>
                     </div>
                     <div class="mb-1">
                         <label class="form-label" for="basicSelect">Rol</label>
-                        <select class="form-select" id="basicSelect" name="rol" >
+                        <select class="form-select" id="basicSelect" name="rol" required >
                         <option value="">Opcion</option>
                         <option value="1">IT</option>
                         <option value="2">Usuario</option>
                         </select>
+                        <div class="valid-feedback">Valido.</div>
+                        <div class="invalid-feedback">Por favor rellene este campo.</div>
                     </div>
                     <div class="mb-1">
                         <label class="form-label" for="basic-icon-default-date">Contraseña</label>
-                        <input type="password" class="form-control dt-date flatpickr-input" name="pass" id="basic-icon-default-date" placeholder="*******" aria-label="*******" >
+                        <input onchange="validateJS(event, 'pass')" type="password" class="form-control dt-date flatpickr-input" name="pass" id="basic-icon-default-date" placeholder="*******" required>
                     </div>
                     <div class="mb-1">
                         <label class="form-label" for="basicSelect">Estado</label>
-                        <select class="form-select" id="basicSelect" name="estado">
+                        <select class="form-select" id="basicSelect" name="estado" required>
                         <option value="1">Activo</option>
                         <option value="0">Inactivo</option>
                         </select>
+                        <div class="valid-feedback">Valido.</div>
+                        <div class="invalid-feedback">Por favor rellene este campo.</div>
                     </div>
                     <button type="submit" class="btn btn-dark data-submit me-1 waves-effect waves-float waves-light">Crear</button>
                     <button type="reset" class="btn btn-outline-secondary waves-effect" data-bs-dismiss="modal">Cancel</button>
@@ -96,6 +141,12 @@
         </div>
     </div>
 
+ 
+
+
+    <script src="../../../app-assets/formulario/form.js?123">
+
+</script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css" />
 
