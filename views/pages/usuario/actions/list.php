@@ -14,6 +14,8 @@ $responsepermisos = CurlController::request($url,$method,$fields);
 if($responsepermisos->status == 200){
   $permiso= $responsepermisos->results;
   foreach ($permiso as $data) {
+    $editar_va= $data->$editarUsuarios_permiso_va;
+    $permisos_va= $data->$crearPermisos_permiso_va;
  if ($data->$consultarUsuarios_permiso_va==1){
 ?>
 
@@ -45,7 +47,8 @@ if($responsepermisos->status == 200){
                                     <th>rol</th>
                                     <th>Correo</th>
                                     <th>Estado</th>
-                                    <th>Accion</th>
+                                    <th>Editar</th>
+                                    <th>Permisos</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -59,18 +62,25 @@ if($responsepermisos->status == 200){
                                     $response = $response->results;
                                     foreach($response as $data){?>
                                         <tr>
-                                            <td><?php echo $data->$cedula_user_va;?></td>
-                                            <td><?php echo $data->$nombre_user_va;?></td>
-                                            <td><?php echo $data->$apellidos_user_va;?></td>
-                                            <td><?php echo $data->$rol_id_user_va;?></td>
-                                            <td><?php echo $data->$email_user_va;?></td>
-                                            <td><?php if($data->$estado_user_va==1){?>
+                                            <td> <?php echo $data->$cedula_user_va;?>   </td>
+                                            <td> <?php echo $data->$nombre_user_va;?>   </td>
+                                            <td> <?php echo $data->$apellidos_user_va;?></td>
+                                            <td> <?php echo $data->$rol_id_user_va;?>   </td>
+                                            <td> <?php echo $data->$email_user_va;?>    </td>
+                                            <td> <?php if(  $data->$estado_user_va==1){?>
                                                 <span class="badge rounded-pill badge-light-success me-1">Activo</span></td>
                                            <?php }else{?>
                                                 <span class="badge rounded-pill badge-light-warning me-1">Inactivo</td>
                                            <?php }?>
-                                                <td> <a href="/users/edit" data-bs-toggle="tooltip" data-bs-placement="left" title="" data-bs-original-title="Editar"><i data-feather='edit'></i></a> / <a href="/users/edit" data-bs-toggle="tooltip" data-bs-placement="left" title="" data-bs-original-title="Permisos de usuario"><i data-feather='align-center'></i></a></td>
-                                        </tr>
+                                            <td> <?php if ($editar_va==1){?>
+                                                 <center>
+                                                <a href="/users/edit" data-bs-toggle="tooltip" data-bs-placement="left" title="" data-bs-original-title="Editar"><i data-feather='edit'></i>
+                                                </a> </center>
+                                            </td><?php }?>
+                                            <td><?php if ($permisos_va==1){?>
+                                                     <a href="/users/edit" data-bs-toggle="tooltip" data-bs-placement="left" title="" data-bs-original-title="Permisos de usuario"><i data-feather='align-center'></i></a>
+                                            </td> <?php }?>
+                                            </tr>
                                         <?php }
                                     }else{?>
                                         <tr>
@@ -80,7 +90,8 @@ if($responsepermisos->status == 200){
                                             <td>-</td>
                                             <td>-</td>
                                             <td>-</td>
-                                           <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
                                         </tr>
                                   <?php  }?>
                             </tbody>
