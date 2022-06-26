@@ -170,6 +170,8 @@ if($responsepermisos->status == 200){
                         <div class="valid-feedback">Valido.</div>
                         <div class="invalid-feedback">Por favor rellene este campo.</div>
                     </div>
+                    <br>
+                    <br>
                     <button type="submit" class="btn btn-dark data-submit me-1 waves-effect waves-float waves-light">Crear</button>
                     <button type="reset" class="btn btn-outline-secondary waves-effect" data-bs-dismiss="modal">Cancel</button>
                 </div>

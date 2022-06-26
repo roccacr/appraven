@@ -9,8 +9,7 @@ if($responsepermisos->status == 200){
   $permiso= $responsepermisos->results;
   foreach ($permiso as $data) {
  if ($data->consultarFacturas_permiso==1){
-
-if (isset($_POST["clave"]) || isset($_POST["transaccion"]) || isset($_POST["customOptionsCheckableRadios"])) {
+ if (isset($_POST["clave"]) || isset($_POST["transaccion"]) || isset($_POST["customOptionsCheckableRadios"])) {
   $factura = isset($_POST['customOptionsCheckableRadios']) ? "checked" : "unchecked";
   if ($factura === "unchecked") {
     echo '<div class="alert alert-warning" role="alert">
@@ -19,7 +18,6 @@ if (isset($_POST["clave"]) || isset($_POST["transaccion"]) || isset($_POST["cust
     Se debe seleccionar un tipo de factura para realizar la consulta, inténtalo de nuevo.
     </div>
   </div>';
- 
   }
   if ($factura === "checked") {
     $valor = $_POST['customOptionsCheckableRadios'];
@@ -40,7 +38,6 @@ if (isset($_POST["clave"]) || isset($_POST["transaccion"]) || isset($_POST["cust
     if ($response->status == 200) {
       $response = $response->results;
 ?>
-
       <div class="row" id="basic-table">
         <div class="col-12">
           <div class="card">
