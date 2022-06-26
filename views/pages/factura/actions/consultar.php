@@ -1,3 +1,108 @@
+
+
+<?php
+if (isset($_POST["clave"]) || isset($_POST["transaccion"]) || isset($_POST["customOptionsCheckableRadios"])) {
+  $factura = isset($_POST['customOptionsCheckableRadios']) ? "checked" : "unchecked";
+  if ($factura === "unchecked") {
+    echo '<div class="alert alert-warning" role="alert">
+    <h4 class="alert-heading">Lo sentimos</h4>
+    <div class="alert-body">
+    Se debe seleccionar un tipo de factura para realizar la consulta, inténtalo de nuevo.
+    </div>
+  </div>';
+    return;
+  }
+  if ($factura === "checked") {
+    $valor = $_POST['customOptionsCheckableRadios'];
+    if ($valor == "factura") {
+      $tabla = "facturas";
+      $clave = $_POST["clave"];
+      $tipoValor = "Factura";
+    } else {
+      $tabla = "creditonotas";
+      $clave = $_POST["clave"];
+      $tipoValor = "Nota de Credito";
+    }
+    $select = "*";
+    $url = "$tabla?select=*&linkTo=clave&equalTo=" . $clave;
+    $method = "GET";
+    $fields = array();
+    $response = CurlController::request($url, $method, $fields);
+    if ($response->status == 200) {
+      $response = $response->results;
+?>
+      <div class="row" id="basic-table">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title">Resultado de la busqueda</h4>
+            </div>
+            <div class="card-body">
+            </div>
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Clave</th>
+                    <th>Subsidiaria</th>
+                    <th>Fecga de creacion</th>
+                    <th>estado</th>
+                    <th>Fecga de Modificaion</th>
+                    <th>id Netsuite</th>
+                    <th>xml Firmado</th>
+                    <th>Total Netsuite</th>
+                    <th>usuario</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php foreach ($response as $data) {
+                    if ($valor == "factura") {
+                  ?>
+                      <tr>
+                        <td><span class="fw-bold"><?php echo $data->clave; ?></span>
+                        </td>
+                        <td><?php echo $data->subsidiaria; ?></td>
+                        <td><?php echo $data->xml; ?> </td>
+                        <td><span class="badge rounded-pill badge-light-warning me-1"><?php echo $data->estado; ?></span></td>
+                        <td><?php echo $data->fecha_ultima_modificacion; ?> </td>
+                        <td><?php echo $data->id_netsuite; ?> </td>
+                        <td><?php echo $data->xml_firmado; ?></td>
+                        <td><?php echo $data->total_netsuite; ?> </td>
+                        <td><?php echo $data->usuario; ?></td>
+                      </tr>
+                    <?php
+                    }else{ ?>
+                    <tr>
+                      <td><span class="fw-bold"><?php echo $data->clave; ?></span>
+                      </td>
+                      <td><?php echo $data->subsidiaria; ?></td>
+                      <td><?php echo $data->xml; ?> </td>
+                      <td><span class="badge rounded-pill badge-light-warning me-1"><?php echo $data->estado; ?></span></td>
+                      <td><?php echo $data->fecha_creacion; ?> </td>
+                      <td><?php echo $data->fecha_ultima_modificacion; ?> </td>
+                      <td><?php echo $data->id_netsuite; ?></td>
+                      <td><?php echo $data->xml_firmado; ?> </td>
+                      <td><?php echo $data->usuario; ?></td>
+                    </tr>
+                  <?php
+                } } ?>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+<?php } else {
+      echo '<div class="alert alert-danger" role="alert">
+            <h4 class="alert-heading">Factura</h4>
+            <div class="alert-body">
+              No se encontro  ninguna factura con la clave : ' . $clave . ' ,  Tipo de transaccion : ' .  $tipoValor . ' Intentalo de nuevo 
+            </div>
+          </div>';
+    }
+  }
+} ?>
+
 <section id="floating-label-input">
   <form method="post" class="needs-validation" novalidate enctype="multipart/form-data">
     <div class="row">
@@ -80,108 +185,6 @@
 </script>
 
 
-<?php
-if (isset($_POST["clave"]) || isset($_POST["transaccion"]) || isset($_POST["customOptionsCheckableRadios"])) {
-  $factura = isset($_POST['customOptionsCheckableRadios']) ? "checked" : "unchecked";
-  if ($factura === "unchecked") {
-    echo '<div class="alert alert-warning" role="alert">
-    <h4 class="alert-heading">Lo sentimos</h4>
-    <div class="alert-body">
-    Se debe seleccionar un tipo de factura para realizar la consulta, inténtalo de nuevo.
-    </div>
-  </div>';
-    return;
-  }
-  if ($factura === "checked") {
-    $valor = $_POST['customOptionsCheckableRadios'];
-    if ($valor == "factura") {
-      $tabla = "facturas";
-      $clave = $_POST["clave"];
-      $tipoValor = "Nota de Credito";
-    } else {
-      $tabla = "creditonotas";
-      $clave = $_POST["clave"];
-      $tipoValor = "Nota de Credito";
-    }
-    $select = "*";
-    $url = "$tabla?select=*&linkTo=clave&equalTo=" . $clave;
-    $method = "GET";
-    $fields = array();
-    $response = CurlController::request($url, $method, $fields);
-    if ($response->status == 200) {
-      $response = $response->results;
-?>
-      <div class="row" id="basic-table">
-        <div class="col-12">
-          <div class="card">
-            <div class="card-header">
-              <h4 class="card-title">Resultado de la busqueda</h4>
-            </div>
-            <div class="card-body">
-            </div>
-            <div class="table-responsive">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>Clave</th>
-                    <th>Subsidiaria</th>
-                    <th>Fecga de creacion</th>
-                    <th>estado</th>
-                    <th>Fecga de Modificaion</th>
-                    <th>id Netsuite</th>
-                    <th>xml Firmado</th>
-                    <th>Total Netsuite</th>
-                    <th>usuario</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php foreach ($response as $data) {
-                    if ($valor == "factura") {
-                  ?>
-                      <tr>
-                        <td><span class="fw-bold"><?php echo $data->clave; ?></span>
-                        </td>
-                        <td><?php echo $data->subsidiaria; ?></td>
-                        <td><?php echo $data->xml; ?> </td>
-                        <td><span class="badge rounded-pill badge-light-warning me-1"><?php echo $data->estado; ?></span></td>
-                        <td><?php echo $data->fecha_ultima_modificacion; ?> </td>
-                        <td><?php echo $data->id_netsuite; ?> </td>
-                        <td><?php echo $data->xml_firmado; ?></td>
-                        <td><?php echo $data->total_netsuite; ?> </td>
-                        <td><?php echo $data->usuario; ?></td>
-                      </tr>
-                    <?php
-                    }else{ ?>
-                    <tr>
-                      <td><span class="fw-bold"><?php echo $data->clave; ?></span>
-                      </td>
-                      <td><?php echo $data->subsidiaria; ?></td>
-                      <td><?php echo $data->xml; ?> </td>
-                      <td><span class="badge rounded-pill badge-light-warning me-1"><?php echo $data->estado; ?></span></td>
-                      <td><?php echo $data->fecha_creacion; ?> </td>
-                      <td><?php echo $data->fecha_ultima_modificacion; ?> </td>
-                      <td><?php echo $data->id_netsuite; ?></td>
-                      <td><?php echo $data->xml_firmado; ?> </td>
-                      <td><?php echo $data->usuario; ?></td>
-                    </tr>
-                  <?php
-                } } ?>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-<?php } else {
-      echo '<div class="alert alert-danger" role="alert">
-            <h4 class="alert-heading">Factura</h4>
-            <div class="alert-body">
-              No se encontro  ninguna factura con la clave : ' . $clave . ' ,  Tipo de transaccion : ' .  $tipoValor . 'Intentalo de nuevo 
-            </div>
-          </div>';
-    }
-  }
-} ?>
 
 
 <!-- BEGIN: Page Vendor JS-->
