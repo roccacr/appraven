@@ -1,29 +1,26 @@
-
+<?php
+if(isset($routesArray[3])==false ){
+    $yourURL = "/factura/consultar";
+    echo ("<script>location.href='$yourURL'</script>");
+  }else{
+  $exp = explode("~", $routesArray[3]);
+  $routesArray = base64_decode($exp[0]);
+  if (isset($routesArray)) {
+      $select = "*";
+      $url = "facturas?select=*&linkTo=clave&equalTo=" . $routesArray;
+      $method = "GET";
+      $fields = array();
+      $response = CurlController::request($url, $method, $fields);
+  }
+}
+  ?>
 <!DOCTYPE html>
-<!--
-Template Name: Factura - Vuejs, HTML & Laravel Admin Dashboard Template
-Author: PixInvent
-Website: http://www.pixinvent.com/
-Contact: hello@pixinvent.com
-Follow: www.twitter.com/pixinvents
-Like: www.facebook.com/pixinvents
-Purchase: https://1.envato.market/Factura_admin
-Renew Support: https://1.envato.market/Factura_admin
-License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
-
--->
 <html class="loading dark-layout" lang="en" data-layout="dark-layout" data-textdirection="ltr">
-  <!-- BEGIN: Head-->
-  
-<!-- Mirrored from pixinvent.com/demo/Factura-html-bootstrap-admin-template/html/ltr/horizontal-menu-template-dark/app-invoice-preview.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Jun 2022 05:57:51 GMT -->
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimal-ui">
-    <meta name="description" content="Factura admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
-    <meta name="keywords" content="admin template, Factura admin template, dashboard template, flat admin template, responsive admin template, web app">
-    <meta name="author" content="PIXINVENT">
-    <title>Invoice Preview - Factura - Bootstrap HTML admin template</title>
+
     <link rel="apple-touch-icon" href="../../../app-assets/images/ico/apple-icon-120.html">
     <link rel="shortcut icon" type="image/x-icon" href="https://pixinvent.com/demo/Factura-html-bootstrap-admin-template/app-assets/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
@@ -49,6 +46,19 @@ License: You must have a valid license purchased only from themeforest(the above
 
     <link rel="stylesheet" type="text/css" href="../../../assets/css/style.css">
   
+<?php
+ if ($response->status == 200) {
+      $response = $response->results;
+     foreach ($response as $data) {
+
+        if($data->estado=="Aceptada"){
+          echo '<div class="alert alert-success" role="alert">
+          <h4 class="alert-heading">Estado</h4>
+          <div class="alert-body">
+          Estado de la factura: '.$data->estado.'
+          </div>
+        </div>';
+        ?>
         <div class="content-header row">
         </div>
         <div class="content-body"><section class="invoice-preview-wrapper">
@@ -124,16 +134,16 @@ License: You must have a valid license purchased only from themeforest(the above
             </div>
             <div class="mt-md-0 mt-2">
               <h4 class="invoice-title">
-                Invoice
-                <span class="invoice-number">#3492</span>
+              NOTA DE CREDITO
+                <span class="invoice-number">#<?php echo $data->clave;?></span>
               </h4>
               <div class="invoice-date-wrapper">
-                <p class="invoice-date-title">Date Issued:</p>
-                <p class="invoice-date">25/08/2020</p>
+                <p class="invoice-date-title">Fecha de emisión:</p>
+                <p class="invoice-date"><?php echo $data->fecha_creacion;?></p>
               </div>
               <div class="invoice-date-wrapper">
-                <p class="invoice-date-title">Due Date:</p>
-                <p class="invoice-date">29/08/2020</p>
+                <p class="invoice-date-title">Fecha de Modificaion:</p>
+                <p class="invoice-date"><?php echo $data->fecha_ultima_modificacion;?></p>
               </div>
             </div>
           </div>
@@ -287,15 +297,25 @@ License: You must have a valid license purchased only from themeforest(the above
     <div class="col-xl-3 col-md-4 col-12 invoice-actions mt-md-0 mt-2">
       <div class="card">
         <div class="card-body">
-          <a class="btn btn-dark w-100 mb-75" href="/factura/consultar">
-            Consultar Otra Factura
-          </a>
           <button class="btn btn-outline-secondary w-100 btn-download-invoice mb-75">Download</button>
           <a class="btn btn-outline-secondary w-100 mb-75" href="app-invoice-print.html" target="_blank"> Print </a>
           <a class="btn btn-outline-secondary w-100 mb-75" href="app-invoice-edit.html"> Edit </a>
-          <button class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#add-payment-sidebar">
-            Add Payment
-          </button>
+          <a class="btn btn-outline-secondary w-100 mb-75" href="/factura/consultar"> Consultar Factura </a>
+          <?php }else{
+               echo '<div class="alert alert-danger" role="alert">
+               <h4 class="alert-heading">Lo sentimos</h4>
+               <div class="alert-body">
+               No se pede mostrar el resultado por que la factura: '.$data->clave.' no esta Aceptada.<br>
+               Estado de la Factura : '.$data->estado.'
+               </div>
+             </div>';?>
+
+               <a class="btn btn-outline-secondary w-100 mb-75" href="/factura/consultar"> Consultar otra Factura </a>
+
+          <?php } }
+        }else{?>
+                <a class="btn btn-outline-secondary w-100 mb-75" href="/factura/consultar"> Consultar Factura </a>
+       <?php } ?>
         </div>
       </div>
     </div>
