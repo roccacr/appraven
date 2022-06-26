@@ -7,12 +7,9 @@ class UsuariosController{
 	Login de administradores
 	=============================================*/
 	public function crear(){
-       
-  
-
         if (isset($_POST["cedula"])) {
-
-            $url = "users?select=cedula_user,email_user&linkTo=cedula_user,email_user&equalTo=".$_POST["cedula"].",".$_POST["email"];
+            require './variables_globales/variables.php';
+            $url = "$tbl_users?select=$cedula_user_va,$email_user_va&linkTo=$cedula_user_va,$email_user_va&equalTo=".$_POST["cedula"].",".$_POST["email"];
             $method = "GET";
             $fields = array();
             $response = CurlController::request($url,$method,$fields);
@@ -24,7 +21,7 @@ class UsuariosController{
                 </div>
               </div>';
             }else{
-                    $url = "users?select=cedula_user&linkTo=cedula_user&equalTo=".$_POST["cedula"];
+                    $url = "$tbl_users?select=$cedula_user_va&linkTo=$cedula_user_va&equalTo=".$_POST["cedula"];
                     $method = "GET";
                     $fields = array();
                     $response = CurlController::request($url,$method,$fields);
@@ -36,7 +33,7 @@ class UsuariosController{
                         </div>
                       </div>';
                     }else{
-                        $url = "users?select=email_user&linkTo=email_user&equalTo=".$_POST["email"];
+                        $url = "$tbl_users?select=$email_user_va&linkTo=$email_user_va&equalTo=".$_POST["email"];
                         $method = "GET";
                         $fields = array();
                         $response = CurlController::request($url,$method,$fields);
@@ -49,19 +46,20 @@ class UsuariosController{
                           </div>';
                         }else{
                             $data = array(
-                                "cedula_user"          =>$_POST["cedula"],
-                                "nombre_user"       => $_POST["nombre"],
-                                "apellidos_user"        => $_POST["apellido"],
-                                "rol_id_user"         => $_POST["rol"],
-                                "password_user"         => $_POST["pass"],
-                                "email_user"         => $_POST["email"],
-                                "estado_user"         => $_POST["estado"]
+                                $cedula_user_va          =>$_POST["cedula"],
+                                $nombre_user_va          => $_POST["nombre"],
+                                $apellidos_user_va       => $_POST["apellido"],
+                                $rol_id_user_va          => $_POST["rol"],
+                                $password_user_va        => $_POST["pass"],
+                                $email_user_va           => $_POST["email"],
+                                $estado_user_va          => $_POST["estado"]
 
                             );
-                            $url = "users?token=".$_SESSION["admin"]->token_user."&table=users&suffix=user";
+                            $url = "$tbl_users?token=".$_SESSION["admin"]->token_user."&table=$tbl_users&suffix=user";
                             $method = "POST";
                             $fields = $data;
                             $response = CurlController::request($url,$method,$fields);
+                            echo '<pre>'; print_r($response); echo '</pre>';
                             if($response->status == 200){
                                 echo '<div class="alert alert-success" role="alert">
                                 <h4 class="alert-heading">Exelente</h4>
@@ -81,7 +79,6 @@ class UsuariosController{
                     }
             }
         }else{
-         
         }
 
     }
