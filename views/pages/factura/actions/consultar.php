@@ -1,6 +1,16 @@
 
-
 <?php
+
+$select = "consultarFacturas_permiso";
+$url = "permisos?select=".$select."&linkTo=id_user&equalTo=". $_SESSION["admin"]->id_user;
+$method = "GET";
+$fields = array();
+$responsepermisos = CurlController::request($url,$method,$fields);
+if($responsepermisos->status == 200){
+  $permiso= $responsepermisos->results;
+  foreach ($permiso as $data) {
+ if ($data->consultarFacturas_permiso==1){
+
 if (isset($_POST["clave"]) || isset($_POST["transaccion"]) || isset($_POST["customOptionsCheckableRadios"])) {
   $factura = isset($_POST['customOptionsCheckableRadios']) ? "checked" : "unchecked";
   if ($factura === "unchecked") {
@@ -10,6 +20,7 @@ if (isset($_POST["clave"]) || isset($_POST["transaccion"]) || isset($_POST["cust
     Se debe seleccionar un tipo de factura para realizar la consulta, inténtalo de nuevo.
     </div>
   </div>';
+ 
   }
   if ($factura === "checked") {
     $valor = $_POST['customOptionsCheckableRadios'];
@@ -30,6 +41,7 @@ if (isset($_POST["clave"]) || isset($_POST["transaccion"]) || isset($_POST["cust
     if ($response->status == 200) {
       $response = $response->results;
 ?>
+
       <div class="row" id="basic-table">
         <div class="col-12">
           <div class="card">
@@ -177,6 +189,23 @@ if (isset($_POST["clave"]) || isset($_POST["transaccion"]) || isset($_POST["cust
     </div>
   </form>
 </section>
+<?php }else{
+     echo '<div class="alert alert-danger" role="alert">
+     <h4 class="alert-heading">Lo sentimos</h4>
+     <div class="alert-body">
+      No tienes permisos para ver esta vista, consulta con el administrador del sitio.
+     </div>
+   </div>';
+}
+  }
+}else{
+    echo '<div class="alert alert-danger" role="alert">
+    <h4 class="alert-heading">Lo sentimos</h4>
+    <div class="alert-body">
+    Todavía no tienes permisos para ver esta vista, consulta con el administrador del sitio.
+    </div>
+  </div>';
+}?>
 <script>
   if (window.history.replaceState) { // verificamos disponibilidad
     window.history.replaceState(null, null, window.location.href);
