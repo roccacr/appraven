@@ -153,6 +153,24 @@
                 </li>
               </ul>
             </li>
+
+            <li class="dropdown nav-item sidebar-group-<?php if (!empty($routesArray)  == "usuario"): ?>active<?php endif ?> <?php if (!empty($routesArray) && $routesArray[1] == "usuario"): ?>active<?php endif ?>"" data-menu="dropdown">
+              <a class="dropdown-toggle nav-link d-flex align-items-center" href="#" data-bs-toggle="dropdown">
+              <i data-feather='users'></i>
+                  <span data-i18n="Pages">Usuarios</span></a>
+                 <ul class="dropdown-menu" data-bs-popper="none">
+                     <li class="<?php if (!empty($routesArray) && $routesArray[2] == "list"): ?>active<?php endif ?>"" data-menu="">
+                      <a class="dropdown-item d-flex align-items-center" href="/usuario/list" data-bs-toggle="" data-i18n="FAQ">
+                      <i data-feather='users'></i>
+                          <span data-i18n="FAQ">Lista de Usuarios</span>
+                   </a>
+                </li>
+                <li class="<?php if (!empty($routesArray) && $routesArray[2] == "new"): ?>active<?php endif ?>"" data-menu="">
+                      <a class="dropdown-item d-flex align-items-center" href="/usuario/new" data-bs-toggle="" data-i18n="FAQ">
+                      <i data-feather='user-plus'></i>
+                          <span data-i18n="FAQ">Nuevo Usuario</span>
+                   </a>
+                </li>
           </ul>
         </div>
       </div>
