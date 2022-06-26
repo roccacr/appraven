@@ -33,37 +33,11 @@
                                     <td>2011/04/25</td>
                                     <td>$320,800</td>
                                 </tr>
-                             
-                             
-                                <tr>
-                                    <td>Michael Bruce</td>
-                                    <td>Javascript Developer</td>
-                                    <td>Singapore</td>
-                                    <td>29</td>
-                                    <td>2011/06/27</td>
-                                    <td>$183,000</td>
-                                </tr>
-                                <tr>
-                                    <td>Donna Snider</td>
-                                    <td>Atención al Cliente</td>
-                                    <td>New York</td>
-                                    <td>27</td>
-                                    <td>2011/01/25</td>
-                                    <td>$112,000</td>
-                                </tr>
                             </tbody>
                         </table>
+                        <br>
                         <div class="d-flex justify-content-between mx-0 row">
                             <div class="col-sm-12 col-md-6">
-                                <div class="dataTables_info" id="DataTables_Table_2_info" role="status" aria-live="polite">Showing 0 to 0 of 0 entries</div>
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_2_paginate">
-                                    <ul class="pagination">
-                                        <li class="paginate_button page-item previous disabled" id="DataTables_Table_2_previous"><a href="#" aria-controls="DataTables_Table_2" data-dt-idx="0" tabindex="0" class="page-link">&nbsp;</a></li>
-                                        <li class="paginate_button page-item next disabled" id="DataTables_Table_2_next"><a href="#" aria-controls="DataTables_Table_2" data-dt-idx="1" tabindex="0" class="page-link">&nbsp;</a></li>
-                                    </ul>
-                                </div>
                             </div>
                         </div>
                     </div>
