@@ -1,6 +1,6 @@
 <?php
 /* =======================================================================xxxxxxxxxxxxx
-                    TABLA users
+                    TABLA usuarios
 =======================================================================xxxxxxxxxxxxx */
 $tbl_users              ="users";
 $suffix_users           ="user";
@@ -16,3 +16,16 @@ $estado_user_va         ="estado_user";
 $token_user_va          ="token_user";
 $token_exp_user_va      ="token_exp_user";
 $estado                 ="1";
+
+
+/* =======================================================================xxxxxxxxxxxxx
+                    TABLA PERMISOS
+=======================================================================xxxxxxxxxxxxx */
+$tbl_permisos                     ="permisos";
+$id_permiso_va                   ="id_permiso";
+$consultarUsuarios_permiso_va    ="consultarUsuarios_permiso";
+$consultarFacturas_permiso_va    ="consultarFacturas_permiso";
+$crearUsuario_permiso_va         ="crearUsuario_permiso";
+$crearPermisos_permiso_va        ="crearPermisos_permiso";
+$editarUsuarios_permiso_va       ="editarUsuarios_permiso";
+$id_user_permiso_va              ="id_user";

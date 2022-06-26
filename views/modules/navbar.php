@@ -15,7 +15,7 @@
         
         
           <li class="nav-item dropdown dropdown-user"><a class="nav-link dropdown-toggle dropdown-user-link" id="dropdown-user" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <div class="user-nav d-sm-flex d-none"><span class="user-name fw-bolder">ROBERTO</span><span class="user-status">Admin</span></div><span class="avatar"><img class="round" src="../../../app-assets/images/logos/pro.svg" alt="avatar" height="40" width="40"><span class="avatar-status-online"></span></span></a>
+              <div class="user-nav d-sm-flex d-none"><span class="user-name fw-bolder"><?php echo $_SESSION["admin"]->$nombre_user_va?>  <?php echo $_SESSION["admin"]->$apellidos_user_va ;?></span><span class="user-status">Admin</span></div><span class="avatar"><img class="round" src="../../../app-assets/images/logos/pro.svg" alt="avatar" height="40" width="40"><span class="avatar-status-online"></span></span></a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-user">
               <a class="dropdown-item" href="page-profile.html"><i class="me-50" data-feather="user"></i> 
               Perfil</a>
@@ -106,7 +106,7 @@
             <li class="nav-item me-auto"><a class="navbar-brand" href="index-2.html"><span class="brand-logo">
                  </span>
                  <img style="width: 100px;
-  height: auto;"  src="../../app-assets/images/logos/logonuevo.png">
+                height: auto;"  src="../../app-assets/images/logos/logonuevo.png">
                </a></li>
             <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pe-0" data-bs-toggle="collapse"><i class="d-block d-xl-none text-dark toggle-icon font-medium-4" data-feather="x"></i></a></li>
           </ul>
@@ -128,15 +128,16 @@
                       </ul>
                     </li>
                     <?php
+                     require './variables_globales/variables.php';
                     $select = "*";
-                    $url = "permisos?select=".$select."&linkTo=id_user&equalTo=". $_SESSION["admin"]->id_user;
+                    $url = "$tbl_permisos?select=".$select."&linkTo=$id_user_va&equalTo=". $_SESSION["admin"]->$id_user_va;
                     $method = "GET";
                     $fields = array();
                     $responsepermisos = CurlController::request($url,$method,$fields);
                     if($responsepermisos->status == 200){
                       $permiso= $responsepermisos->results;
                       foreach ($permiso as $data) {
-                    if ($data->consultarFacturas_permiso==1){?>
+                    if ($data->$consultarFacturas_permiso_va ==1){?>
                       <li class="dropdown nav-item sidebar-group-<?php if (!empty($routesArray)  == "factura"): ?>active<?php endif ?> <?php if (!empty($routesArray) && $routesArray[1] == "factura"): ?>active<?php endif ?>"" data-menu="dropdown">
                         <a class="dropdown-toggle nav-link d-flex align-items-center" href="#" data-bs-toggle="dropdown">
                           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
@@ -161,19 +162,19 @@
                             </ul>
                           </li>
                           <?php }?>
-                    <?php if ($data->consultarUsuarios_permiso==1){?>
-                          <li class="dropdown nav-item sidebar-group-<?php if (!empty($routesArray)  == "usuario"): ?>active<?php endif ?> <?php if (!empty($routesArray) && $routesArray[1] == "usuario"): ?>active<?php endif ?>"" data-menu="dropdown">
-                            <a class="dropdown-toggle nav-link d-flex align-items-center" href="#" data-bs-toggle="dropdown">
-                            <i data-feather='users'></i>
-                                <span data-i18n="Pages">Usuarios</span></a>
-                              <ul class="dropdown-menu" data-bs-popper="none">
-                                  <li class="<?php if (!empty($routesArray) && $routesArray[2] == "list"): ?>active<?php endif ?>"" data-menu="">
-                                    <a class="dropdown-item d-flex align-items-center" href="/usuario/list" data-bs-toggle="" data-i18n="FAQ">
-                                    <i data-feather='users'></i>
-                                        <span data-i18n="FAQ">Lista de Usuarios</span>
-                                </a>
-                          </li>
-                <?php }?>
+                          <?php if ($data->$consultarUsuarios_permiso_va==1){?>
+                                <li class="dropdown nav-item sidebar-group-<?php if (!empty($routesArray)  == "usuario"): ?>active<?php endif ?> <?php if (!empty($routesArray) && $routesArray[1] == "usuario"): ?>active<?php endif ?>"" data-menu="dropdown">
+                                  <a class="dropdown-toggle nav-link d-flex align-items-center" href="#" data-bs-toggle="dropdown">
+                                  <i data-feather='users'></i>
+                                      <span data-i18n="Pages">Usuarios</span></a>
+                                    <ul class="dropdown-menu" data-bs-popper="none">
+                                        <li class="<?php if (!empty($routesArray) && $routesArray[2] == "list"): ?>active<?php endif ?>"" data-menu="">
+                                          <a class="dropdown-item d-flex align-items-center" href="/usuario/list" data-bs-toggle="" data-i18n="FAQ">
+                                          <i data-feather='users'></i>
+                                              <span data-i18n="FAQ">Lista de Usuarios</span>
+                                      </a>
+                                </li>
+                      <?php }?>
 
                 <?php } } ?>
           </ul>
