@@ -89,7 +89,7 @@
                         <option value="0">Inactivo</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-dark data-submit me-1 waves-effect waves-float waves-light">Submit</button>
+                    <button type="submit" class="btn btn-dark data-submit me-1 waves-effect waves-float waves-light">Crear</button>
                     <button type="reset" class="btn btn-outline-secondary waves-effect" data-bs-dismiss="modal">Cancel</button>
                 </div>
             </form>
