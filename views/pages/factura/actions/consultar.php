@@ -1,6 +1,5 @@
 
 <?php
-
 $select = "consultarFacturas_permiso";
 $url = "permisos?select=".$select."&linkTo=id_user&equalTo=". $_SESSION["admin"]->id_user;
 $method = "GET";
@@ -211,10 +210,6 @@ if (isset($_POST["clave"]) || isset($_POST["transaccion"]) || isset($_POST["cust
     window.history.replaceState(null, null, window.location.href);
   }
 </script>
-
-
-
-
 <!-- BEGIN: Page Vendor JS-->
 <script src="../../../app-assets/vendors/js/ui/jquery.sticky.js"></script>
 <script src="../../../app-assets/vendors/js/tables/datatable/jquery.dataTables.min.js"></script>
@@ -224,5 +219,4 @@ if (isset($_POST["clave"]) || isset($_POST["transaccion"]) || isset($_POST["cust
 <script src="../../../app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js"></script>
 <!-- END: Page Vendor JS-->
 <script src="../../../app-assets/formulario/form.js?123">
-
 </script>
