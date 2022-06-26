@@ -116,56 +116,66 @@
         <div class="navbar-container main-menu-content" data-menu="menu-container">
           <!-- include ../../../includes/mixins-->
           <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation">
+                    <li class="dropdown nav-item sidebar-group-<?php if (empty($routesArray)): ?>active <?php endif ?> <?php if (empty($routesArray)): ?>active<?php endif ?>"" data-menu="dropdown"><a class="dropdown-toggle nav-link d-flex align-items-center" href="#" data-bs-toggle="dropdown">
+                      <i data-feather='home'></i>
+                      <span data-i18n="Pages">Inicio</span></a>
+                      <ul class="dropdown-menu" data-bs-popper="none">
+                        <li class="<?php if (empty($routesArray)): ?>active<?php endif ?>"" data-menu="">
+                          <a class="dropdown-item d-flex align-items-center" href="/" data-bs-toggle="" data-i18n="FAQ">
+                          <i data-feather='home'></i><span data-i18n="FAQ">Inicio</span>
+                            </a>
+                        </li>
+                      </ul>
+                    </li>
+                    <?php
+                    $select = "*";
+                    $url = "permisos?select=".$select."&linkTo=id_user&equalTo=". $_SESSION["admin"]->id_user;
+                    $method = "GET";
+                    $fields = array();
+                    $responsepermisos = CurlController::request($url,$method,$fields);
+                    if($responsepermisos->status == 200){
+                      $permiso= $responsepermisos->results;
+                      foreach ($permiso as $data) {
+                    if ($data->consultarFacturas_permiso==1){?>
+                      <li class="dropdown nav-item sidebar-group-<?php if (!empty($routesArray)  == "factura"): ?>active<?php endif ?> <?php if (!empty($routesArray) && $routesArray[1] == "factura"): ?>active<?php endif ?>"" data-menu="dropdown">
+                        <a class="dropdown-toggle nav-link d-flex align-items-center" href="#" data-bs-toggle="dropdown">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13">
+                            </line>
+                            <line x1="16" y1="17" x2="8" y2="17">
+                            </line>
+                            <polyline points="10 9 9 9 8 9"></polyline></svg>
+                            <span data-i18n="Pages">Factura</span></a>
+                          <ul class="dropdown-menu" data-bs-popper="none">
+                              <li class="<?php if (!empty($routesArray) && $routesArray[2] == "consultar"): ?>active<?php endif ?>"" data-menu="">
+                                <a class="dropdown-item d-flex align-items-center" href="/factura/consultar" data-bs-toggle="" data-i18n="FAQ">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-help-circle">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                    <line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                                    <span data-i18n="FAQ">Consultar factura</span>
+                             </a>
+                                   </li>
+                            </ul>
+                          </li>
+                          <?php }?>
+                    <?php if ($data->consultarUsuarios_permiso==1){?>
+                          <li class="dropdown nav-item sidebar-group-<?php if (!empty($routesArray)  == "usuario"): ?>active<?php endif ?> <?php if (!empty($routesArray) && $routesArray[1] == "usuario"): ?>active<?php endif ?>"" data-menu="dropdown">
+                            <a class="dropdown-toggle nav-link d-flex align-items-center" href="#" data-bs-toggle="dropdown">
+                            <i data-feather='users'></i>
+                                <span data-i18n="Pages">Usuarios</span></a>
+                              <ul class="dropdown-menu" data-bs-popper="none">
+                                  <li class="<?php if (!empty($routesArray) && $routesArray[2] == "list"): ?>active<?php endif ?>"" data-menu="">
+                                    <a class="dropdown-item d-flex align-items-center" href="/usuario/list" data-bs-toggle="" data-i18n="FAQ">
+                                    <i data-feather='users'></i>
+                                        <span data-i18n="FAQ">Lista de Usuarios</span>
+                                </a>
+                          </li>
+                <?php }?>
 
-            <li class="dropdown nav-item sidebar-group-<?php if (empty($routesArray)): ?>active <?php endif ?> <?php if (empty($routesArray)): ?>active<?php endif ?>"" data-menu="dropdown"><a class="dropdown-toggle nav-link d-flex align-items-center" href="#" data-bs-toggle="dropdown">
-              <i data-feather='home'></i>
-              <span data-i18n="Pages">Inicio</span></a>
-              <ul class="dropdown-menu" data-bs-popper="none">
-                <li class="<?php if (empty($routesArray)): ?>active<?php endif ?>"" data-menu="">
-                  <a class="dropdown-item d-flex align-items-center" href="/" data-bs-toggle="" data-i18n="FAQ">
-                  <i data-feather='home'></i><span data-i18n="FAQ">Inicio</span>
-                    </a>
-                </li>
-              </ul>
-            </li>
-
-
-            <li class="dropdown nav-item sidebar-group-<?php if (!empty($routesArray)  == "factura"): ?>active<?php endif ?> <?php if (!empty($routesArray) && $routesArray[1] == "factura"): ?>active<?php endif ?>"" data-menu="dropdown">
-              <a class="dropdown-toggle nav-link d-flex align-items-center" href="#" data-bs-toggle="dropdown">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                  <polyline points="14 2 14 8 20 8"></polyline>
-                  <line x1="16" y1="13" x2="8" y2="13">
-                  </line>
-                  <line x1="16" y1="17" x2="8" y2="17">
-                  </line>
-                  <polyline points="10 9 9 9 8 9"></polyline></svg>
-                  <span data-i18n="Pages">Factura</span></a>
-                 <ul class="dropdown-menu" data-bs-popper="none">
-                     <li class="<?php if (!empty($routesArray) && $routesArray[2] == "consultar"): ?>active<?php endif ?>"" data-menu="">
-                      <a class="dropdown-item d-flex align-items-center" href="/factura/consultar" data-bs-toggle="" data-i18n="FAQ">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-help-circle">
-                          <circle cx="12" cy="12" r="10"></circle>
-                          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
-                          <line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-                          <span data-i18n="FAQ">Consultar factura</span>
-                   </a>
-                </li>
-              </ul>
-            </li>
-
-            <li class="dropdown nav-item sidebar-group-<?php if (!empty($routesArray)  == "usuario"): ?>active<?php endif ?> <?php if (!empty($routesArray) && $routesArray[1] == "usuario"): ?>active<?php endif ?>"" data-menu="dropdown">
-              <a class="dropdown-toggle nav-link d-flex align-items-center" href="#" data-bs-toggle="dropdown">
-              <i data-feather='users'></i>
-                  <span data-i18n="Pages">Usuarios</span></a>
-                 <ul class="dropdown-menu" data-bs-popper="none">
-                     <li class="<?php if (!empty($routesArray) && $routesArray[2] == "list"): ?>active<?php endif ?>"" data-menu="">
-                      <a class="dropdown-item d-flex align-items-center" href="/usuario/list" data-bs-toggle="" data-i18n="FAQ">
-                      <i data-feather='users'></i>
-                          <span data-i18n="FAQ">Lista de Usuarios</span>
-                   </a>
-                </li>
-   
+                <?php } } ?>
           </ul>
         </div>
       </div>

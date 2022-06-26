@@ -3,6 +3,15 @@
 require_once "controllers/usuarios.controller.php";
 $create = new UsuariosController();
 $create -> crear();
+$select = "*";
+$url = "permisos?select=".$select."&linkTo=id_user&equalTo=". $_SESSION["admin"]->id_user;
+$method = "GET";
+$fields = array();
+$responsepermisos = CurlController::request($url,$method,$fields);
+if($responsepermisos->status == 200){
+  $permiso= $responsepermisos->results;
+  foreach ($permiso as $data) {
+ if ($data->consultarUsuarios_permiso==1){
 ?>
 <section id="row-grouping-datatable">
     <div class="row">
@@ -10,10 +19,16 @@ $create -> crear();
             <div class="card">
                 <div class="card-header border-bottom">
                     <h4 class="card-title">Informacion de Usuarios</h4>
+                    <?php if ($data->crearUsuario_permiso==1){?>
                     <button class="dt-button create-new btn btn-dark" tabindex="0" aria-controls="DataTables_Table_0" type="button" data-bs-toggle="modal" data-bs-target="#modals-slide-in"><span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus me-50 font-small-4">
                                             <line x1="12" y1="5" x2="12" y2="19"></line>
                                             <line x1="5" y1="12" x2="19" y2="12"></line>
                                         </svg>Nuevo Usuario</span></button>
+                                        <?php }else{?>
+                                            <button type="button" class="btn btn-outline-primary waves-effect" data-bs-toggle="tooltip" data-bs-placement="left" title="" data-bs-original-title=" Lo sentimos No tienes permiso para crear usuarios, comunícate con el administrador">
+                                            Nuevo Usuario
+                                            </button>
+                                       <?php } ?>
                 </div>
                 <div class="card-datatable">
                     <div id="DataTables_Table_2_wrapper" class="dataTables_wrapper dt-bootstrap5">
@@ -30,7 +45,7 @@ $create -> crear();
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php 
+                                <?php
                                   $select = "*";
                                   $url = "users";
                                   $method = "GET";
@@ -61,7 +76,7 @@ $create -> crear();
                                             <td>-</td>
                                             <td>-</td>
                                             <td>-</td>
-                                                <td>-</td>
+                                           <td>-</td>
                                         </tr>
                                   <?php  }?>
                             </tbody>
@@ -77,7 +92,28 @@ $create -> crear();
         </div>
     </div>
 </section>
+<?php }else{
+     echo '<div class="alert alert-danger" role="alert">
+     <h4 class="alert-heading">Lo sentimos</h4>
+     <div class="alert-body">
+      No tienes permisos para ver esta vista, consulta con el administrador del sitio.
+     </div>
+   </div>';
+}
+  }
+}else{
+    echo '<div class="alert alert-danger" role="alert">
+    <h4 class="alert-heading">Lo sentimos</h4>
+    <div class="alert-body">
+    Todavía no tienes permisos para ver esta vista, consulta con el administrador del sitio.
+    </div>
+  </div>';
+}
 
+
+
+
+?>
     <div class="modal modal-slide-in fade" id="modals-slide-in">
         <div class="modal-dialog sidebar-sm">
         <form class="add-new-record modal-content pt-0 needs-validation" method="post" novalidate>
