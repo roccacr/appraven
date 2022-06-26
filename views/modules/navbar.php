@@ -170,7 +170,6 @@
                       <a class="dropdown-item d-flex align-items-center" href="/usuario/new" data-bs-toggle="" data-i18n="FAQ">
                       <i data-feather='user-plus'></i>
                           <span data-i18n="FAQ">Nuevo Usuario</span>
-                          
                    </a>
                 </li>
           </ul>
