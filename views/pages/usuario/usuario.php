@@ -7,7 +7,7 @@
 
 <?php
         if (isset($routesArray[2])) {
-            if ($routesArray[2] == "list" || $routesArray[2] == "new") {
+            if ($routesArray[2] == "list" || $routesArray[2] == "permisos") {
                 include "actions/" . $routesArray[2] . ".php";
             }
         } else {
