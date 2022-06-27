@@ -188,7 +188,7 @@ if ($responsepermisos->status == 200) {
                               <!-- Permission table -->
                             </div>
                             <div class="col-12 text-center mt-2">
-                              <button type="submit" class="btn btn-primary me-1">Crear</button>
+                              <button type="submit" class="btn btn-primary me-1">Editar</button>
                               <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal" aria-label="Close">
                                 Cancelar
                               </button>
@@ -359,4 +359,6 @@ if ($responsepermisos->status == 200) {
   </div>
 </div>';
 }
+
+
 ?>
