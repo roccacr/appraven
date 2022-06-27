@@ -11,12 +11,12 @@ box-shadow:  16px 16px 30px #0a0d16,
              -16px -16px 30px #222d4c;">
                     <div class="card-body">
                         <a href="/" class="brand-logo">
-                        <img style="width: 150px;
-                                 height: auto;"  src="../../app-assets/images/logos/logonuevo.png">
+                        <img style="width: 100px;
+                                 height: auto;"  src="../../app-assets/images/logos/image.png">
                             <!-- <h2 class="brand-text text-dark ms-1">Rocca Development Group</h2> -->
                         </a>
 
-                        <h4 class="card-title mb-1">Bienvenido de nuevo! 👋</h4>
+                        <h4 class="card-title mb-1">Factura Electrónica</h4>
                         <p class="card-text mb-2">Inicia sesión en tu cuenta</p>
 
                         <form class="auth-login-form mt-2 needs-validation" method="POST" novalidate>
