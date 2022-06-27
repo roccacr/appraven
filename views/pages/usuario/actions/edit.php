@@ -58,25 +58,25 @@ if ($responsepermisos->status == 200) {
                             <div class="row">
                                     <div class="col-md-6 col-12">
                                         <label class="form-label" for="basic-icon-default-fullname">Cedula</label>
-                                        <input  onchange="validateJS(event, 'text&number')" type="text" class="form-control dt-full-name" value="<?php echo $response->$cedula_user_va; ?>"id="basic-icon-default-fullname" name="edit_cedula" placeholder="#0000" required>
+                                        <input  onchange="validateJS(event, 'text&number')" type="text" class="form-control dt-full-name" value="<?php echo $response->$cedula_user_va;?>" id="basic-icon-default-fullname" name="edit_cedula" placeholder="#0000" required>
                                         <div class="valid-feedback">Valido.</div>
                                         <div class="invalid-feedback">Por favor rellene este campo.</div>
                                     </div>
                                         <div class="col-md-6 col-12">
                                         <label class="form-label" for="basic-icon-default-post">Nombre</label>
-                                        <input  onchange="validateJS(event, 'text')" type="text" id="basic-icon-default-post" class="form-control dt-post" name="edit_nombre" placeholder="Nombre" required value="<?php echo $response->$nombre_user_va; ?>">
+                                        <input  onchange="validateJS(event, 'text')" type="text" id="basic-icon-default-post" class="form-control dt-post" name="edit_nombre" placeholder="Nombre" required value="<?php echo $response->$nombre_user_va;?>">
                                         <div class="valid-feedback">Valido.</div>
                                         <div class="invalid-feedback">Por favor rellene este campo.</div>
                                     </div>
                                         <div class="col-md-6 col-12">
                                         <label class="form-label" for="basic-icon-default-post">Apellido</label>
-                                        <input  onchange="validateJS(event, 'text')" type="text" id="basic-icon-default-post" class="form-control dt-post" name="edit_apellido" placeholder="Apellido"  required value="<?php echo $response->$apellidos_user_va; ?>">
+                                        <input  onchange="validateJS(event, 'text')" type="text" id="basic-icon-default-post" class="form-control dt-post" name="edit_apellido" placeholder="Apellido"  required value="<?php echo $response->$apellidos_user_va;?>">
                                         <div class="valid-feedback">Valido.</div>
                                         <div class="invalid-feedback">Por favor rellene este campo.</div>
                                     </div>
                                         <div class="col-md-6 col-12">
                                         <label class="form-label" for="basic-icon-default-email">Correo</label>
-                                        <input  onchange="validateJS(event, 'email')" type="email" id="basic-icon-default-email" class="form-control dt-email" name="edit_email" placeholder="ejemplo@example.com"  required value="<?php echo $response->$email_user_va; ?>">
+                                        <input  onchange="validateJS(event, 'email')" type="email" id="basic-icon-default-email" class="form-control dt-email" name="edit_email" placeholder="ejemplo@example.com"  required value="<?php echo $response->$email_user_va;?>">
                                         <small class="form-text"> Puedes usar letras, números y puntos </small>
                                         <div class="valid-feedback">Valido.</div>
                                         <div class="invalid-feedback">Por favor rellene este campo.</div>
@@ -102,7 +102,7 @@ if ($responsepermisos->status == 200) {
                                         <div class="col-md-6 col-12">
                                         <label class="form-label" for="basicSelect">Estado</label>
                                         <select class="form-select" id="basicSelect" name="edit_estado" required>
-                                        <option value="<?php echo $response->$estado_user_va; ?>">Opcion</option>
+                                        <option value="<?php echo $response->$estado_user_va;?>">Opcion</option>
                                         <option value="1">Activo</option>
                                         <option value="0">Inactivo</option>
                                         </select>
