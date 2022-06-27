@@ -2,7 +2,6 @@
 <?php
 
 class UsuariosController{
-
 	/*=============================================
 	Login de administradores
 	=============================================*/
@@ -79,7 +78,6 @@ class UsuariosController{
                     }
             }
         }else{
-         
         }
 
     }
@@ -99,7 +97,7 @@ class UsuariosController{
             $method = "PUT";
             $fields = $data;
             $response = CurlController::request($url,$method,$fields);
-            if($response->status == 200){
+              if($response->status == 200){
               $yourURL = "/usuario/edit/".base64_encode($id)."~Data";
               echo ("<script>location.href='$yourURL'</script>");
 
@@ -111,7 +109,6 @@ class UsuariosController{
               </div>
               </div>';
           }
-
           }else{
             $password = crypt(trim($_POST["edit_pass"]), '$2a$07$azybxcags23425sdg23sdfhsd$');
             $data = $cedula_user_va."=".$_POST["edit_cedula"]."
@@ -128,7 +125,6 @@ class UsuariosController{
             if($response->status == 200){
               $yourURL = "/usuario/edit/".base64_encode($id)."~Data";
               echo ("<script>location.href='$yourURL'</script>");
-
               }else{
               echo '<div class="alert alert-danger" role="alert">
               <h4 class="alert-heading">Lo sentimos</h4>
@@ -137,10 +133,7 @@ class UsuariosController{
               </div>
               </div>';
           }
-
           }
-
-
       }
     }
 }
