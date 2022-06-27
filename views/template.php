@@ -54,7 +54,7 @@ foreach ($routesArray as $key => $value) {
 <?php
     if (!isset($_SESSION["admin"])) {
         if (isset($routesArray[1])) {
-            if ($routesArray[1] == "login" || $routesArray[1] == "auth-recover") {
+          if ($routesArray[1] == "login" || $routesArray[1] == "auth-recover"|| $routesArray[1] == "factura" || $routesArray[1] == "credito") {
                 include "views/pages/login/" . $routesArray[1] . ".php";
             }else {
                 include "views/pages/login/login.php";
