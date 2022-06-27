@@ -307,12 +307,18 @@ if(isset($routesArray[2])==false ){
                </div>
              </div>';?>
 
-               <a class="btn btn-outline-secondary w-100 mb-75" href="/factura/consultar"> Consultar otra Factura </a>
+              
 
           <?php } }
-        }else{?>
-                <a class="btn btn-outline-secondary w-100 mb-75" href="/factura/consultar"> Consultar Factura </a>
-       <?php } ?>
+        }else{
+               echo '<div class="alert alert-danger" role="alert">
+               <h4 class="alert-heading">Lo sentimos</h4>
+               <div class="alert-body">
+               No se pede mostrar el resultado por que la factura: '.$data->clave.' no esta Aceptada.<br>
+              No se encontro la facttura: '. $routesArray.'
+               </div>
+             </div>';
+  } ?>
         </div>
       </div>
     </div>
