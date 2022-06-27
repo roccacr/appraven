@@ -83,4 +83,64 @@ class UsuariosController{
         }
 
     }
+
+
+    public function editar($id){
+      if (isset($_POST["edit_cedula"])) {
+          require './variables_globales/variables.php';
+          if (empty($_POST["edit_pass"])) {
+            $data = $cedula_user_va."=".$_POST["edit_cedula"]."
+            &".$nombre_user_va."=". $_POST["edit_nombre"]."
+            &".$apellidos_user_va."=".$_POST["edit_apellido"]."
+            &".$rol_id_user_va."=".$_POST["edit_rol"]."
+            &".$email_user_va."=".$_POST["edit_email"]."
+            &".$estado_user_va."=".$_POST["edit_estado"];
+            $url = "$tbl_users?id=".$id."&nameId=$id_user_va&token=".$_SESSION["admin"]->$token_user_va."&table=$tbl_users&suffix=$suffix_users";
+            $method = "PUT";
+            $fields = $data;
+            $response = CurlController::request($url,$method,$fields);
+            if($response->status == 200){
+              $yourURL = "/usuario/edit/".base64_encode($id)."~Data";
+              echo ("<script>location.href='$yourURL'</script>");
+
+              }else{
+              echo '<div class="alert alert-danger" role="alert">
+              <h4 class="alert-heading">Lo sentimos</h4>
+              <div class="alert-body">
+              Lo sentimos no se pudo editar los datos de usuario
+              </div>
+              </div>';
+          }
+
+          }else{
+            $password = crypt(trim($_POST["edit_pass"]), '$2a$07$azybxcags23425sdg23sdfhsd$');
+            $data = $cedula_user_va."=".$_POST["edit_cedula"]."
+            &".$nombre_user_va."=". $_POST["edit_nombre"]."
+            &".$apellidos_user_va."=".$_POST["edit_apellido"]."
+            &".$rol_id_user_va."=".$_POST["edit_rol"]."
+            &".$password_user_va."=".$password."
+            &".$email_user_va."=".$_POST["edit_email"]."
+            &".$estado_user_va."=".$_POST["edit_estado"];
+            $url = "$tbl_users?id=".$id."&nameId=$id_user_va&token=".$_SESSION["admin"]->$token_user_va."&table=$tbl_users&suffix=$suffix_users";
+            $method = "PUT";
+            $fields = $data;
+            $response = CurlController::request($url,$method,$fields);
+            if($response->status == 200){
+              $yourURL = "/usuario/edit/".base64_encode($id)."~Data";
+              echo ("<script>location.href='$yourURL'</script>");
+
+              }else{
+              echo '<div class="alert alert-danger" role="alert">
+              <h4 class="alert-heading">Lo sentimos</h4>
+              <div class="alert-body">
+              Lo sentimos no se pudo editar los datos de usuario
+              </div>
+              </div>';
+          }
+
+          }
+
+
+      }
+    }
 }
