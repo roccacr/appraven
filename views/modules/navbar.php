@@ -1,4 +1,4 @@
-
+<?php  require './variables_globales/variables.php';?>
     <!-- BEGIN: Header-->
     <nav class="header-navbar navbar-expand-lg navbar navbar-fixed align-items-center navbar-shadow navbar-brand-center" data-nav="brand-center">
       <div class="navbar-header d-xl-block d-none">
@@ -128,7 +128,7 @@
                       </ul>
                     </li>
                     <?php
-                     require './variables_globales/variables.php';
+                    
                     $select = "*";
                     $url = "$tbl_permisos?select=".$select."&linkTo=$id_user_va&equalTo=". $_SESSION["admin"]->$id_user_va;
                     $method = "GET";
