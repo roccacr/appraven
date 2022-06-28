@@ -122,6 +122,7 @@ foreach ($routesArray as $key => $value) {
   <script src="../../../app-assets/vendors/js/forms/validation/jquery.validate.min.js"></script>
   <script src="../../../app-assets/js/scripts/pages/auth-login.js"></script>
 
+  
 
   <script>
     $(window).on('load', function() {
