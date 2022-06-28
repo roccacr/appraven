@@ -5,9 +5,10 @@ if(isset($routesArray[3])==false ){
   }else{
   $exp = explode("~", $routesArray[3]);
   $routesArray = base64_decode($exp[0]);
+  $routesArray2 = base64_decode($exp[1]);
   if (isset($routesArray)) {
       $select = "*";
-      $url = "facturas?select=*&linkTo=clave&equalTo=" . $routesArray;
+      $url = "facturas?select=*&linkTo=$routesArray2&equalTo=" . $routesArray;
       $method = "GET";
       $fields = array();
       $response = CurlController::request($url, $method, $fields);
@@ -305,7 +306,7 @@ if(isset($routesArray[3])==false ){
                echo '<div class="alert alert-danger" role="alert">
                <h4 class="alert-heading">Lo sentimos</h4>
                <div class="alert-body">
-               No se pede mostrar el resultado por que la factura: '.$data->clave.' no esta Aceptada.<br>
+               No se pede mostrar el resultado por que la factura: '.$routesArray.' no esta Aceptada.<br>
                Estado de la Factura : '.$data->estado.'
                </div>
              </div>';?>

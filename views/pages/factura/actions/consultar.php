@@ -19,7 +19,12 @@ if($responsepermisos->status == 200){
  if ($data->$consultarFacturas_permiso_va==1){
 /* Comprobando si el formulario ha sido enviado. */
 if (isset($_POST["clave"]) || isset($_POST["transaccion"]) || isset($_POST["customOptionsCheckableRadios"])) {
-/* Comprobando si el botón de radio está marcado o no. */
+
+
+
+   
+
+  /* Comprobando si el botón de radio está marcado o no. */
   $factura = isset($_POST['customOptionsCheckableRadios']) ? "checked" : "unchecked";
 /* Comprobando si el botón de radio está marcado o no. */
   if ($factura === "unchecked") {
@@ -33,25 +38,44 @@ if (isset($_POST["clave"]) || isset($_POST["transaccion"]) || isset($_POST["cust
 /* Comprobando si el botón de radio está marcado. */
   if ($factura === "checked") {
     $valor = $_POST['customOptionsCheckableRadios'];
-  /* Verificando si el valor del botón de radio es factura, si lo es, establece la tabla en facturas,
+      /* Verificando si el valor del botón de radio es factura, si lo es, establece la tabla en facturas,
   la clave en el valor de la entrada de clave y el tipoValor en Factura. */
-    if ($valor == "factura") {
-      $tabla = $tbl_facturas;
-      $clave = $_POST["clave"];
-      $tipoValor = "Factura";
-    }/* Al verificar si el botón de opción no está marcado, si no está marcado, establecerá la tabla en
-    creditonotas, la clave en el valor de la entrada clave y el tipoValor en Nota de crédito. */
-     else {
-      $tabla = $tbl_creditonotas;
-      $clave = $_POST["clave"];
-      $tipoValor = "Nota de Credito";
+
+    if(isset($_POST["clave"])){
+      if ($valor == "factura") {
+         $tabla = $tbl_facturas;
+         $clave = $_POST["clave"];
+         $rest =$clave_factura;
+      }else{
+        $tabla = $tbl_creditonotas;
+        $clave = $_POST["clave"];
+        $tipoValor = "Nota de Credito";
+        $rest =$clave_credito;
+
+      }
     }
+
+    if(isset($_POST["transaccion"])){
+      if ($valor == "factura") {
+         $tabla = $tbl_facturas;
+         $clave = $_POST["transaccion"];
+         $rest =$id_netsuite_factura;
+      }else{
+        $tabla = $tbl_creditonotas;
+        $clave = $_POST["transaccion"];
+        $tipoValor = "Nota de Credito";
+        $rest =$id_netsuite_credito;
+
+      }
+    }
+
     $select = "*";
      /* Crear una URL para consultar la base de datos. */
-    $url = "$tabla?select=*&linkTo=$clave_factura&equalTo=" . $clave;
+    $url = "$tabla?select=*&linkTo=$rest&equalTo=" . $clave;
     $method = "GET";
     $fields = array();
     $response = CurlController::request($url, $method, $fields);
+
   /* Verificando si la respuesta del servidor es 200, lo que significa que la solicitud fue exitosa. */
     if ($response->status == 200) {
     /* Obtener los resultados de la respuesta. */
@@ -60,11 +84,11 @@ if (isset($_POST["clave"]) || isset($_POST["transaccion"]) || isset($_POST["cust
       foreach ($response as $data) {
         if ($valor == "factura") {
           /* Redirigir a otra página. */
-          $yourURL = "/factura/factura/".base64_encode($clave)."~".$_SESSION["admin"]->$token_user_va;
+          $yourURL = "/factura/factura/".base64_encode($clave)."~".  base64_encode($rest);
           echo ("<script>location.href='$yourURL'</script>");
 
         }else{
-          $yourURL = "/factura/credito/".base64_encode($clave)."~".$_SESSION["admin"]->$token_user_va;
+          $yourURL = "/factura/credito/".base64_encode($clave)."~". base64_encode($rest);
           echo ("<script>location.href='$yourURL'</script>");
         }
       }
@@ -84,27 +108,40 @@ if (isset($_POST["clave"]) || isset($_POST["transaccion"]) || isset($_POST["cust
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h4 class="card-title">Buscar Facturas</h4>
+            <h4 class="card-title">Buscar Transacción</h4>
           </div>
           <div class="card-body">
             <div class="row">
               <div class="col-12 mb-1">
                 <p>
-                  Ingrese la clave de la factura <code>#000000000</code> Seguido del
-                  <code>#numero de Transaccion</code>
+                Ingrese la clave de <code>#50 caracteres</code>  o utilice el número de  <code>Transacción</code> 
+                 
+                
                 </p>
+                <div class="form-group">
+  <label for="isProductDiscounted" class="text-uppercase font-weight-bold">Buscar por:</label>
+  <div class="btn-group w-100" data-toggle="buttons" name="isProductDiscounted">
+    <label class="btn btn btn-blue-grey waves-effect w-50 form-check-label active">
+    <input id="isDiscounted" class="form-check-input" name="isDiscounted" type="radio" value=0 th:field="*{discounted}" autocomplete="off"> Clave
+        </label>
+
+    <label class="btn btn btn-blue-grey waves-effect form-check-label w-50">
+    <input id="isNotDiscounted" class="form-check-input" name="isDiscounted" type="radio" value=1 th:field="*{discounted}"> Transaccion
+        </label>
+  </div>
+</div>
               </div>
               <div class="col-sm-6 col-12 mb-1 mb-sm-0">
                 <div class="form-floating">
-                  <input type="number" class="form-control" id="floating-label1" name="clave" placeholder="Clave" onchange="validateJS(event, 'email')" required>
-                  <label for="floating-label1">Clave</label>
+                  <input disabled id="discountPercentage"  th:field="*{discountPercentage}"  type="number" class="form-control"  name="clave" placeholder="Clave" onchange="validateJS(event, 'number')">
+                  <label  for="floating-label1">Clave</label>
                   <div class="valid-feedback">Valido.</div>
                   <div class="invalid-feedback">Por favor rellene este campo.</div>
                 </div>
               </div>
               <div class="col-sm-6 col-12">
                 <div class="form-floating">
-                  <input type="number" class="form-control" id="floating-label-disable" name="transaccion" placeholder="# Transaccion" onchange="validateJS(event, 'email')" required>
+                  <input disabled type="number" class="form-control"  id="discountPercentagetran" th:field="*{discountPercentagetran}" name="transaccion" placeholder="# Transaccion" onchange="validateJS(event, 'number')">
                   <label for="floating-label-disable"># Transaccion</label>
                   <div class="valid-feedback">Valido.</div>
                   <div class="invalid-feedback">Por favor rellene este campo.</div>
@@ -116,7 +153,7 @@ if (isset($_POST["clave"]) || isset($_POST["transaccion"]) || isset($_POST["cust
           <div class="col-lg-6">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title">Tipo de Factura</h4>
+                <h4 class="card-title">Seleccione el tipo de documento a consultar</h4>
               </div>
               <div class="card-body">
                 <div class="row custom-options-checkable g-1">
@@ -127,7 +164,7 @@ if (isset($_POST["clave"]) || isset($_POST["transaccion"]) || isset($_POST["cust
                         <span class="fw-bolder">Factura</span>
                         <span class="fw-bolder">#0000</span>
                       </span>
-                      <small class="d-block">Buscar facturas electrónica</small>
+                      <small class="d-block">Filtrar por factura de venta</small>
                     </label>
                   </div>
                   <div class="col-md-6">
@@ -137,14 +174,19 @@ if (isset($_POST["clave"]) || isset($_POST["transaccion"]) || isset($_POST["cust
                         <span class="fw-bolder">Nota Credito</span>
                         <span class="fw-bolder">#0000</span>
                       </span>
-                      <small class="d-block">Buscar #notas de Crédito</small>
+                      <small class="d-block">Filtrar por nota de crédito</small>
                     </label>
                   </div>
+
+
+ 
+
+
                 </div>
               </div>
             </div>
           </div>
-          <button type="submit" class="btn btn-outline-dark waves-effect">Buscar</button>
+          <button type="submit" class="btn btn-dark waves-effect">Buscar</button>
           <br>
           <br>
           <br>
@@ -153,7 +195,39 @@ if (isset($_POST["clave"]) || isset($_POST["transaccion"]) || isset($_POST["cust
     </div>
   </form>
 </section>
+<script>
+ var discounted = document.getElementById('isDiscounted');
+var no_discounted = document.getElementById('isNotDiscounted')
+var discountPercentage = document.getElementById('discountPercentage')
+var discountPercentagetran = document.getElementById('discountPercentagetran')
 
+
+function updateStatus() {
+  if (discounted.checked) {
+    discountPercentage.disabled = false;
+         discountPercentagetran.disabled = true;11
+
+         Number(document.getElementById("discountPercentage").value = (""))
+         Number(document.getElementById("discountPercentagetran").value = (""))
+
+  } else {
+    discountPercentage.disabled = true;
+    discountPercentagetran.disabled = false;
+
+    Number(document.getElementById("discountPercentage").value = (""))
+    Number(document.getElementById("discountPercentagetran").value = ("res"))
+  }
+}
+
+discounted.addEventListener('change', updateStatus)
+no_discounted.addEventListener('change', updateStatus)
+
+
+
+
+
+
+</script>
 <script>
   if (window.history.replaceState) { // verificamos disponibilidad
     window.history.replaceState(null, null, window.location.href);
