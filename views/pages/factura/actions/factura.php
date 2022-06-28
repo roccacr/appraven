@@ -46,19 +46,51 @@ if(isset($routesArray[3])==false ){
     <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/app-invoice.min.css">
 
     <link rel="stylesheet" type="text/css" href="../../../assets/css/style.css">
-  
+   
+
+    
 <?php
  if ($response->status == 200) {
       $response = $response->results;
      foreach ($response as $data) {
 
         if($data->estado=="Aceptada"){
+          $arrayData=$data->xml_firmado;
+          $xml_string =$data->xml;
+          $xml = simplexml_load_string($xml_string, "SimpleXMLElement", LIBXML_NOCDATA);
+          $json = json_encode($xml); // convert the XML string to JSON
+          $arr = json_decode($json,TRUE);
+          $clave_array        = $arr['Clave'];
+          $NumeroConsecutivo  = $arr['NumeroConsecutivo'];
+          $FechaEmision       = $arr['FechaEmision'];
+          $Emisor             = $arr['Emisor'];
+          $Nombre             =$Emisor['Nombre'];
+          $Ubicacion          =$Emisor['Ubicacion'];
+          $OtrasSenas         =$Ubicacion['OtrasSenas'];
+          $Identificacion     = $Emisor['Identificacion'];
+          $NumeroCedula       = $Identificacion['Numero'];
+          $Receptor           = $arr['Receptor'];
+          $Nombre_Receptor    = $Receptor['Nombre'];
+          $DetalleServicio    = $arr['DetalleServicio'];
+          $LineaDetalle       = $DetalleServicio['LineaDetalle'];
+
+
           echo '<div class="alert alert-success" role="alert">
           <h4 class="alert-heading">Estado</h4>
           <div class="alert-body">
           Estado de la factura: '.$data->estado.'
           </div>
         </div>';
+
+          $nombre_fichero = 'views/xmlFactura/'.$clave_array.'.xml';
+          if (file_exists($nombre_fichero)) {
+             
+          } else {
+              $xml = new DOMDocument('1.0');
+              $encode= base64_decode($data->xml_firmado);
+              $xml = simplexml_load_string($encode, "SimpleXMLElement", LIBXML_NOCDATA);
+              $xml->saveXML('views/xmlFactura/'.$clave_array.'.xml'); // Wrote: 72 bytes
+        }
         ?>
         <div class="content-header row">
         </div>
@@ -128,24 +160,20 @@ if(isset($routesArray[3])==false ){
                   </g>
                 </svg>
                 <h3 class="text-dark invoice-logo">Factura</h3>
+
+                
               </div>
-              <p class="card-text mb-25">Office 149, 450 South Brand Brooklyn</p>
-              <p class="card-text mb-25">San Diego County, CA 91905, USA</p>
-              <p class="card-text mb-0">+1 (123) 456 7891, +44 (876) 543 2198</p>
+              <p class="card-text mb-25">Consecutivo:     <?php      echo $NumeroConsecutivo;?> </p>
+              <p class="card-text mb-25">Emisor:          <?php      echo $Nombre;?> </p>
+              <p class="card-text mb-25">Cedula Juridica: <?php      echo $NumeroCedula;?> </p>
+              <p class="card-text mb-25">Direccion:       <?php      echo  $OtrasSenas ;?> </p>
+              <p class="card-text mb-25">Fecha de emisión: <?php      echo  $FechaEmision; ;?> </p>
             </div>
             <div class="mt-md-0 mt-2">
               <h4 class="invoice-title">
-            FACTURA
-                <span class="invoice-number">#<?php echo $data->clave;?></span>
+               Clave
+                <span class="invoice-number">#<br><?php echo  $clave_array?></span>
               </h4>
-              <div class="invoice-date-wrapper">
-                <p class="invoice-date-title">Fecha de emisión:</p>
-                <p class="invoice-date"><?php echo $data->fecha_creacion;?></p>
-              </div>
-              <div class="invoice-date-wrapper">
-                <p class="invoice-date-title">Fecha de Modificaion:</p>
-                <p class="invoice-date"><?php echo $data->fecha_ultima_modificacion;?></p>
-              </div>
             </div>
           </div>
           <!-- Header ends -->
@@ -155,43 +183,7 @@ if(isset($routesArray[3])==false ){
 
         <!-- Address and Contact starts -->
         <div class="card-body invoice-padding pt-0">
-          <div class="row invoice-spacing">
-            <div class="col-xl-8 p-0">
-              <h6 class="mb-2">Invoice To:</h6>
-              <h6 class="mb-25">Thomas shelby</h6>
-              <p class="card-text mb-25">Shelby Company Limited</p>
-              <p class="card-text mb-25">Small Heath, B10 0HF, UK</p>
-              <p class="card-text mb-25">718-986-6062</p>
-              <p class="card-text mb-0">peakyFBlinders@gmail.com</p>
-            </div>
-            <div class="col-xl-4 p-0 mt-xl-0 mt-2">
-              <h6 class="mb-2">Payment Details:</h6>
-              <table>
-                <tbody>
-                  <tr>
-                    <td class="pe-1">Total Due:</td>
-                    <td><span class="fw-bold">$12,110.55</span></td>
-                  </tr>
-                  <tr>
-                    <td class="pe-1">Bank name:</td>
-                    <td>American Bank</td>
-                  </tr>
-                  <tr>
-                    <td class="pe-1">Country:</td>
-                    <td>United States</td>
-                  </tr>
-                  <tr>
-                    <td class="pe-1">IBAN:</td>
-                    <td>ETD95476213874685</td>
-                  </tr>
-                  <tr>
-                    <td class="pe-1">SWIFT code:</td>
-                    <td>BR91905</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+        <h6 class="mb-2">Facturado a: </h6><p class="card-text mb-25"> <?php      echo  $Nombre_Receptor;?> </h6></p>
         </div>
         <!-- Address and Contact ends -->
 
@@ -200,79 +192,56 @@ if(isset($routesArray[3])==false ){
           <table class="table">
             <thead>
               <tr>
-                <th class="py-1">Task description</th>
-                <th class="py-1">Rate</th>
-                <th class="py-1">Hours</th>
-                <th class="py-1">Total</th>
+                <th class="py-1"># Linea</th>
+                <th class="py-1">Codigo</th>
+                <th class="py-1">Cantidad</th>
+                <th class="py-1">Detalle</th>
+                <th class="py-1">Precio Unit</th>
+                <th class="py-1">Importe</th>
+                <th class="py-1">Impuesto</th>
+                <th class="py-1">Sub-Total</th>
               </tr>
             </thead>
             <tbody>
+              <?php foreach ($LineaDetalle as $data) {
+                  $codigo= $data['Codigo'];
+                  $codigoRest= $codigo['Codigo'];
+
+                  $Impuesto= $data['Impuesto'];
+                  $Monto     = $Impuesto['Monto'];
+                ?>
               <tr>
                 <td class="py-1">
-                  <p class="card-text fw-bold mb-25">Native App Development</p>
-                  <p class="card-text text-nowrap">
-                    Developed a full stack native app using React Native, Bootstrap & Python
-                  </p>
+                  <p class="card-text fw-bold mb-25"><?php echo  $data['NumeroLinea'];?></p>
                 </td>
                 <td class="py-1">
-                  <span class="fw-bold">$60.00</span>
+                  <span class="fw-bold"><?php echo  $codigoRest;?></span>
                 </td>
                 <td class="py-1">
-                  <span class="fw-bold">30</span>
+                  <span class="fw-bold"><?php echo  $data['Cantidad'];?></span>
                 </td>
                 <td class="py-1">
-                  <span class="fw-bold">$1,800.00</span>
+                  <span class="fw-bold"><?php echo  $data['Detalle'];?></span>
+                </td>
+                <td class="py-1">
+                  <span class="fw-bold"><?php echo  $data['PrecioUnitario'];?></span>
+                </td>
+                <td class="py-1">
+                  <span class="fw-bold"><?php echo  $data['MontoTotal'];?></span>
+                </td>
+                <td class="py-1">
+                  <span class="fw-bold"><?php echo  $Monto ?></span>
+                </td>
+                <td class="py-1">
+                  <span class="fw-bold"><?php echo  $data['MontoTotalLinea'];?></span>
                 </td>
               </tr>
-              <tr class="border-bottom">
-                <td class="py-1">
-                  <p class="card-text fw-bold mb-25">Ui Kit Design</p>
-                  <p class="card-text text-nowrap">Designed a UI kit for native app using Sketch, Figma & Adobe XD</p>
-                </td>
-                <td class="py-1">
-                  <span class="fw-bold">$60.00</span>
-                </td>
-                <td class="py-1">
-                  <span class="fw-bold">20</span>
-                </td>
-                <td class="py-1">
-                  <span class="fw-bold">$1200.00</span>
-                </td>
-              </tr>
+              <?php }?>
             </tbody>
           </table>
         </div>
 
-        <div class="card-body invoice-padding pb-0">
-          <div class="row invoice-sales-total-wrapper">
-            <div class="col-md-6 order-md-1 order-2 mt-md-0 mt-3">
-              <p class="card-text mb-0">
-                <span class="fw-bold">Salesperson:</span> <span class="ms-75">Alfie Solomons</span>
-              </p>
-            </div>
-            <div class="col-md-6 d-flex justify-content-end order-md-2 order-1">
-              <div class="invoice-total-wrapper">
-                <div class="invoice-total-item">
-                  <p class="invoice-total-title">Subtotal:</p>
-                  <p class="invoice-total-amount">$1800</p>
-                </div>
-                <div class="invoice-total-item">
-                  <p class="invoice-total-title">Discount:</p>
-                  <p class="invoice-total-amount">$28</p>
-                </div>
-                <div class="invoice-total-item">
-                  <p class="invoice-total-title">Tax:</p>
-                  <p class="invoice-total-amount">21%</p>
-                </div>
-                <hr class="my-50" />
-                <div class="invoice-total-item">
-                  <p class="invoice-total-title">Total:</p>
-                  <p class="invoice-total-amount">$1690</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+     
         <!-- Invoice Description ends -->
 
         <hr class="invoice-spacing" />
@@ -283,8 +252,7 @@ if(isset($routesArray[3])==false ){
             <div class="col-12">
               <span class="fw-bold">Note:</span>
               <span
-                >It was a pleasure working with you and your team. We hope you will keep us in mind for future freelance
-                projects. Thank You!</span
+                >Nota: Fue un placer trabajar con usted y su equipo. Esperamos que nos tengas en cuenta para futuros proyectos freelance. ¡Gracias!</span
               >
             </div>
           </div>
@@ -298,8 +266,13 @@ if(isset($routesArray[3])==false ){
     <div class="col-xl-3 col-md-4 col-12 invoice-actions mt-md-0 mt-2">
       <div class="card">
         <div class="card-body">
-          <button class="btn btn-outline-secondary w-100 btn-download-invoice mb-75">Download</button>
-          <a class="btn btn-outline-secondary w-100 mb-75" href="app-invoice-print.html" target="_blank"> Print </a>
+
+        <a href="views/xmlFactura/<?php echo $clave_array;?>.xml" class="btn btn-outline-secondary w-100 btn-download-invoice mb-75" download="<?php echo $clave_array;?>.xml">
+        Descargar Archivo
+        </a>
+              
+  
+          <a class="btn btn-outline-secondary w-100 mb-75" href="app-invoice-print.html" target="_blank"> Des </a>
           <a class="btn btn-outline-secondary w-100 mb-75" href="app-invoice-edit.html"> Edit </a>
           <a class="btn btn-outline-secondary w-100 mb-75" href="/factura/consultar"> Consultar Factura </a>
           <?php }else{
