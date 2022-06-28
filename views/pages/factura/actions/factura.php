@@ -99,13 +99,13 @@ if (isset($routesArray[3]) == false) {
                 $EstadoHaciendaDescargar=$dataMensajeHacienda->mensaje;
                 $claveHaciendaDescargar=$dataMensajeHacienda->clave;
 
-              $nombre_ficheroHacienda = 'views/xmlMenHacienda/' . $dataMensajeHacienda->clave . '.xml';
+              $nombre_ficheroHacienda = 'views/xmlMenHacienda/RMH-' . $dataMensajeHacienda->clave . '.xml';
               if (file_exists($nombre_ficheroHacienda)) {
               } else {
                 $xml = new DOMDocument('1.0');
                 $encode = $dataMensajeHacienda->xml;
                 $xml = simplexml_load_string($encode, "SimpleXMLElement", LIBXML_NOCDATA);
-                $xml->saveXML('views/xmlMenHacienda/' . $dataMensajeHacienda->clave . '.xml'); // Wrote: 72 bytes
+                $xml->saveXML('views/xmlMenHacienda/RMH-' . $dataMensajeHacienda->clave . '.xml'); // Wrote: 72 bytes
               }
             }
           }
