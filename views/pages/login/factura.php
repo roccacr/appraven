@@ -277,20 +277,15 @@ if (isset($routesArray[2]) == false) {
                Estado de la Factura : ' . $data->estado . '
                </div>
              </div>'; ?>
-
-                    <a class="btn btn-outline-secondary w-100 mb-75" href="/factura/consultar"> Consultar otra Factura </a>
-
                 <?php }
               }
             } else {
-              
               echo '<div class="alert alert-danger" role="alert">
               <h4 class="alert-heading">Lo sentimos</h4>
               <div class="alert-body">
              No se encontro la factura solicitada: '.$routesArray.'
               </div>
             </div>';?>
-                <a class="btn btn-outline-secondary w-100 mb-75" href="/factura/consultar"> Consultar Factura </a>
               <?php } ?>
                   </div>
                 </div>
