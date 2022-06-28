@@ -387,6 +387,7 @@ We would appreciate payment of this invoice by 05/11/2019</textarea>
                 </div>
               </div>
             </div>
+            
           </div>
           <!-- /Add Payment Sidebar -->
 
