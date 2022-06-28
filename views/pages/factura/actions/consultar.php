@@ -1,3 +1,9 @@
+<?php include "views/modules/navbar.php"; ?>
+<!-- BEGIN: Content-->
+<div class="app-content content ">
+<div class="content-overlay"></div>
+<div class="header-navbar-shadow"></div>
+ <div class="content-wrapper container-xxl p-0">
 <?php
 /* Variable que se utiliza para almacenar el nombre de la columna que se va a utilizar para consultar
 la base de datos. */

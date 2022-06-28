@@ -1,6 +1,6 @@
 
 
-
+<?php include "views/modules/navbar.php"; ?>
     <!-- BEGIN: Content-->
     <div class="app-content content ">
       <div class="content-overlay"></div>
@@ -10,7 +10,6 @@
           <div class="content-header-left col-md-9 col-12 mb-2">
             <div class="row breadcrumbs-top">
               <div class="col-12">
-              
                 <div   style="color: #fff;"class="breadcrumb-wrapper">
                 <h2 class="content-header-title float-start mb-0">Inicio</h2>
                 </div>
@@ -805,6 +804,7 @@ box-shadow:  16px 16px 30px #0a0d16,
   </div>
 </section>
 <!--/ contact us -->
+
         </div>
       </div>
     </div>

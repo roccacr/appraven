@@ -68,7 +68,7 @@ foreach ($routesArray as $key => $value) {
     }
     ?>
 <?php if (isset($_SESSION["admin"])) : ?>
-<?php include "views/modules/navbar.php"; ?>
+
   <?php
   if (!empty($routesArray[1])) {
 
