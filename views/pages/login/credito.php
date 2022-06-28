@@ -9,7 +9,7 @@ if (isset($routesArray[2]) == false) {
 } else {
     if (isset($routesArray[2])) {
         $select = "*";
-        $url = "facturas?select=*&linkTo=clave&equalTo=" . $routesArray[2];
+        $url = "creditonotas?select=*&linkTo=clave&equalTo=" . $routesArray[2];
         $method = "GET";
         $fields = array();
         $response = CurlController::request($url, $method, $fields);
@@ -139,7 +139,7 @@ if (isset($routesArray[2]) == false) {
                             </div>
                             <div class="mt-md-0 mt-2">
                             <h4 class="invoice-title">
-                            FACTURA
+                            Nota de Credito
                                 <span class="invoice-number">#<?php echo $data->clave;?></span>
                             </h4>
                             <div class="invoice-date-wrapper">
