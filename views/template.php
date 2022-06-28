@@ -1,4 +1,5 @@
 <?php
+ require './variables_globales/variables.php';
 session_start();
 /*=============================================
 Capturar las rutas de la URL
@@ -54,7 +55,7 @@ foreach ($routesArray as $key => $value) {
 <?php
     if (!isset($_SESSION["admin"])) {
         if (isset($routesArray[1])) {
-          if ($routesArray[1] == "login" || $routesArray[1] == "auth-recover"|| $routesArray[1] == "factura" || $routesArray[1] == "credito") {
+            if ($routesArray[1] == "login" || $routesArray[1] == "auth-recover"|| $routesArray[1] == "factura" || $routesArray[1] == "credito") {
                 include "views/pages/login/" . $routesArray[1] . ".php";
             }else {
                 include "views/pages/login/login.php";
@@ -76,7 +77,8 @@ foreach ($routesArray as $key => $value) {
       $routesArray[1] == "invoice"||
       $routesArray[1] == "logout" ||
       $routesArray[1] == "factura"||
-      $routesArray[1] == "usuario"
+      $routesArray[1] == "usuario"||
+      $routesArray[1] == "eliminarfacturas"
     ) {
       include "views/pages/" . $routesArray[1] . "/" . $routesArray[1] . ".php";
     } else {
@@ -115,16 +117,7 @@ foreach ($routesArray as $key => $value) {
   <script src="app-assets/js/core/app-menu.min.js"></script>
   <script src="app-assets/js/core/app.min.js"></script>
 
-
-  
   <script src="app-assets/js/scripts/customizer.min.js"></script>
-
-
-
-
-
-
-  
   <!-- <script src="app-assets/js/scripts/pages/dashboard-ecommerce.min.js"></script> -->
   <script src="../../../app-assets/vendors/js/forms/validation/jquery.validate.min.js"></script>
   <script src="../../../app-assets/js/scripts/pages/auth-login.js"></script>
