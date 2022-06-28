@@ -257,15 +257,15 @@ if (isset($routesArray[3]) == false) {
                   <div class="card-body">
 
                     <a href="views/xmlFactura/<?php echo $clave_array; ?>.xml" class="btn btn-outline-secondary w-100 btn-download-invoice mb-75" download="<?php echo $clave_array; ?>.xml">
-                      Descargar Factura
+                    <i data-feather='download-cloud'></i> Factura
                     </a>
                      <?php if($EstadoHaciendaDescargar==1){?>
-                    <a href="views/xmlMenHacienda/<?php echo $claveHaciendaDescargar; ?>.xml" class="btn btn-outline-secondary w-100 btn-download-invoice mb-75" download="<?php echo $claveHaciendaDescargar; ?>mensaje.xml">
-                      Descargar Mensaje Hacienda
+                    <a href="views/xmlMenHacienda/RMH-<?php echo $claveHaciendaDescargar; ?>.xml" class="btn btn-outline-secondary w-100 btn-download-invoice mb-75" download="RMH-<?php echo $claveHaciendaDescargar; ?>.xml">
+                    <i data-feather='download-cloud'></i>  Mensaje Hacienda
                     </a>
                     <?php }?>
 
-                    <a class="btn btn-outline-secondary w-100 mb-75" href="/factura/consultar"> Consultar Factura </a>
+                    <a class="btn btn-outline-secondary w-100 mb-75" href="/factura/consultar"><i data-feather='search'></i> Consultar otra factura </a>
                   <?php } else {
                   echo '<div class="alert alert-danger" role="alert">
                <h4 class="alert-heading">Lo sentimos</h4>

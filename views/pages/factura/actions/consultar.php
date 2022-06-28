@@ -134,7 +134,7 @@ if (isset($_POST["clave"]) || isset($_POST["transaccion"]) || isset($_POST["cust
                 
                 </p>
                 <div class="form-group">
-  <label for="isProductDiscounted" class="text-uppercase font-weight-bold">Buscar por:</label>
+
   <div class="btn-group w-100" data-toggle="buttons" name="isProductDiscounted">
     <label class="btn btn btn-blue-grey waves-effect w-50 form-check-label active">
     <input id="isDiscounted" class="form-check-input" name="isDiscounted" type="radio" value=0 th:field="*{discounted}" autocomplete="off"> Clave
@@ -201,7 +201,7 @@ if (isset($_POST["clave"]) || isset($_POST["transaccion"]) || isset($_POST["cust
               </div>
             </div>
           </div>
-          <button type="submit" class="btn btn-dark waves-effect">Buscar</button>
+          <button  type="submit" class="btn btn-primary waves-effect">Buscar</button>
           <br>
           <br>
           <br>
