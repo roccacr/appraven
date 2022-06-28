@@ -58,6 +58,7 @@ if (isset($routesArray[2]) == false) {
         $xml = simplexml_load_string($xml_string, "SimpleXMLElement", LIBXML_NOCDATA);
         $json = json_encode($xml); // convert the XML string to JSON
         $arr = json_decode($json, TRUE);
+       
         $clave_array        = $arr['Clave'];
         $NumeroConsecutivo  = $arr['NumeroConsecutivo'];
         $FechaEmision       = $arr['FechaEmision'];
@@ -78,16 +79,14 @@ if (isset($routesArray[2]) == false) {
           </div>
         </div>';
 
-        $nombre_fichero = 'views/xmlFactura/' . $clave_array . '.xml';
+        $nombre_fichero = 'views/xmlFactura/FE-' . $clave_array . '.xml';
         if (file_exists($nombre_fichero)) {
         } else {
           $xml = new DOMDocument('1.0');
           $encode = base64_decode($data->xml_firmado);
           $xml = simplexml_load_string($encode, "SimpleXMLElement", LIBXML_NOCDATA);
-          $xml->saveXML('views/xmlFactura/' . $clave_array . '.xml'); // Wrote: 72 bytes
+          $xml->saveXML('views/xmlFactura/FE-' . $clave_array . '.xml'); // Wrote: 72 bytes
         }
-
-
         $select = "*";
         $url = "haciendamensajes?select=*&linkTo=clave&equalTo=" . $data->clave;
         $method = "GET";
@@ -110,6 +109,8 @@ if (isset($routesArray[2]) == false) {
               }
             }
           }
+        }else{
+          $EstadoHaciendaDescargar=0;
         }
   ?>
         <div class="content-header row">
@@ -194,14 +195,12 @@ if (isset($routesArray[2]) == false) {
                         </tr>
                       </thead>
                       <tbody>
-                        <?php foreach ($LineaDetalle as $data) {
-                          $codigo = $data['Codigo'];
-                          $codigoRest = $codigo['Codigo'];
-
-                          $Impuesto = $data['Impuesto'];
-                          $Monto     = $Impuesto['Monto'];
-                        ?>
-
+                      <?php foreach ( $LineaDetalle  as $data) {
+                            $codigo = $data['CodigoComercial'];
+                            $codigoRest = $codigo['Codigo'];
+                            $Impuesto = $data['Impuesto'];
+                            $Monto     = $Impuesto['Monto'];
+                            ?>
                           <tr>
                             <td class="py-1">
                               <p class="card-text fw-bold mb-25"><?php echo  $data['NumeroLinea']; ?></p>
@@ -255,7 +254,7 @@ if (isset($routesArray[2]) == false) {
                 <div class="card">
                   <div class="card-body">
 
-                    <a href="views/xmlFactura/<?php echo $clave_array; ?>.xml" class="btn btn-outline-secondary w-100 btn-download-invoice mb-75" download="<?php echo $clave_array; ?>.xml">
+                    <a href="views/xmlFactura/FE-<?php echo $clave_array; ?>.xml" class="btn btn-outline-secondary w-100 btn-download-invoice mb-75" download="FE-<?php echo $clave_array; ?>.xml">
                     <i data-feather='download-cloud'></i> Factura
                     </a>
                      <?php if($EstadoHaciendaDescargar==1){?>
@@ -265,10 +264,6 @@ if (isset($routesArray[2]) == false) {
                     <?php }?>
 
                     <a class="btn btn-outline-secondary w-100 mb-75" href="/pdf/<?php echo base64_encode("$tbl_facturas");?>/<?php echo base64_encode($clave_factura);?>/<?php echo base64_encode($routesArray);?>"><i data-feather='file-text'></i> Generar PDF </a>
-                 
-                 
-                   
-                 
                  <?php } else {
                   echo '<div class="alert alert-danger" role="alert">
                <h4 class="alert-heading">Lo sentimos</h4>

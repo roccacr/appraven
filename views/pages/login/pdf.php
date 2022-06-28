@@ -150,13 +150,12 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <?php foreach ($LineaDetalle as $data) {
-                          $codigo = $data['Codigo'];
-                          $codigoRest = $codigo['Codigo'];
-
-                          $Impuesto = $data['Impuesto'];
-                          $Monto     = $Impuesto['Monto'];
-                        ?>
+                      <?php foreach ( $LineaDetalle  as $data) {
+                            $codigo = $data['CodigoComercial'];
+                            $codigoRest = $codigo['Codigo'];
+                            $Impuesto = $data['Impuesto'];
+                            $Monto     = $Impuesto['Monto'];
+                            ?>
 
                           <tr>
                             <td class="py-1">
