@@ -17,11 +17,10 @@ $token_user_va          ="token_user";
 $token_exp_user_va      ="token_exp_user";
 $estado                 ="1";
 
-
 /* =======================================================================xxxxxxxxxxxxx
                     TABLA PERMISOS
 =======================================================================xxxxxxxxxxxxx */
-$tbl_permisos                     ="permisos";
+$tbl_permisos                    ="permisos";
 $id_permiso_va                   ="id_permiso";
 $consultarUsuarios_permiso_va    ="consultarUsuarios_permiso";
 $consultarFacturas_permiso_va    ="consultarFacturas_permiso";
@@ -31,14 +30,17 @@ $editarUsuarios_permiso_va       ="editarUsuarios_permiso";
 $id_user_permiso_va              ="id_user";
 
 
+
 /* =======================================================================xxxxxxxxxxxxx
                     TABLA FACTURAS
 =======================================================================xxxxxxxxxxxxx */
 $tbl_facturas ="facturas";
 $clave_factura ="clave";
-
+$id_netsuite_factura ="id_netsuite";
 
 /* =======================================================================xxxxxxxxxxxxx
                     TABLA CREDITO NOTAS
 =======================================================================xxxxxxxxxxxxx */
 $tbl_creditonotas ="creditonotas";
+$clave_credito ="clave";
+$id_netsuite_credito ="id_netsuite";
