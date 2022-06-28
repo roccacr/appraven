@@ -1,3 +1,9 @@
+<?php include "views/modules/navbar.php"; ?>
+<!-- BEGIN: Content-->
+<div class="app-content content ">
+<div class="content-overlay"></div>
+<div class="header-navbar-shadow"></div>
+ <div class="content-wrapper container-xxl p-0">
 <?php
 if (isset($routesArray[3]) == false) {
   $yourURL = "/factura/consultar";
@@ -266,7 +272,13 @@ if (isset($routesArray[3]) == false) {
                     <?php }?>
 
                     <a class="btn btn-outline-secondary w-100 mb-75" href="/factura/consultar"><i data-feather='search'></i> Consultar otra factura </a>
-                  <?php } else {
+
+                    <a class="btn btn-outline-secondary w-100 mb-75" href="/factura/pdf/<?php echo base64_encode($tbl_facturas);?>/<?php echo base64_encode($routesArray2);?>/<?php echo base64_encode($routesArray);?>"><i data-feather='file-text'></i> Generar PDF </a>
+                 
+                 
+                   
+                 
+                 <?php } else {
                   echo '<div class="alert alert-danger" role="alert">
                <h4 class="alert-heading">Lo sentimos</h4>
                <div class="alert-body">
