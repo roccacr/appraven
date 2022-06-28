@@ -41,24 +41,39 @@ if (isset($_POST["clave"]) || isset($_POST["transaccion"]) || isset($_POST["cust
       /* Verificando si el valor del botón de radio es factura, si lo es, establece la tabla en facturas,
   la clave en el valor de la entrada de clave y el tipoValor en Factura. */
 
-    if(isset($_POST["clave"])){
-      if ($valor == "factura") {
-         $tabla = $tbl_facturas;
-         $clave = $_POST["clave"];
-         $rest =$clave_factura;
-      }else{
-        $tabla = $tbl_creditonotas;
-        $clave = $_POST["clave"];
-        $tipoValor = "Nota de Credito";
-        $rest =$clave_credito;
+  if(isset($_POST["clave"])){
+    if(strlen($_POST["clave"])==50){
+    if ($valor == "factura") {
+       $tabla = $tbl_facturas;
+       $clave = $_POST["clave"];
+       $tipoValor = "Factura";
+       $rest =$clave_factura;
+    }else{
+      $tabla = $tbl_creditonotas;
+      $clave = $_POST["clave"];
+      $tipoValor = "Nota de Credito";
+      $rest =$clave_credito;
 
       }
+    }else{
+      echo '<div class="alert alert-warning" role="alert">
+      <h4 class="alert-heading">Lo sentimos</h4>
+      <div class="alert-body">
+      La clave debe contener máximo 50 caracteres y mínimo 50 caracteres
+      </div>
+    </div>
+    
+    <a class="btn btn-outline-secondary w-100 mb-75" href="/factura/consultar"> Consultar de nuevo</a>';
+    
+    return;
     }
+  }
 
     if(isset($_POST["transaccion"])){
       if ($valor == "factura") {
          $tabla = $tbl_facturas;
          $clave = $_POST["transaccion"];
+         $tipoValor = "Factura";
          $rest =$id_netsuite_factura;
       }else{
         $tabla = $tbl_creditonotas;
@@ -232,7 +247,6 @@ no_discounted.addEventListener('change', updateStatus)
   if (window.history.replaceState) { // verificamos disponibilidad
     window.history.replaceState(null, null, window.location.href);
   }
-  
 </script>
 <!-- BEGIN: Page Vendor JS-->
 <script src="../../../app-assets/vendors/js/ui/jquery.sticky.js"></script>
