@@ -46,10 +46,10 @@
 
 <body class="horizontal-layout horizontal-menu blank-page navbar-floating footer-static  " data-open="hover" data-menu="horizontal-menu" data-col="blank-page">
   <!-- BEGIN: Content-->
-  <div class="app-content content ">
-    <div class="content-overlay"></div>
-    <div class="header-navbar-shadow"></div>
-    <div class="content-wrapper">
+<br>
+<br>
+<br>
+<br>
       <div class="content-header row">
       </div>
       <div class="content-body">
@@ -131,12 +131,12 @@
 
           <div class="card-body invoice-padding pt-0">
             <h6 class="mb-2">Facturado a: </h6>
-            <p class="card-text mb-25"> <?php echo  $Nombre_Receptor; ?> </h6>
+            <h6 class="card-text mb-25"> <?php echo  $Nombre_Receptor; ?> </h6>
             </p>
           </div>
 
-          <div class="table-responsive mt-2">
-            <table class="table m-0">
+          <div class="table-responsive">
+            <table class="table ">
             <thead>
                         <tr>
                           <th class="py-1"># Linea</th>
@@ -240,7 +240,7 @@
 <!-- END: Theme JS-->
 
 <!-- BEGIN: Page JS-->
-<script src="../../../app-assets/js/scripts/pages/app-invoice-print.min.js?123"></script>
+<script src="../../../app-assets/js/scripts/pages/app-invoice-print.min.js?12345"></script>
 <!-- END: Page JS-->
 
 <script>
