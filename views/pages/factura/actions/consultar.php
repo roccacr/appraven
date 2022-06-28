@@ -232,6 +232,7 @@ no_discounted.addEventListener('change', updateStatus)
   if (window.history.replaceState) { // verificamos disponibilidad
     window.history.replaceState(null, null, window.location.href);
   }
+  
 </script>
 <!-- BEGIN: Page Vendor JS-->
 <script src="../../../app-assets/vendors/js/ui/jquery.sticky.js"></script>
