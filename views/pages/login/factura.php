@@ -1,15 +1,17 @@
 
 <?php
-   require './variables_globales/variables.php';
+require './variables_globales/variables.php';
+/* Al verificar si la URL tiene un tercer parámetro, si lo tiene, explotará la cadena y obtendrá la
+primera parte de la cadena. */
 if (isset($routesArray[2]) == false) {
-
 } else {
+/* Tomando el segundo elemento de la matriz y dividiéndolo en una matriz de dos elementos. */
   $exp = explode("~", $routesArray[2]);
   $routesArray = $exp[0];
-
+/* Comprobando si la variable  está configurada. */
   if (isset($routesArray)) {
     $select = "*";
-    $url = "facturas?select=*&linkTo=clave&equalTo=" . $routesArray;
+    $url = "$tbl_facturas?select=*&linkTo=$clave_factura&equalTo=" . $routesArray;
     $method = "GET";
     $fields = array();
     $response = CurlController::request($url, $method, $fields);
@@ -23,17 +25,11 @@ if (isset($routesArray[2]) == false) {
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimal-ui">
-
   <link rel="apple-touch-icon" href="../../../app-assets/images/ico/apple-icon-120.html">
   <link rel="shortcut icon" type="image/x-icon" href="https://pixinvent.com/demo/Factura-html-bootstrap-admin-template/app-assets/images/ico/favicon.ico">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
-
-  <!-- BEGIN: Vendor CSS-->
   <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/vendors.min.css">
   <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/pickers/flatpickr/flatpickr.min.css">
-  <!-- END: Vendor CSS-->
-
-  <!-- BEGIN: Theme CSS-->
   <link rel="stylesheet" type="text/css" href="../../../app-assets/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="../../../app-assets/css/bootstrap-extended.min.css">
   <link rel="stylesheet" type="text/css" href="../../../app-assets/css/colors.min.css">
@@ -41,73 +37,72 @@ if (isset($routesArray[2]) == false) {
   <link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/dark-layout.min.css">
   <link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/bordered-layout.min.css">
   <link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/semi-dark-layout.min.css">
-
-  <!-- BEGIN: Page CSS-->
   <link rel="stylesheet" type="text/css" href="../../../app-assets/css/core/menu/menu-types/horizontal-menu.min.css">
   <link rel="stylesheet" type="text/css" href="../../../app-assets/css/plugins/forms/pickers/form-flat-pickr.min.css">
   <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/app-invoice.min.css">
-
   <link rel="stylesheet" type="text/css" href="../../../assets/css/style.css">
   <?php
+/* El código anterior está comprobando si el estado de respuesta es 200. */
   if ($response->status == 200) {
+   /* Tomando la respuesta de la API y asignándola a la variable . */
     $response = $response->results;
+    /* Recorriendo la matriz de respuesta y asignando cada elemento a la variable . */
     foreach ($response as $data) {
-      if ($data->estado == "Aceptada") {
-        $arrayData = $data->xml_firmado;
-        $xml_string = $data->xml;
+      if ($data->$estado_factura == "$estado_fac_var") {
+        $arrayData = $data->$xml_firmado_factura;/* Extraemos los datos de la fima y la descodificamos . */
+        $xml_string = $data->$xml_factura;
         $xml = simplexml_load_string($xml_string, "SimpleXMLElement", LIBXML_NOCDATA);
         $json = json_encode($xml); // convert the XML string to JSON
         $arr = json_decode($json, TRUE);
-       
-        $clave_array        = $arr['Clave'];
-        $CodigoActividad        = $arr['CodigoActividad'];
-        $NumeroConsecutivo  = $arr['NumeroConsecutivo'];
-        $FechaEmision       = $arr['FechaEmision'];
-        $Emisor             = $arr['Emisor'];
-        $Nombre             = $Emisor['Nombre'];
-        $Ubicacion          = $Emisor['Ubicacion'];
-        $OtrasSenas         = $Ubicacion['OtrasSenas'];
-        $Identificacion     = $Emisor['Identificacion'];
-        $NumeroCedula       = $Identificacion['Numero'];
-        $Receptor           = $arr['Receptor'];
-        $Nombre_Receptor    = $Receptor['Nombre'];
-        $DetalleServicio    = $arr['DetalleServicio'];
-        $LineaDetalle       = $DetalleServicio['LineaDetalle'];
+        $clave_array        = $arr[$clave_xml_factura];
+        $CodigoActividad    = $arr[$CodigoActividad_xml_factura];
+        $NumeroConsecutivo  = $arr[$NumeroConsecutivo_xml_factura];
+        $FechaEmision       = $arr[$FechaEmision_xml_factura];
+        $Emisor             = $arr[$Emisor_xml_factura ];
+        $Nombre             = $Emisor[$Nombre_xml_factura ];
+        $Ubicacion          = $Emisor[$Ubicacion_xml_factura];
+        $OtrasSenas         = $Ubicacion[$OtrasSenas_xml_factura];
+        $Identificacion     = $Emisor[$Identificacion_xml_factura ];
+        $NumeroCedula       = $Identificacion[$NumeroCedula_xml_factura];
+        $Receptor           = $arr[$Receptor_xml_factura];
+        $Nombre_Receptor    = $Receptor[$Nombre_Receptor_xml_factura];
+        $DetalleServicio    = $arr[$DetalleServicio_xml_factura];
+        $LineaDetalle       = $DetalleServicio[$LineaDetalle_xml_factura ];
         echo '<div class="alert alert-success" role="alert">
           <h4 class="alert-heading">Estado</h4>
           <div class="alert-body">
-          Estado de la factura: ' . $data->estado . '
+          Estado de la factura: ' . $data->$estado_factura . '
           </div>
         </div>';
 
-        $nombre_fichero = 'views/xmlFactura/FE-' . $clave_array . '.xml';
+        $nombre_fichero = $ruta_xmlFactura.$clave_array . '.xml';
         if (file_exists($nombre_fichero)) {
         } else {
           $xml = new DOMDocument('1.0');
-          $encode = base64_decode($data->xml_firmado);
+          $encode = base64_decode($data->$xml_firmado_factura);
           $xml = simplexml_load_string($encode, "SimpleXMLElement", LIBXML_NOCDATA);
-          $xml->saveXML('views/xmlFactura/FE-' . $clave_array . '.xml'); // Wrote: 72 bytes
+          $xml->saveXML( $ruta_xmlFactura.$clave_array. '.xml'); // Wrote: 72 bytes
         }
         $select = "*";
-        $url = "haciendamensajes?select=*&linkTo=clave&equalTo=" . $data->clave;
+        $url = "$tbl_hac_men?select=*&linkTo=$clave_hac_men&equalTo=" . $data->$clave_factura;
         $method = "GET";
         $fields = array();
         $responseMensajeHacienda = CurlController::request($url, $method, $fields);
         if ($responseMensajeHacienda->status == 200) {
           $responseMensajeHaciendaXl = $responseMensajeHacienda->results;
           foreach ($responseMensajeHaciendaXl as $dataMensajeHacienda) {
-            if ($dataMensajeHacienda->mensaje == 1) {
-                $EstadoHaciendaDescargar=$dataMensajeHacienda->mensaje;
-                $claveHaciendaDescargar=$dataMensajeHacienda->clave;
+            if ($dataMensajeHacienda->$mensaje_hac_men == 1) {
+              $EstadoHaciendaDescargar=$dataMensajeHacienda->$mensaje_hac_men;
+              $claveHaciendaDescargar=$dataMensajeHacienda->$clave_hac_men;
 
-              $nombre_ficheroHacienda = 'views/xmlMenHacienda/RMH-' . $dataMensajeHacienda->clave . '.xml';
-              if (file_exists($nombre_ficheroHacienda)) {
-              } else {
-                $xml = new DOMDocument('1.0');
-                $encode = $dataMensajeHacienda->xml;
-                $xml = simplexml_load_string($encode, "SimpleXMLElement", LIBXML_NOCDATA);
-                $xml->saveXML('views/xmlMenHacienda/RMH-' . $dataMensajeHacienda->clave . '.xml'); // Wrote: 72 bytes
-              }
+            $nombre_ficheroHacienda = $ruta_xmlMenHacienda . $dataMensajeHacienda->$clave_hac_men . '.xml';
+            if (file_exists($nombre_ficheroHacienda)) {
+            } else {
+              $xml = new DOMDocument('1.0');
+              $encode = $dataMensajeHacienda->xml;
+              $xml = simplexml_load_string($encode, "SimpleXMLElement", LIBXML_NOCDATA);
+              $xml->saveXML($ruta_xmlMenHacienda .$dataMensajeHacienda->$clave_hac_men . '.xml'); // Wrote: 72 bytes
+            }
             }
           }
         }else{
@@ -194,52 +189,50 @@ if (isset($routesArray[2]) == false) {
                       </thead>
                       <tbody>
                       <?php foreach ( $LineaDetalle  as $data) {
-                            $codigo = $data['CodigoComercial'];
-                            $codigoRest = $codigo['Codigo'];
-                            $Impuesto = $data['Impuesto'];
-                            $Monto     = $Impuesto['Monto'];
+                            $codigo       = $data[$codigo_xml_factura];
+                            $codigoRest   = $codigo[$codigoRest_xml_factura];
+                            $Impuesto     = $data[$Impuesto_xml_factura];
+                            $Monto        = $Impuesto[$Monto_xml_factura];
                             ?>
                           <tr>
                             <td class="py-1">
-                              <p class="card-text fw-bold mb-25"><?php echo  $data['NumeroLinea']; ?></p>
+                              <p class="card-text fw-bold mb-25"><?php echo  $NumeroLinea_xml_factura; ?></p>
                             </td>
                             <td class="py-1">
                               <span class="fw-bold"><?php echo  $codigoRest; ?></span>
                             </td>
                             <td class="py-1">
-                              <span class="fw-bold"><?php echo  $data['Cantidad']; ?></span>
+                              <span class="fw-bold"><?php echo  $Cantidad_xml_factura; ?></span>
                             </td>
                             <td class="py-1">
-                              <span class="fw-bold"><?php echo  $data['Detalle']; ?></span>
+                              <span class="fw-bold"><?php echo  $Detalle_xml_factura; ?></span>
                             </td>
                             <td class="py-1">
-                              <span class="fw-bold"><?php echo  $data['PrecioUnitario']; ?></span>
+                              <span class="fw-bold"><?php echo  $PrecioUnitario_xml_factura; ?></span>
                             </td>
                             <td class="py-1">
-                              <span class="fw-bold"><?php echo  $data['MontoTotal']; ?></span>
+                              <span class="fw-bold"><?php echo  $MontoTotal_xml_factura; ?></span>
                             </td>
                             <td class="py-1">
                               <span class="fw-bold"><?php echo  $Monto ?></span>
                             </td>
                             <td class="py-1">
-                              <span class="fw-bold"><?php echo  $data['MontoTotalLinea']; ?></span>
+                              <span class="fw-bold"><?php echo  $MontoTotalLinea_xml_factura; ?></span>
                             </td>
                           </tr>
                         <?php } ?>
                       </tbody>
                     </table>
                     </div>
-        
-    
-       <?php 
-       $ResumenFactura        = $arr['ResumenFactura'];
-       $TotalMercanciasGravadas = $ResumenFactura['TotalMercanciasGravadas'];
-       $TotalGravado = $ResumenFactura['TotalGravado'];
-       $TotalVenta = $ResumenFactura['TotalVenta'];
-       $TotalVentaNeta = $ResumenFactura['TotalVentaNeta'];
-       $TotalImpuesto = $ResumenFactura['TotalImpuesto'];
-       $TotalComprobante = $ResumenFactura['TotalComprobante'];
-       ?>
+                  <?php 
+                  $ResumenFactura        = $arr[$ResumenFactura_xml_factura];
+                  $TotalMercanciasGravadas = $ResumenFactura[$TotalMercanciasGravadas_xml_factura];
+                  $TotalGravado = $ResumenFactura[$TotalGravado_xml_factura];
+                  $TotalVenta = $ResumenFactura[$TotalVenta_xml_factura];
+                  $TotalVentaNeta = $ResumenFactura[$TotalVentaNeta_xml_factura];
+                  $TotalImpuesto = $ResumenFactura[$TotalImpuesto_xml_factura];
+                  $TotalComprobante = $ResumenFactura[$TotalComprobante_xml_factura];
+                  ?>
         <div class="card-body invoice-padding pb-0">
           <div class="row invoice-sales-total-wrapper">
             <div class="col-md-6 order-md-1 order-2 mt-md-0 mt-3">
@@ -255,35 +248,28 @@ if (isset($routesArray[2]) == false) {
                 <hr class="my-50" />
                 <div class="invoice-total-item">
                   <p class="invoice-total-title">Total Gravado: <?php echo  $TotalGravado   ;?></p>
-               
                 </div>
                 <hr class="my-50" />
                 <div class="invoice-total-item">
                   <p class="invoice-total-title">Total Venta: <?php echo  $TotalVenta   ;?></p>
-               
                 </div>
                 <hr class="my-50" />
                 <div class="invoice-total-item">
                   <p class="invoice-total-title">Total Venta Neta: <?php echo  $TotalVentaNeta   ;?></p>
-               
                 </div>
                 <div class="invoice-total-item">
                   <p class="invoice-total-title">Total Impuesto: <?php echo  $TotalImpuesto   ;?></p>
-               
                 </div>
                 <hr class="my-50" />
                 <div class="invoice-total-item">
                   <p class="invoice-total-title">TotalComprobante: <?php echo  $TotalComprobante   ;?></p>
-                
                 </div>
               </div>
             </div>
           </div>
         </div>
         <!-- Invoice Description ends -->
-
         <hr class="invoice-spacing" />
-
         <!-- Invoice Note starts -->
         <div class="card-body invoice-padding pt-0">
           <div class="row">
@@ -298,21 +284,16 @@ if (isset($routesArray[2]) == false) {
         <!-- Invoice Note ends -->
       </div>
     </div>
-    <!-- /Invoice -->
-
-    <!-- Invoice Actions -->
-
-              <!-- Invoice Actions -->
               <div class="col-xl-3 col-md-4 col-12 invoice-actions mt-md-0 mt-2">
                 <div class="card">
                   <div class="card-body">
 
-                    <a href="views/xmlFactura/FE-<?php echo $clave_array; ?>.xml" class="btn btn-outline-secondary w-100 btn-download-invoice mb-75" download="FE-<?php echo $clave_array; ?>.xml">
-                  <i data-feather='download-cloud'></i>Factura
+                    <a href="<?php echo $ruta_xmlFactura;?><?php echo $clave_array; ?>.xml" class="btn btn-outline-secondary w-100 btn-download-invoice mb-75" download="<?php echo $sufix_fac  ;?><?php echo $clave_array; ?>.xml">
+                    <i class="fa fa-cloud-download" aria-hidden="true"></i></i>Factura
                     </a>
                      <?php if($EstadoHaciendaDescargar==1){?>
-                    <a href="views/xmlMenHacienda/RMH-<?php echo $claveHaciendaDescargar; ?>.xml" class="btn btn-outline-secondary w-100 btn-download-invoice mb-75" download="RMH-<?php echo $claveHaciendaDescargar; ?>.xml">
-                    <i data-feather='download-cloud'></i> Mensaje Hacienda
+                    <a href="<?php echo $ruta_xmlMenHacienda;?><?php echo $claveHaciendaDescargar; ?>.xml" class="btn btn-outline-secondary w-100 btn-download-invoice mb-75" download="<?php echo $sufix_hac_men;?><?php echo $claveHaciendaDescargar; ?>.xml">
+                    <i class="fa fa-cloud-download" aria-hidden="true"></i></i> Mensaje Hacienda
                     </a>
                     <?php }?>
 
@@ -322,7 +303,7 @@ if (isset($routesArray[2]) == false) {
                <h4 class="alert-heading">Lo sentimos</h4>
                <div class="alert-body">
                No se pede mostrar el resultado por que la factura: ' . $routesArray . ' no esta Aceptada.<br>
-               Estado de la Factura : ' . $data->estado . '
+               Estado de la Factura : ' . $data->$estado_user_va . '
                </div>
              </div>'; ?>
                 <?php }
