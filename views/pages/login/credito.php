@@ -75,13 +75,13 @@ if (isset($routesArray[2]) == false) {
           </div>
         </div>';
 
-        $nombre_fichero = $ruta_xmlFactura.$clave_array . '.xml';
+        $nombre_fichero = $ruta_xmlFacturaNc.$clave_array . '.xml';
         if (file_exists($nombre_fichero)) {
         } else {
           $xml = new DOMDocument('1.0');
           $encode = base64_decode($data->$xml_firmado_creditonotas);
           $xml = simplexml_load_string($encode, "SimpleXMLElement", LIBXML_NOCDATA);
-          $xml->saveXML( $ruta_xmlFactura.$clave_array. '.xml'); // Wrote: 72 bytes
+          $xml->saveXML( $ruta_xmlFacturaNc.$clave_array. '.xml'); // Wrote: 72 bytes
         }
         $select = "*";
         $url = "$tbl_hac_men?select=*&linkTo=$clave_hac_men&equalTo=" . $data->$clave_credito;
@@ -289,7 +289,7 @@ if (isset($routesArray[2]) == false) {
                 <div class="card">
                   <div class="card-body">
 
-                    <a href="<?php echo $ruta_xmlFactura;?><?php echo $clave_array; ?>.xml" class="btn btn-outline-secondary w-100 btn-download-invoice mb-75" download="<?php echo $sufix_CRE   ;?><?php echo $clave_array; ?>.xml">
+                    <a href="<?php echo $ruta_xmlFacturaNc;?><?php echo $clave_array; ?>.xml" class="btn btn-outline-secondary w-100 btn-download-invoice mb-75" download="<?php echo $sufix_CRE   ;?><?php echo $clave_array; ?>.xml">
                     <i class="fa fa-cloud-download" aria-hidden="true"></i></i>Factura
                     </a>
                      <?php if($EstadoHaciendaDescargar==1){?>
