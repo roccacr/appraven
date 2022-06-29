@@ -177,32 +177,32 @@
                           $Impuesto     = $data[$Impuesto_xml_factura];
                           $Monto        = $Impuesto[$Monto_xml_factura];
                           ?>
-                        <tr>
-                          <td class="py-1">
-                            <p class="card-text fw-bold mb-25"><?php echo  $NumeroLinea_xml_factura; ?></p>
-                          </td>
-                          <td class="py-1">
-                            <span class="fw-bold"><?php echo  $codigoRest; ?></span>
-                          </td>
-                          <td class="py-1">
-                            <span class="fw-bold"><?php echo  $Cantidad_xml_factura; ?></span>
-                          </td>
-                          <td class="py-1">
-                            <span class="fw-bold"><?php echo  $Detalle_xml_factura; ?></span>
-                          </td>
-                          <td class="py-1">
-                            <span class="fw-bold"><?php echo  $PrecioUnitario_xml_factura; ?></span>
-                          </td>
-                          <td class="py-1">
-                            <span class="fw-bold"><?php echo  $MontoTotal_xml_factura; ?></span>
-                          </td>
-                          <td class="py-1">
-                            <span class="fw-bold"><?php echo  $Monto ?></span>
-                          </td>
-                          <td class="py-1">
-                            <span class="fw-bold"><?php echo  $MontoTotalLinea_xml_factura; ?></span>
-                          </td>
-                        </tr>
+                      <tr>
+                            <td class="py-1">
+                              <p class="card-text fw-bold mb-25"><?php echo  $data[$NumeroLinea_xml_factura]; ?></p>
+                            </td>
+                            <td class="py-1">
+                              <span class="fw-bold"><?php echo  $codigoRest; ?></span>
+                            </td>
+                            <td class="py-1">
+                              <span class="fw-bold"><?php echo  $data[$Cantidad_xml_factura]; ?></span>
+                            </td>
+                            <td class="py-1">
+                              <span class="fw-bold"><?php echo  $data[$Detalle_xml_factura]; ?></span>
+                            </td>
+                            <td class="py-1">
+                              <span class="fw-bold"><?php echo  $data[$PrecioUnitario_xml_factura]; ?></span>
+                            </td>
+                            <td class="py-1">
+                              <span class="fw-bold"><?php echo  $data[$MontoTotal_xml_factura]; ?></span>
+                            </td>
+                            <td class="py-1">
+                              <span class="fw-bold"><?php echo  $Monto ?></span>
+                            </td>
+                            <td class="py-1">
+                              <span class="fw-bold"><?php echo  $data[$MontoTotalLinea_xml_factura]; ?></span>
+                            </td>
+                          </tr>
                         <?php } ?>
                       </tbody>
             </table>
