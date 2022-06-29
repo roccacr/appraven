@@ -60,6 +60,7 @@ if (isset($routesArray[2]) == false) {
         $arr = json_decode($json, TRUE);
        
         $clave_array        = $arr['Clave'];
+        $CodigoActividad        = $arr['CodigoActividad'];
         $NumeroConsecutivo  = $arr['NumeroConsecutivo'];
         $FechaEmision       = $arr['FechaEmision'];
         $Emisor             = $arr['Emisor'];
@@ -150,20 +151,39 @@ if (isset($routesArray[2]) == false) {
                             </g>
                           </svg>
                           <h3 class="text-dark invoice-logo">Factura</h3>
-
-
                         </div>
+                        <script src="https://unpkg.com/qrious@4.0.2/dist/qrious.js"></script>
                         <p class="card-text mb-25">Consecutivo: <?php echo $NumeroConsecutivo; ?> </p>
                         <p class="card-text mb-25">Emisor: <?php echo $Nombre; ?> </p>
                         <p class="card-text mb-25">Cedula Juridica: <?php echo $NumeroCedula; ?> </p>
                         <p class="card-text mb-25">Direccion: <?php echo  $OtrasSenas; ?> </p>
-                        <p class="card-text mb-25">Fecha de emisión: <?php echo  $FechaEmision;; ?> </p>
+                        <p class="card-text mb-25">Fecha de emisión: <?php echo  $FechaEmision; ?> </p>
+                        <p class="card-text mb-25">Actividad Economica: <?php echo $CodigoActividad; ?> </p>
                       </div>
                       <div class="mt-md-0 mt-2">
                         <h4 class="invoice-title">
                           Clave
                           <span class="invoice-number">#<br><?php echo  $clave_array ?></span>
                         </h4>
+                        <img style="float:right;" class="mb-15" alt="Código QR" id="codigo">
+                                    <script>
+                                    const $imagen = document.querySelector("#codigo"),
+                                      $boton = document.querySelector("#btnDescargar");
+                                    new QRious({
+                                      element: $imagen,
+                                      value: "https://appraven.appsngs.com/credito/<?php echo $clave_array; ?>", // La URL o el texto
+                                      size:200,
+                                      backgroundAlpha: 13, // 0 para fondo transparente
+                                      foreground: "#000", // Color del QR
+                                      level: "H", // Puede ser L,M,Q y H (L es el de menor nivel, H el mayor)
+                                    });
+                                    $boton.onclick = () => {
+                                      const enlace = document.createElement("a");
+                                      enlace.href = $imagen.src;
+                                      enlace.download = "img.png"
+                                      enlace.click();
+                                    }
+                                    </script>
                       </div>
                     </div>
                     <!-- Header ends -->
@@ -230,24 +250,79 @@ if (isset($routesArray[2]) == false) {
                         <?php } ?>
                       </tbody>
                     </table>
-                  </div>
-
-
-                  <!-- Invoice Description ends -->
-
-                  <hr class="invoice-spacing" />
-
-                  <!-- Invoice Note starts -->
-                  <div class="card-body invoice-padding pt-0">
-                    <div class="row">
-                      <div class="col-12">
-                      </div>
                     </div>
-                  </div>
-                  <!-- Invoice Note ends -->
+        
+    
+       <?php 
+       $ResumenFactura        = $arr['ResumenFactura'];
+       $TotalMercanciasGravadas = $ResumenFactura['TotalMercanciasGravadas'];
+       $TotalGravado = $ResumenFactura['TotalGravado'];
+       $TotalVenta = $ResumenFactura['TotalVenta'];
+       $TotalVentaNeta = $ResumenFactura['TotalVentaNeta'];
+       $TotalImpuesto = $ResumenFactura['TotalImpuesto'];
+       $TotalComprobante = $ResumenFactura['TotalComprobante'];
+       ?>
+        <div class="card-body invoice-padding pb-0">
+          <div class="row invoice-sales-total-wrapper">
+            <div class="col-md-6 order-md-1 order-2 mt-md-0 mt-3">
+              <p class="card-text mb-0">
+                <span class="fw-bold">Resumen Factura:</span> <span class="ms-75"></span>
+              </p>
+            </div>
+            <div class="col-md-6 d-flex justify-content-end order-md-2 order-1">
+              <div class="invoice-total-wrapper">
+                <div class="invoice-total-item">
+                  <p class="invoice-total-title">Total Mercancias Gravadas: <?php echo  $TotalMercanciasGravadas   ;?></p>
+                </div>
+                <hr class="my-50" />
+                <div class="invoice-total-item">
+                  <p class="invoice-total-title">Total Gravado: <?php echo  $TotalGravado   ;?></p>
+               
+                </div>
+                <hr class="my-50" />
+                <div class="invoice-total-item">
+                  <p class="invoice-total-title">Total Venta: <?php echo  $TotalVenta   ;?></p>
+               
+                </div>
+                <hr class="my-50" />
+                <div class="invoice-total-item">
+                  <p class="invoice-total-title">Total Venta Neta: <?php echo  $TotalVentaNeta   ;?></p>
+               
+                </div>
+                <div class="invoice-total-item">
+                  <p class="invoice-total-title">Total Impuesto: <?php echo  $TotalImpuesto   ;?></p>
+               
+                </div>
+                <hr class="my-50" />
+                <div class="invoice-total-item">
+                  <p class="invoice-total-title">TotalComprobante: <?php echo  $TotalComprobante   ;?></p>
+                
                 </div>
               </div>
-              <!-- /Invoice -->
+            </div>
+          </div>
+        </div>
+        <!-- Invoice Description ends -->
+
+        <hr class="invoice-spacing" />
+
+        <!-- Invoice Note starts -->
+        <div class="card-body invoice-padding pt-0">
+          <div class="row">
+            <div class="col-12">
+              <span class="fw-bold">Note:</span>
+              <span
+                >Autorizado mediante la resolución DGT-R-033-2019 del veinte de junio de dos mil diecinueve de la Dirección General de Tributación.Generada por GTI , www.facturaelectronica.cr Versión del Documento Electrónico: 4.3</span
+              >
+            </div>
+          </div>
+        </div>
+        <!-- Invoice Note ends -->
+      </div>
+    </div>
+    <!-- /Invoice -->
+
+    <!-- Invoice Actions -->
 
               <!-- Invoice Actions -->
               <div class="col-xl-3 col-md-4 col-12 invoice-actions mt-md-0 mt-2">
