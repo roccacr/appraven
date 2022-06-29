@@ -308,11 +308,11 @@ if (isset($routesArray[2]) == false) {
                   <div class="card-body">
 
                     <a href="views/xmlFactura/FE-<?php echo $clave_array; ?>.xml" class="btn btn-outline-secondary w-100 btn-download-invoice mb-75" download="FE-<?php echo $clave_array; ?>.xml">
-                    <i data-feather='download-cloud'></i> Factura
+                  <i data-feather='download-cloud'></i>Factura
                     </a>
                      <?php if($EstadoHaciendaDescargar==1){?>
                     <a href="views/xmlMenHacienda/RMH-<?php echo $claveHaciendaDescargar; ?>.xml" class="btn btn-outline-secondary w-100 btn-download-invoice mb-75" download="RMH-<?php echo $claveHaciendaDescargar; ?>.xml">
-                    <i data-feather='download-cloud'></i>  Mensaje Hacienda
+                    <i data-feather='download-cloud'></i> Mensaje Hacienda
                     </a>
                     <?php }?>
 

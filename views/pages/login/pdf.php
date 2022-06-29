@@ -1,71 +1,316 @@
-<div class="content-wrapper">
-    <div class="content-header row">
-    </div>
-    <div class="content-body">
-        <div class="auth-wrapper auth-basic px-2">
-            <div class="auth-inner my-2">
-                <!-- Login basic -->
-                <div class="card mb-0" style="border-radius: 17px;
-background: #161d31;
-box-shadow:  16px 16px 30px #0a0d16,
-             -16px -16px 30px #222d4c;">
-                    <div class="card-body">
-                        <a href="/" class="brand-logo">
-                        <img style="width: 100px;
-                                 height: auto;"  src="../../app-assets/images/logos/image.png">
-                            <!-- <h2 class="brand-text text-dark ms-1">Rocca Development Group</h2> -->
-                        </a>
+<!DOCTYPE html>
 
-                        <h4 class="card-title mb-1">Factura Electrónica</h4>
-                        <p class="card-text mb-2">Inicia sesión en tu cuenta</p>
+<html class="loading dark-layout" lang="en" data-layout="dark-layout" data-textdirection="ltr">
+<!-- BEGIN: Head-->
 
-                        <form class="auth-login-form mt-2 needs-validation" method="POST" novalidate>
-                            <div class="mb-1">
-                                <label for="login-email" class="form-label">Correo Electrónico</label>
-                                <input type="text" class="form-control" id="login-email" name="loginEmail" onchange="validateJS(event, 'email')" required />
-                                <div class="valid-feedback">Valido.</div>
-                                <div class="invalid-feedback">Por favor rellene este campo.</div>
-                            </div>
+<!-- Mirrored from pixinvent.com/demo/vuexy-html-bootstrap-admin-template/html/ltr/horizontal-menu-template-dark/app-invoice-print.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Jun 2022 06:00:00 GMT -->
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimal-ui">
+  <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+  <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
+  <meta name="author" content="PIXINVENT">
+  <title>Invoice Print - Vuexy - Bootstrap HTML admin template</title>
+  <link rel="apple-touch-icon" href="../../../app-assets/images/ico/apple-icon-120.html">
+  <link rel="shortcut icon" type="image/x-icon" href="https://pixinvent.com/demo/vuexy-html-bootstrap-admin-template/app-assets/images/ico/favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
+
+  <!-- BEGIN: Vendor CSS-->
+  <link rel="stylesheet" type="text/css" href="../../../app-assets/vendors/css/vendors.min.css">
+  <!-- END: Vendor CSS-->
+
+  <!-- BEGIN: Theme CSS-->
+  <link rel="stylesheet" type="text/css" href="../../../app-assets/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../../../app-assets/css/bootstrap-extended.min.css">
+  <link rel="stylesheet" type="text/css" href="../../../app-assets/css/colors.min.css">
+  <link rel="stylesheet" type="text/css" href="../../../app-assets/css/components.min.css">
+  <link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/dark-layout.min.css">
+  <link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/bordered-layout.min.css">
+  <link rel="stylesheet" type="text/css" href="../../../app-assets/css/themes/semi-dark-layout.min.css">
+
+  <!-- BEGIN: Page CSS-->
+  <link rel="stylesheet" type="text/css" href="../../../app-assets/css/core/menu/menu-types/horizontal-menu.min.css">
+  <link rel="stylesheet" type="text/css" href="../../../app-assets/css/pages/app-invoice-print.min.css">
+  <!-- END: Page CSS-->
+
+  <!-- BEGIN: Custom CSS-->
+  <link rel="stylesheet" type="text/css" href="../../../assets/css/style.css">
+  <!-- END: Custom CSS-->
+
+</head>
+<!-- END: Head-->
+
+<!-- BEGIN: Body-->
+
+<body class="horizontal-layout horizontal-menu blank-page navbar-floating footer-static  " data-open="hover" data-menu="horizontal-menu" data-col="blank-page">
+  <!-- BEGIN: Content-->
+<br>
+<br>
+<br>
+<br>
+      <div class="content-header row">
+      </div>
+      <div class="content-body">
+        <div class="invoice-print p-3">
+          <div class="invoice-header d-flex justify-content-between flex-md-row flex-column pb-2">
+            <?php
+            $tabla = isset($routesArray[2]) ? $routesArray[2] : '';
+            
+            $tipo  = isset($routesArray[3]) ? $routesArray[3] : '';
+            $clave = isset($routesArray[4]) ? $routesArray[4] : '';
+            if ($tabla === '' ||  $tipo === '' || $clave === '') {
+              echo '<div class="alert alert-danger" role="alert">
+      <h4 class="alert-heading">Lo sentimos</h4>
+      <div class="alert-body">
+      No se pede Generar la factura. Vuelve a intentarlo.<br>
+      <a type="button" href="javascript: history.go(-1)" class="btn btn-dark waves-effect waves-float waves-light">Volver</a>
+      </div>
+    </div>';
+            } else {
+              $table = base64_decode($tabla);
+              $type =  base64_decode($tipo);
+              $key = base64_decode($clave);
+
+              $select = "*";
+              $url = "$table?select=*&linkTo=$type&equalTo=" . $key;
+              $method = "GET";
+              $fields = array();
+              $response = CurlController::request($url, $method, $fields);
+              if ($response->status == 200) {
+                $response = $response->results;
+                foreach ($response as $data) {
+                  if ($data->estado == "Aceptada") {
+                    $arrayData = $data->xml_firmado;
+                    $xml_string = $data->xml;
+                    $xml = simplexml_load_string($xml_string, "SimpleXMLElement", LIBXML_NOCDATA);
+                    $json = json_encode($xml); // convert the XML string to JSON
+                    $arr = json_decode($json, TRUE);
+                    $clave_array        = $arr['Clave'];
+                    $NumeroConsecutivo  = $arr['NumeroConsecutivo'];
+                    $FechaEmision       = $arr['FechaEmision'];
+                    $Emisor             = $arr['Emisor'];
+                    $Nombre             = $Emisor['Nombre'];
+                    $Ubicacion          = $Emisor['Ubicacion'];
+                    $OtrasSenas         = $Ubicacion['OtrasSenas'];
+                    $Identificacion     = $Emisor['Identificacion'];
+                    $NumeroCedula       = $Identificacion['Numero'];
+                    $Receptor           = $arr['Receptor'];
+                    $Nombre_Receptor    = $Receptor['Nombre'];
+                    $DetalleServicio    = $arr['DetalleServicio'];
+                    $LineaDetalle       = $DetalleServicio['LineaDetalle'];
 
 
-                            <div class="mb-1">
-                                <div class="d-flex justify-content-between">
-                                    <label class="form-label" for="login-password">Contraseña</label>
-                                    <a style="color:aliceblue;" href="auth-forgot-password-basic.html">
-                                        <small>¿Has olvidado tu contraseña?</small>
-                                    </a>
-                                </div>
-                                <div class="input-group input-group-merge form-password-toggle">
-                                    <input name="loginPassword" required type="password" class="form-control form-control-merge" id="login-password" />
-                                    <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
-                                    <div class="valid-feedback">Valido.</div>
-                                    <div class="invalid-feedback">Por favor rellene este campo.</div>
-                                </div>
-                            </div>
-                            <button style="color:black" class="btn btn-dark w-100" tabindex="4">Iniciar Sesión</button>
-                        </form>
-                        <?php
+            ?>
 
-                        require_once "controllers/admins.controller.php";
-
-                        $login = new AdminsController();
-                        $login->login();
-
-
-                        ?>
-
-
+                    <div>
+                      <div class="d-flex mb-1">
+                        <img width="150px" src="../../../../app-assets/images/logos/image.png">
+                        <h3 class="text-primary fw-bold ms-1"></h3>
+                      </div>
+                      <br>
+                      <br>
+                      <br>
+                      <hr class="my-2" />
+                               <script src="https://unpkg.com/qrious@4.0.2/dist/qrious.js"></script>
+                      <p class="card-text mb-25">Consecutivo: <?php echo $NumeroConsecutivo; ?> </p>
+                      <p class="card-text mb-25">Emisor: <?php echo $Nombre; ?> </p>
+                      <p class="card-text mb-25">Cedula Juridica: <?php echo $NumeroCedula; ?> </p>
+                      <p class="card-text mb-25">Direccion: <?php echo  $OtrasSenas; ?> </p>
+                      <p class="card-text mb-25">Fecha de emisión: <?php echo  $FechaEmision;; ?> </p>
                     </div>
-                </div>
-                <!-- /Login basic -->
+                    <div class="mt-md-0 mt-2">
+                        <h4 class="invoice-title">
+                          Clave
+                          <span class="invoice-number">#<br><?php echo  $clave_array ?></span>
+                        </h4>
+                        <img style="float:right;" class="mb-15" alt="Código QR" id="codigo">
+                                    <script>
+                                    const $imagen = document.querySelector("#codigo"),
+                                      $boton = document.querySelector("#btnDescargar");
+                                    new QRious({
+                                      element: $imagen,
+                                      value: "https://appraven.appsngs.com/credito/<?php echo $clave_array; ?>", // La URL o el texto
+                                      size:200,
+                                      backgroundAlpha: 13, // 0 para fondo transparente
+                                      foreground: "#000", // Color del QR
+                                      level: "H", // Puede ser L,M,Q y H (L es el de menor nivel, H el mayor)
+                                    });
+                                    $boton.onclick = () => {
+                                      const enlace = document.createElement("a");
+                                      enlace.href = $imagen.src;
+                                      enlace.download = "img.png"
+                                      enlace.click();
+                                    }
+                                    </script>
+                      </div>
+          </div>
+
+          <hr class="my-2" />
+
+          <div class="card-body invoice-padding pt-0">
+            <h6 class="mb-2">Facturado a: </h6>
+            <h6 class="card-text mb-25"> <?php echo  $Nombre_Receptor; ?> </h6>
+            </p>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table ">
+            <thead>
+                        <tr>
+                          <th class="py-1"># Linea</th>
+                          <th class="py-1">Codigo</th>
+                          <th class="py-1">Cantidad</th>
+                          <th class="py-1">Detalle</th>
+                          <th class="py-1">Precio Unit</th>
+                          <th class="py-1">Importe</th>
+                          <th class="py-1">Impuesto</th>
+                          <th class="py-1">Sub-Total</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      <?php foreach ( $LineaDetalle  as $data) {
+                            $codigo = $data['CodigoComercial'];
+                            $codigoRest = $codigo['Codigo'];
+                            $Impuesto = $data['Impuesto'];
+                            $Monto     = $Impuesto['Monto'];
+                            ?>
+
+                          <tr>
+                            <td class="py-1">
+                              <p class="card-text fw-bold mb-25"><?php echo  $data['NumeroLinea']; ?></p>
+                            </td>
+                            <td class="py-1">
+                              <span class="fw-bold"><?php echo  $codigoRest; ?></span>
+                            </td>
+                            <td class="py-1">
+                              <span class="fw-bold"><?php echo  $data['Cantidad']; ?></span>
+                            </td>
+                            <td class="py-1">
+                              <span class="fw-bold"><?php echo  $data['Detalle']; ?></span>
+                            </td>
+                            <td class="py-1">
+                              <span class="fw-bold"><?php echo  $data['PrecioUnitario']; ?></span>
+                            </td>
+                            <td class="py-1">
+                              <span class="fw-bold"><?php echo  $data['MontoTotal']; ?></span>
+                            </td>
+                            <td class="py-1">
+                              <span class="fw-bold"><?php echo  $Monto ?></span>
+                            </td>
+                            <td class="py-1">
+                              <span class="fw-bold"><?php echo  $data['MontoTotalLinea']; ?></span>
+                            </td>
+                          </tr>
+                        <?php } ?>
+                      </tbody>
+            </table>
+          </div>
+
+          <?php 
+       $ResumenFactura        = $arr['ResumenFactura'];
+       $TotalMercanciasGravadas = $ResumenFactura['TotalMercanciasGravadas'];
+       $TotalGravado = $ResumenFactura['TotalGravado'];
+       $TotalVenta = $ResumenFactura['TotalVenta'];
+       $TotalVentaNeta = $ResumenFactura['TotalVentaNeta'];
+       $TotalImpuesto = $ResumenFactura['TotalImpuesto'];
+       $TotalComprobante = $ResumenFactura['TotalComprobante'];
+       ?>
+        <div class="card-body invoice-padding pb-0">
+          <div class="row invoice-sales-total-wrapper">
+            <div class="col-md-6 order-md-1 order-2 mt-md-0 mt-3">
+              <p class="card-text mb-0">
+                <span class="fw-bold">Resumen Factura:</span> <span class="ms-75"></span>
+              </p>
             </div>
+            <div class="col-md-6 d-flex justify-content-end order-md-2 order-1">
+              <div class="invoice-total-wrapper">
+                <div class="invoice-total-item">
+                  <p class="invoice-total-title">Total Mercancias Gravadas: <?php echo  $TotalMercanciasGravadas   ;?></p>
+                </div>
+                <hr class="my-50" />
+                <div class="invoice-total-item">
+                  <p class="invoice-total-title">Total Gravado: <?php echo  $TotalGravado   ;?></p>
+               
+                </div>
+                <hr class="my-50" />
+                <div class="invoice-total-item">
+                  <p class="invoice-total-title">Total Venta: <?php echo  $TotalVenta   ;?></p>
+               
+                </div>
+                <hr class="my-50" />
+                <div class="invoice-total-item">
+                  <p class="invoice-total-title">Total Venta Neta: <?php echo  $TotalVentaNeta   ;?></p>
+               
+                </div>
+                <div class="invoice-total-item">
+                  <p class="invoice-total-title">Total Impuesto: <?php echo  $TotalImpuesto   ;?></p>
+               
+                </div>
+                <hr class="my-50" />
+                <div class="invoice-total-item">
+                  <p class="invoice-total-title">TotalComprobante: <?php echo  $TotalComprobante   ;?></p>
+                
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+ <!-- Invoice Description ends -->
 
+ <hr class="invoice-spacing" />
+
+<!-- Invoice Note starts -->
+<div class="card-body invoice-padding pt-0">
+  <div class="row">
+    <div class="col-12">
+      <span class="fw-bold">Note:</span>
+      <span
+        >Autorizado mediante la resolución DGT-R-033-2019 del veinte de junio de dos mil diecinueve de la Dirección General de Tributación.</span
+      >
     </div>
+  </div>
+</div>
+<!-- Invoice Note ends -->
 </div>
 </div>
+  <!-- END: Content-->
+<?php }
+                }
+              }
+            } ?>
 
-<script src="../../../app-assets/formulario/form.js?123">
+<!-- BEGIN: Vendor JS-->
+<script src="../../../app-assets/vendors/js/vendors.min.js"></script>
+<!-- BEGIN Vendor JS-->
 
+<!-- BEGIN: Page Vendor JS-->
+<script src="../../../app-assets/vendors/js/ui/jquery.sticky.js"></script>
+<!-- END: Page Vendor JS-->
+
+<!-- BEGIN: Theme JS-->
+<script src="../../../app-assets/js/core/app-menu.min.js"></script>
+<script src="../../../app-assets/js/core/app.min.js"></script>
+<!-- END: Theme JS-->
+
+<!-- BEGIN: Page JS-->
+<script src="../../../app-assets/js/scripts/pages/app-invoice-print.min.js?12345"></script>
+<!-- END: Page JS-->
+
+<script>
+  $(window).on('load', function() {
+    if (feather) {
+      feather.replace({
+        width: 14,
+        height: 14
+      });
+    }
+  })
 </script>
+</body>
+<!-- END: Body-->
 
+<!-- Mirrored from pixinvent.com/demo/vuexy-html-bootstrap-admin-template/html/ltr/horizontal-menu-template-dark/app-invoice-print.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Jun 2022 06:00:01 GMT -->
+
+</html>
