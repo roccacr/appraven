@@ -120,7 +120,7 @@ $clave_hac_men        ="clave";
 $mensaje_hac_men      ="mensaje";
 $xml_hac_men          ="xml";
 $ruta_xmlMenHacienda  ="views/xmlMenHacienda/RMH-";
-$sufix_hac_men        ="FE-";
+$sufix_hac_men        ="RMH-";
 
 /* =======================================================================xxxxxxxxxxxxx
                   VARIABLES DEL PDF
