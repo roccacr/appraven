@@ -105,7 +105,7 @@ $estado_creditonotas            ="estado";
 $xml_firmado_creditonotas       ="xml_firmado";
 $estado_creditonotas_var        ="Aceptada";
 //ruta donde se guarda el xml
-$ruta_xmlFactura                 ="views/xmlFacturaNc/FE-";
+$ruta_xmlFacturaNc                 ="views/xmlFacturaNc/FE-";
 $sufix_CRE                       ="NC-";
 
 
