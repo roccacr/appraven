@@ -158,8 +158,17 @@ $id_internoadm_aprfac_va        ="id_internoadm_aprfac";
 
 
 
-
-
+$tabl_aprovo_nc                        ="aprovisionamiento_notacreditos"; 
+$clave_aprnc_va                         ="clave_aprnc"; 
+$id_aprnc_va                            ="id_aprnc";
+$id_admcloud_aprnc_va                   ="id_admcloud_aprnc";
+$consecutivo_aprnc_va                   ="consecutivo_aprnc";
+$json_aprnc_va                          ="json_aprnc";
+$status_aprnc_va                        ="status_aprnc";
+$fecha_creacion_aprnc_va                ="fecha_creacion_aprnc";
+$fecha_ult_modificacion_aprnc_va        ="fecha_ult_modificacion_aprnc";
+$contexto_aprnc_va                      ="contexto_aprnc"; 
+$id_internoadm_aprnc_va                 ="id_internoadm_aprnc";
 
 
 
