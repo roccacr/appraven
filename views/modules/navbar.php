@@ -196,6 +196,20 @@
                 </li>
               </ul>
             </li>
+
+            <li class="dropdown nav-item sidebar-group-<?php if (!empty($routesArray)  == "logs") : ?>active<?php endif ?> <?php if (!empty($routesArray) && $routesArray[1] == "logs") : ?>active<?php endif ?>"" data-menu=" dropdown">
+              <a class="dropdown-toggle nav-link d-flex align-items-center" href="#" data-bs-toggle="dropdown">
+                <i data-feather='info'></i>
+                <span data-i18n="Pages">Logs</span></a>
+              <ul class="dropdown-menu" data-bs-popper="none">
+                <li class="<?php if (!empty($routesArray) && $routesArray[2] == "listlogs") : ?>active<?php endif ?>"" data-menu="">
+                    <a class=" dropdown-item d-flex align-items-center" href="/logs/listlogs" data-bs-toggle="" data-i18n="FAQ">
+                  <i data-feather='list'></i>
+                  <span data-i18n="FAQ">Lista de Logs</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
             <?php if ($data->$consultarUsuarios_permiso_va == 1) { ?>
               <li class="dropdown nav-item sidebar-group-<?php if (!empty($routesArray)  == "usuario") : ?>active<?php endif ?> <?php if (!empty($routesArray) && $routesArray[1] == "usuario") : ?>active<?php endif ?>"" data-menu=" dropdown">
                 <a class="dropdown-toggle nav-link d-flex align-items-center" href="#" data-bs-toggle="dropdown">
@@ -209,6 +223,10 @@
                     </a>
                   </li>
                 <?php } ?>
+
+
+
+
             <?php }
         } ?>
 

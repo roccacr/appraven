@@ -30,7 +30,7 @@ $editarUsuarios_permiso_va       ="editarUsuarios_permiso";
 $id_user_permiso_va              ="id_user";
 $consultarAproviFe_va            ="consultarAproviFe";
 $consultarAproviNc_va            ="consultarAproviNc";
-
+$consultaLogs_va                 ="consultaLogs";
 
 
 /* =======================================================================xxxxxxxxxxxxx
@@ -172,3 +172,10 @@ $id_internoadm_aprnc_va                 ="id_internoadm_aprnc";
 
 
 
+$logs_va            ="logs";
+$idlogs_log_va      ="idlogs_log";
+$fecha_log_va       ="fecha_log";
+$evento_log_va      ="evento_log";
+$tipo_log_va        ="tipo_log";
+$detalle_log_va     ="detalle_log";
+$funcion_log_va     ="funcion_log";

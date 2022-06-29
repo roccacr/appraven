@@ -79,8 +79,8 @@ foreach ($routesArray as $key => $value) {
       $routesArray[1] == "factura"||
       $routesArray[1] == "usuario"||
       $routesArray[1] == "aprovisionamiento"||
-      $routesArray[1] == "eliminarfacturas"
-
+      $routesArray[1] == "eliminarfacturas"||
+      $routesArray[1] == "logs"
       
     ) {
       include "views/pages/" . $routesArray[1] . "/" . $routesArray[1] . ".php";
