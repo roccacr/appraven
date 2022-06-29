@@ -143,15 +143,15 @@ if (isset($routesArray[2]) == false) {
                           Clave
                           <span class="invoice-number">#<br><?php echo  $clave_array ?></span>
                         </h4>
-                        <img style="float:right;" class="mb-15" alt="Código QR" id="codigo">
+                        <img style="float:right;" width="100%" class="mb-60" alt="Código QR" id="codigo">
                                     <script>
                                     const $imagen = document.querySelector("#codigo"),
                                       $boton = document.querySelector("#btnDescargar");
                                     new QRious({
                                       element: $imagen,
-                                      value: "https://appraven.appsngs.com/credito/<?php echo $clave_array; ?>", // La URL o el texto
-                                      size:200,
-                                      backgroundAlpha: 13, // 0 para fondo transparente
+                                      value: "https://appraven.appsngs.com/factura/<?php echo $clave_array; ?>", // La URL o el texto
+                                      size:110,
+                                      backgroundAlpha: 50, // 0 para fondo transparente
                                       foreground: "#000", // Color del QR
                                       level: "H", // Puede ser L,M,Q y H (L es el de menor nivel, H el mayor)
                                     });
