@@ -28,6 +28,8 @@ $crearUsuario_permiso_va         ="crearUsuario_permiso";
 $crearPermisos_permiso_va        ="crearPermisos_permiso";
 $editarUsuarios_permiso_va       ="editarUsuarios_permiso";
 $id_user_permiso_va              ="id_user";
+$consultarAproviFe_va            ="consultarAproviFe";
+$consultarAproviNc_va            ="consultarAproviNc";
 
 
 
@@ -128,3 +130,36 @@ $sufix_hac_men        ="RMH-";
 
 $xml_PDF          ="xml";
 $xml_firmado_PDF         ="xml_firmado";
+
+
+
+
+
+
+/* =======================================================================xxxxxxxxxxxxx
+                    TABLA aprovisionamiento
+=======================================================================xxxxxxxxxxxxx */
+
+
+$tabl_aprovo_fe                 ="aprovisionamiento_facturaventas";
+$clave_aprfac_va                ="clave_aprfac";
+$id_aprfac_va                   ="id_aprfac";
+$id_admcloud_aprfac_va          ="id_admcloud_aprfac";
+$consecutivo_aprfac_va          ="consecutivo_aprfac";
+$json_aprfac_va                 ="json_aprfac";
+$status_aprfac_va               ="status_aprfac";
+$fecha_creacion_aprfac_va       ="fecha_creacion_aprfac";
+$fecha_ult_modificacion_aprfac_va="fecha_ult_modificacion_aprfac";
+$contexto_aprfac_va             ="contexto_aprfac";
+$id_internoadm_aprfac_va        ="id_internoadm_aprfac";
+
+
+
+
+
+
+
+
+
+
+

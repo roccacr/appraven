@@ -78,7 +78,10 @@ foreach ($routesArray as $key => $value) {
       $routesArray[1] == "logout" ||
       $routesArray[1] == "factura"||
       $routesArray[1] == "usuario"||
+      $routesArray[1] == "aprovisionamiento"||
       $routesArray[1] == "eliminarfacturas"
+
+      
     ) {
       include "views/pages/" . $routesArray[1] . "/" . $routesArray[1] . ".php";
     } else {
@@ -122,7 +125,6 @@ foreach ($routesArray as $key => $value) {
   <script src="../../../app-assets/vendors/js/forms/validation/jquery.validate.min.js"></script>
   <script src="../../../app-assets/js/scripts/pages/auth-login.js"></script>
 
-  
 
   <script>
     $(window).on('load', function() {
