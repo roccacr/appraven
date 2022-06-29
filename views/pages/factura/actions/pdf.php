@@ -46,10 +46,10 @@
 
 <body class="horizontal-layout horizontal-menu blank-page navbar-floating footer-static  " data-open="hover" data-menu="horizontal-menu" data-col="blank-page">
   <!-- BEGIN: Content-->
-  <div class="app-content content ">
-    <div class="content-overlay"></div>
-    <div class="header-navbar-shadow"></div>
-    <div class="content-wrapper">
+  <br>
+<br>
+<br>
+<br>
       <div class="content-header row">
       </div>
       <div class="content-body">
@@ -71,7 +71,6 @@
               $table = base64_decode($tabla);
               $type =  base64_decode($tipo);
               $key = base64_decode($clave);
-
               $select = "*";
               $url = "$table?select=*&linkTo=$type&equalTo=" . $key;
               $method = "GET";
@@ -81,29 +80,29 @@
                 $response = $response->results;
                 foreach ($response as $data) {
                   if ($data->estado == "Aceptada") {
-                    $arrayData = $data->xml_firmado;
-                    $xml_string = $data->xml;
+                    $arrayData = $data->$xml_firmado_PDF;
+                    $xml_string = $data->$xml_PDF;
                     $xml = simplexml_load_string($xml_string, "SimpleXMLElement", LIBXML_NOCDATA);
                     $json = json_encode($xml); // convert the XML string to JSON
                     $arr = json_decode($json, TRUE);
-                    $clave_array        = $arr['Clave'];
-                    $NumeroConsecutivo  = $arr['NumeroConsecutivo'];
-                    $FechaEmision       = $arr['FechaEmision'];
-                    $Emisor             = $arr['Emisor'];
-                    $Nombre             = $Emisor['Nombre'];
-                    $Ubicacion          = $Emisor['Ubicacion'];
-                    $OtrasSenas         = $Ubicacion['OtrasSenas'];
-                    $Identificacion     = $Emisor['Identificacion'];
-                    $NumeroCedula       = $Identificacion['Numero'];
-                    $Receptor           = $arr['Receptor'];
-                    $Nombre_Receptor    = $Receptor['Nombre'];
-                    $DetalleServicio    = $arr['DetalleServicio'];
-                    $LineaDetalle       = $DetalleServicio['LineaDetalle'];
+                    $clave_array        = $arr[$clave_xml_factura];
+                    $CodigoActividad    = $arr[$CodigoActividad_xml_factura];
+                    $NumeroConsecutivo  = $arr[$NumeroConsecutivo_xml_factura];
+                    $FechaEmision       = $arr[$FechaEmision_xml_factura];
+                    $Emisor             = $arr[$Emisor_xml_factura ];
+                    $Nombre             = $Emisor[$Nombre_xml_factura ];
+                    $Ubicacion          = $Emisor[$Ubicacion_xml_factura];
+                    $OtrasSenas         = $Ubicacion[$OtrasSenas_xml_factura];
+                    $Identificacion     = $Emisor[$Identificacion_xml_factura ];
+                    $NumeroCedula       = $Identificacion[$NumeroCedula_xml_factura];
+                    $Receptor           = $arr[$Receptor_xml_factura];
+                    $Nombre_Receptor    = $Receptor[$Nombre_Receptor_xml_factura];
+                    $DetalleServicio    = $arr[$DetalleServicio_xml_factura];
+                    $LineaDetalle       = $DetalleServicio[$LineaDetalle_xml_factura ];
 
 
             ?>
-
-                    <div>
+                 <div>
                       <div class="d-flex mb-1">
                         <img width="150px" src="../../../../app-assets/images/logos/image.png">
                         <h3 class="text-primary fw-bold ms-1"></h3>
@@ -112,6 +111,7 @@
                       <br>
                       <br>
                       <hr class="my-2" />
+                               <script src="https://unpkg.com/qrious@4.0.2/dist/qrious.js"></script>
                       <p class="card-text mb-25">Consecutivo: <?php echo $NumeroConsecutivo; ?> </p>
                       <p class="card-text mb-25">Emisor: <?php echo $Nombre; ?> </p>
                       <p class="card-text mb-25">Cedula Juridica: <?php echo $NumeroCedula; ?> </p>
@@ -119,18 +119,44 @@
                       <p class="card-text mb-25">Fecha de emisión: <?php echo  $FechaEmision;; ?> </p>
                     </div>
                     <div class="mt-md-0 mt-2">
-                      <h6 class="invoice-title">
-                        Clave
-                        <span class="invoice-number">#<br><?php echo  $clave_array ?></span>
-                      </h6>
-                    </div>
+                        <h4 class="invoice-title">
+                          Clave
+                          <span class="invoice-number">#<br><?php echo  $clave_array ?></span>
+                        </h4>
+                        <?php
+                        if($table=="creditonotas"){
+                          $urlap="credito";
+                        }else{
+                          $urlap="factura";
+                        }
+                        ?>
+                        <img style="float:right;" class="mb-15" alt="Código QR" id="codigo">
+                        <script>
+                                    const $imagen = document.querySelector("#codigo"),
+                                      $boton = document.querySelector("#btnDescargar");
+                                    new QRious({
+                                      element: $imagen,
+                                      value: "https://appraven.appsngs.com/<?php echo $urlap;?>/<?php echo $clave_array; ?>", // La URL o el texto
+                                      size:110,
+                                      backgroundAlpha: 50, // 0 para fondo transparente
+                                      foreground: "#000", // Color del QR
+                                      level: "H", // Puede ser L,M,Q y H (L es el de menor nivel, H el mayor)
+                                    });
+                                    $boton.onclick = () => {
+                                      const enlace = document.createElement("a");
+                                      enlace.href = $imagen.src;
+                                      enlace.download = "img.png"
+                                      enlace.click();
+                                    }
+                                    </script>
+                      </div>
           </div>
 
           <hr class="my-2" />
 
           <div class="card-body invoice-padding pt-0">
             <h6 class="mb-2">Facturado a: </h6>
-            <p class="card-text mb-25"> <?php echo  $Nombre_Receptor; ?> </h6>
+            <h6 class="card-text mb-25"> <?php echo  $Nombre_Receptor; ?> </h6>
             </p>
           </div>
 
@@ -149,77 +175,109 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <?php foreach ($LineaDetalle as $data) {
-                          $codigo = $data['Codigo'];
-                          $codigoRest = $codigo['Codigo'];
-
-                          $Impuesto = $data['Impuesto'];
-                          $Monto     = $Impuesto['Monto'];
-                        ?>
-
-                          <tr>
+                      <?php foreach ( $LineaDetalle  as $data) {
+                          $codigo       = $data[$codigo_xml_factura];
+                          $codigoRest   = $codigo[$codigoRest_xml_factura];
+                          $Impuesto     = $data[$Impuesto_xml_factura];
+                          $Monto        = $Impuesto[$Monto_xml_factura];
+                          ?>
+                      <tr>
                             <td class="py-1">
-                              <p class="card-text fw-bold mb-25"><?php echo  $data['NumeroLinea']; ?></p>
+                              <p class="card-text fw-bold mb-25"><?php echo  $data[$NumeroLinea_xml_factura]; ?></p>
                             </td>
                             <td class="py-1">
                               <span class="fw-bold"><?php echo  $codigoRest; ?></span>
                             </td>
                             <td class="py-1">
-                              <span class="fw-bold"><?php echo  $data['Cantidad']; ?></span>
+                              <span class="fw-bold"><?php echo  $data[$Cantidad_xml_factura]; ?></span>
                             </td>
                             <td class="py-1">
-                              <span class="fw-bold"><?php echo  $data['Detalle']; ?></span>
+                              <span class="fw-bold"><?php echo  $data[$Detalle_xml_factura]; ?></span>
                             </td>
                             <td class="py-1">
-                              <span class="fw-bold"><?php echo  $data['PrecioUnitario']; ?></span>
+                              <span class="fw-bold"><?php echo  $data[$PrecioUnitario_xml_factura]; ?></span>
                             </td>
                             <td class="py-1">
-                              <span class="fw-bold"><?php echo  $data['MontoTotal']; ?></span>
+                              <span class="fw-bold"><?php echo  $data[$MontoTotal_xml_factura]; ?></span>
                             </td>
                             <td class="py-1">
                               <span class="fw-bold"><?php echo  $Monto ?></span>
                             </td>
                             <td class="py-1">
-                              <span class="fw-bold"><?php echo  $data['MontoTotalLinea']; ?></span>
+                              <span class="fw-bold"><?php echo  $data[$MontoTotalLinea_xml_factura]; ?></span>
                             </td>
                           </tr>
                         <?php } ?>
                       </tbody>
             </table>
           </div>
-
-          <div class="row invoice-sales-total-wrapper mt-3">
+          <?php 
+                  $ResumenFactura        = $arr[$ResumenFactura_xml_factura];
+                  $TotalMercanciasGravadas = $ResumenFactura[$TotalMercanciasGravadas_xml_factura];
+                  $TotalGravado = $ResumenFactura[$TotalGravado_xml_factura];
+                  $TotalVenta = $ResumenFactura[$TotalVenta_xml_factura];
+                  $TotalVentaNeta = $ResumenFactura[$TotalVentaNeta_xml_factura];
+                  $TotalImpuesto = $ResumenFactura[$TotalImpuesto_xml_factura];
+                  $TotalComprobante = $ResumenFactura[$TotalComprobante_xml_factura];
+                  ?>
+        <div class="card-body invoice-padding pb-0">
+          <div class="row invoice-sales-total-wrapper">
             <div class="col-md-6 order-md-1 order-2 mt-md-0 mt-3">
-             
+              <p class="card-text mb-0">
+                <span class="fw-bold">Resumen Factura:</span> <span class="ms-75"></span>
+              </p>
             </div>
             <div class="col-md-6 d-flex justify-content-end order-md-2 order-1">
               <div class="invoice-total-wrapper">
                 <div class="invoice-total-item">
-                  <p class="invoice-total-title">Subtotal:</p>
-                  <p class="invoice-total-amount">$1800</p>
-                </div>
-                <div class="invoice-total-item">
-                  <p class="invoice-total-title">Discount:</p>
-                  <p class="invoice-total-amount">$28</p>
-                </div>
-                <div class="invoice-total-item">
-                  <p class="invoice-total-title">Tax:</p>
-                  <p class="invoice-total-amount">21%</p>
+                  <p class="invoice-total-title">Total Mercancias Gravadas: <?php echo  $TotalMercanciasGravadas   ;?></p>
                 </div>
                 <hr class="my-50" />
                 <div class="invoice-total-item">
-                  <p class="invoice-total-title">Total:</p>
-                  <p class="invoice-total-amount">$1690</p>
+                  <p class="invoice-total-title">Total Gravado: <?php echo  $TotalGravado   ;?></p>
+               
+                </div>
+                <hr class="my-50" />
+                <div class="invoice-total-item">
+                  <p class="invoice-total-title">Total Venta: <?php echo  $TotalVenta   ;?></p>
+               
+                </div>
+                <hr class="my-50" />
+                <div class="invoice-total-item">
+                  <p class="invoice-total-title">Total Venta Neta: <?php echo  $TotalVentaNeta   ;?></p>
+               
+                </div>
+                <div class="invoice-total-item">
+                  <p class="invoice-total-title">Total Impuesto: <?php echo  $TotalImpuesto   ;?></p>
+               
+                </div>
+                <hr class="my-50" />
+                <div class="invoice-total-item">
+                  <p class="invoice-total-title">TotalComprobante: <?php echo  $TotalComprobante   ;?></p>
+                
                 </div>
               </div>
             </div>
           </div>
-
-          <hr class="my-2" />
         </div>
-      </div>
+ <!-- Invoice Description ends -->
+
+ <hr class="invoice-spacing" />
+
+<!-- Invoice Note starts -->
+<div class="card-body invoice-padding pt-0">
+  <div class="row">
+    <div class="col-12">
+      <span class="fw-bold">Note:</span>
+      <span
+        >Autorizado mediante la resolución DGT-R-033-2019 del veinte de junio de dos mil diecinueve de la Dirección General de Tributación.</span
+      >
     </div>
   </div>
+</div>
+<!-- Invoice Note ends -->
+</div>
+</div>
   <!-- END: Content-->
 <?php }
                 }
