@@ -21,6 +21,8 @@ class Connection
 
 		);
 
+
+		
 		return $infoDB;
 	}
 
