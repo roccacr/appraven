@@ -14,10 +14,10 @@ class Connection
 
 		$infoDB = array(
 
-			"database" => "facturaelectronica",
+			"database" => "facturaelectronica_dev",
 			"user" => "admin",
 			"pass" => "Adm$$2022fe"
-			
+
 
 		);
 
