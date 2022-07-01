@@ -176,6 +176,7 @@
                 </ul>
               </li>
             <?php } ?>
+            <?php if ($data->$consultarAproviFe_va == 1) { ?>
             <li class="dropdown nav-item sidebar-group-<?php if (!empty($routesArray)  == "aprovisionamiento") : ?>active<?php endif ?> <?php if (!empty($routesArray) && $routesArray[1] == "aprovisionamiento") : ?>active<?php endif ?>"" data-menu=" dropdown">
               <a class="dropdown-toggle nav-link d-flex align-items-center" href="#" data-bs-toggle="dropdown">
                 <i data-feather='info'></i>
@@ -187,16 +188,16 @@
                   <span data-i18n="FAQ">FE FACTURA</span>
                   </a>
                 </li>
-
                 <li class="<?php if (!empty($routesArray) && $routesArray[2] == "nc") : ?>active<?php endif ?>"" data-menu="">
-                                      <a class=" dropdown-item d-flex align-items-center" href="/aprovisionamiento/nc" data-bs-toggle="" data-i18n="FAQ">
+                 <a class=" dropdown-item d-flex align-items-center" href="/aprovisionamiento/nc" data-bs-toggle="" data-i18n="FAQ">
                   <i data-feather='list'></i>
                   <span data-i18n="FAQ">NE CREDITO</span>
                   </a>
                 </li>
               </ul>
             </li>
-
+            <?php } ?>
+            <?php if ($data->$consultaLogs_va == 1) { ?>
             <li class="dropdown nav-item sidebar-group-<?php if (!empty($routesArray)  == "logs") : ?>active<?php endif ?> <?php if (!empty($routesArray) && $routesArray[1] == "logs") : ?>active<?php endif ?>"" data-menu=" dropdown">
               <a class="dropdown-toggle nav-link d-flex align-items-center" href="#" data-bs-toggle="dropdown">
                 <i data-feather='info'></i>
@@ -210,6 +211,7 @@
                 </li>
               </ul>
             </li>
+            <?php } ?>
             <?php if ($data->$consultarUsuarios_permiso_va == 1) { ?>
               <li class="dropdown nav-item sidebar-group-<?php if (!empty($routesArray)  == "usuario") : ?>active<?php endif ?> <?php if (!empty($routesArray) && $routesArray[1] == "usuario") : ?>active<?php endif ?>"" data-menu=" dropdown">
                 <a class="dropdown-toggle nav-link d-flex align-items-center" href="#" data-bs-toggle="dropdown">
