@@ -17,6 +17,7 @@ class Connection
 			"database" => "facturaelectronica",
 			"user" => "admin",
 			"pass" => "Adm$$2022fe"
+			
 
 		);
 
