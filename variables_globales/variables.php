@@ -47,7 +47,7 @@ $id_netsuite_factura            ="id_netsuite";
 $xml_firmado_factura            ="xml_firmado";
 $total_netsuite_factura         ="total_netsuite";
 $usuario_factura                ="usuario";
-$estado_fac_var                 ="Aceptada";
+$estado_fac_var                 ="Aceptado";
 
 
 //ruta donde se guarda el xml
