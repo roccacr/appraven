@@ -44,7 +44,7 @@ class UsuariosController{
                             </div>
                           </div>';
                         }else{
-                          $password = crypt(trim($_POST["pass"]), '$2a$07$azybxcags23425sdg23sdfhsd$');
+                            $password = crypt(trim($_POST["pass"]), '$2a$07$azybxcags23425sdg23sdfhsd$');
                             $data = array(
                                 $cedula_user_va          =>$_POST["cedula"],
                                 $nombre_user_va          => $_POST["nombre"],
@@ -59,7 +59,6 @@ class UsuariosController{
                             $method = "POST";
                             $fields = $data;
                             $response = CurlController::request($url,$method,$fields);
-                     
                             if($response->status == 200){
                                 echo '<div class="alert alert-success" role="alert">
                                 <h4 class="alert-heading">Exelente</h4>
@@ -88,6 +87,7 @@ class UsuariosController{
       if (isset($_POST["edit_cedula"])) {
           require './variables_globales/variables.php';
           if (empty($_POST["edit_pass"])) {
+            
             $data = $cedula_user_va."=".$_POST["edit_cedula"]."
             &".$nombre_user_va."=". $_POST["edit_nombre"]."
             &".$apellidos_user_va."=".$_POST["edit_apellido"]."
