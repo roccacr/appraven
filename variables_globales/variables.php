@@ -105,7 +105,7 @@ $id_netsuite_credito            ="id_netsuite";
 $xml_creditonotas               ="xml";
 $estado_creditonotas            ="estado";
 $xml_firmado_creditonotas       ="xml_firmado";
-$estado_creditonotas_var        ="Aceptada";
+$estado_creditonotas_var        ="Aceptado";
 //ruta donde se guarda el xml
 $ruta_xmlFacturaNc                 ="views/xmlFacturaNc/FE-";
 $sufix_CRE                       ="NC-";
