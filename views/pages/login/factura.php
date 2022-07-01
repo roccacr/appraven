@@ -304,7 +304,7 @@ if (isset($routesArray[2]) == false) {
                <h4 class="alert-heading">Lo sentimos</h4>
                <div class="alert-body">
                No se pede mostrar el resultado por que la factura: ' . $routesArray . ' no esta Aceptada.<br>
-               Estado de la Factura : ' . $data->$estado_user_va . '
+               Estado de la Factura : ' . $data->$estado_factura . '
                </div>
              </div>'; ?>
                 <?php }
