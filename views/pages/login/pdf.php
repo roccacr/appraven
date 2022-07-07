@@ -6,7 +6,7 @@
   <title>PDF</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
   <link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
-  <link rel="stylesheet" href="../../../app-assets/css/pdf.css">
+  <link rel="stylesheet" href="../../../app-assets/css/pdf.css?12">
 </head>
 
 <body>
