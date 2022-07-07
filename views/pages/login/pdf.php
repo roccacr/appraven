@@ -577,7 +577,7 @@ grid-row-gap: 0px;
 <!-- END: Theme JS-->
 
 <!-- BEGIN: Page JS-->
-<script src="../../../app-assets/js/scripts/pages/app-invoice-print.min.js?1"></script>
+<script src="../../../app-assets/js/scripts/pages/app-invoice-print.min.js?1111"></script>
 <!-- END: Page JS-->
 
 <script>
