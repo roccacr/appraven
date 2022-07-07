@@ -151,7 +151,7 @@
                       <h4><strong>CORPORACIÓN RAVEN</strong></h4>
                       <h7>Cédula Jurídica: 3-101-014445</h7>
                       <br>
-                      <h7>Km 6 Autopista Prósper Fernández</h7>
+                      <h7>Km 6 Autopista Próspero Fernández</h7>
                     </div>
                     <div class="divdos">
                       <h7>San José, Costa Rica</h7>
@@ -372,8 +372,8 @@
                       <p style="font-size:15px"><br>&nbsp; &nbsp;CUENTAS BANCARIAS: </p>
                     </strong>
                     <p style="font-size:15px">&nbsp; &nbsp;Davivienda</p>
-                    <p style="font-size:15px"><strong>&nbsp; &nbsp;COLONES</strong>: CR13010409142212308116</p>
-                    <p style="font-size:15px"><strong>&nbsp; &nbsp;DÓLARES</strong>: CR96010409142212309920</p>
+                    <p style="font-size:15px"><strong>&nbsp; &nbsp;COLONES</strong>: &nbsp;CR13010409142212308116</p>
+                    <p style="font-size:15px"><strong>&nbsp; &nbsp;DÓLARES</strong>:&nbsp; CR96010409142212309920</p>
                   </div>
                   <div class="div19"> <strong>
                       <p style=" text-align: right; font-size:15px"><br>FACTURA ELECTRÓNICA: &nbsp; &nbsp; </p>
