@@ -340,6 +340,7 @@
               <div class="invoice-body">
                 <div class="parent2" style="width:920px;">
                   <div class="div11" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><?php echo number_format($TotalVenta, 2, ".", ","); ?><br>
+
                     <br><?php echo number_format($TotalDescuentos, 2, ".", ","); ?>
                     <br>
                     <br>
@@ -348,6 +349,7 @@
                     <br>
                     <br>
                     <br>
+                    
                     <div></div>
                     <div class="div14" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><br><strong><?php echo number_format($impuesto_valor_2, 2, ".", ","); ?> </strong><br>
                     <br><strong><?php echo number_format($impuesto_valor_13, 2, ".", ","); ?> </strong>
