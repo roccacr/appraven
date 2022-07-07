@@ -154,7 +154,6 @@ $contexto_aprfac_va             ="contexto_aprfac";
 $id_internoadm_aprfac_va        ="id_internoadm_aprfac";
 
 
-<?php
 /* =======================================================================xxxxxxxxxxxxx
                     TABLA usuarios
 =======================================================================xxxxxxxxxxxxx */
