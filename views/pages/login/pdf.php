@@ -347,10 +347,10 @@
                     <br>
                     <br>
                     <br>
-                    <br>
-                    <br>
+                 
+
                     <br><?php echo number_format($impuesto_valor_2, 2, ".", ","); ?>
-               
+                    <br>
                     <br><?php echo number_format($impuesto_valor_13, 2, ".", ","); ?>
                     <br>
                     <br><?php echo number_format($impuesto_valor_1, 2, ".", ","); ?>
