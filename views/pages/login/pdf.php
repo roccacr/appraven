@@ -133,7 +133,7 @@
                       <br>
                       <h7>Apartado Postal: 10228-1000 / www.laboratorioraven.com</h7>
                     </div>
-                    <div class="divtres"> <img style="float: left;" class="media-object logo" src="../../../app-assets/images/logos/raven.jpeg" /></div>
+                    <div class="divtres"> <img style="float: left;" class="media-object logo" src="../../../app-assets/images/logos/eite.png" /></div>
                   </div>
 
 
