@@ -243,6 +243,15 @@
                                 $tarifa         = $impuesto[$Tarifa_xml_factura];
                                 $monto          = $impuesto[$Monto_xml_factura];
                                 $TotalL        = $LineaDetalle[$MontoTotalLinea_xml_factura];
+                                if ($tarifa == 1) {
+                                  $impuesto_valor_1  += $monto;
+                                }
+                                if ($tarifa == 2) {
+                                  $impuesto_valor_2  += $monto;
+                                }
+                                if ($tarifa == 13) {
+                                  $impuesto_valor_13  += $monto;
+                                }
                             ?>
                                   <tr>
                                   <th class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><?php echo  $Cantidad; ?></th>
