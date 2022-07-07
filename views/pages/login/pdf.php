@@ -76,16 +76,33 @@
               $response = $response->results[0];
               $arrayData_app = $response->$json_aprfac_va;
               $json_app = json_decode($arrayData_app, true);
-              $vendedor = $json_app['vendedor'];
               $pedido = $json_app['pedido'];
               $receptor = $json_app['receptor'];
               $idAdmCloud = $json_app['idAdmCloud'];
-              $nombreComercial = $receptor['nombreComercial'];
               $telefono = $receptor['telefono'];
-              $dirEnvio = $receptor['dirEnvio'];
+              if(empty( $receptor['dirEnvio'])){
+                $dirEnvio =0;
+              }else{
+                $dirEnvio = $receptor['dirEnvio'];
+              }
               $cedula =   $receptor['cedula'];
               $venta =   $json_app['venta'];
               $plazo =   $venta['plazo'];
+              if(empty($json_app['vendedor'])){
+                $vendedor =0;
+              }else{
+                $vendedor = $json_app['vendedor'];
+              }
+              if(empty($receptor['nombreComercial'])){
+                $nombreComercial =0;
+              }else{
+                $nombreComercial = $receptor['nombreComercial'];
+              }
+              if(empty($receptor['nombreComercial'])){
+                $nombreComercial =0;
+              }else{
+                $nombreComercial = $receptor['nombreComercial'];
+              }
             }
           }
           if ($table == "$tbl_creditonotas") {
@@ -95,19 +112,6 @@
             $fields = array();
             $response = CurlController::request($url, $method, $fields);
             if ($response->status == 200) {
-              $response = $response->results[0];
-              $arrayData_app = $response->$json_aprfac_va;
-              $json_app = json_decode($arrayData_app, true);
-              $vendedor = $json_app['vendedor'];
-              $pedido = $json_app['pedido'];
-              $receptor = $json_app['receptor'];
-              $idAdmCloud = $json_app['idAdmCloud'];
-              $nombreComercial = $receptor['nombreComercial'];
-              $telefono = $receptor['telefono'];
-              $dirEnvio = $receptor['dirEnvio'];
-              $cedula =   $receptor['cedula'];
-              $venta =   $json_app['venta'];
-              $plazo =   $venta['plazo'];
             }
           }
   ?>
@@ -226,23 +230,30 @@
                             $impuesto_valor_2  = 0;
                             $impuesto_valor_13 = 0;
                             foreach ($LineaDetalle  as $data) {
+                          
                               if ($data == 1) {
-                                $Cantidad       = $LineaDetalle[$Cantidad];
-                                $codigoRest   = $codigo[$codigoRest_xml_factura];
+                                $Cantidad     = $LineaDetalle[$Cantidad_xml_factura];
+                                $comercial     = $LineaDetalle[$codigo_xml_factura];
+                                $codigoRest   = $comercial[$codigoRest_xml_factura];
                                 $Impuesto     = $LineaDetalle[$Impuesto_xml_factura];
                                 $Monto        = $Impuesto[$Monto_xml_factura];
+                                $Detelle        = $LineaDetalle[$Detalle_xml_factura];
+                                $Unitario        = $LineaDetalle[$PrecioUnitario_xml_factura];
+                                $impuesto       = $LineaDetalle[$Impuesto_xml_factura];
+                                $tarifa         = $impuesto[$Tarifa_xml_factura];
+                                $monto          = $impuesto[$Monto_xml_factura];
+                                $TotalL        = $LineaDetalle[$MontoTotalLinea_xml_factura];
                             ?>
-                                <tr>
-                                  <th class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">$18,240.00</th>
-                                  <th class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">-$1,800.00</th>
+                                  <tr>
+                                  <th class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><?php echo  $Cantidad; ?></th>
+                                  <th class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><?php echo  $codigoRest; ?></th>
                                   <th class="text-center rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">
-                                    <p>aaaaaaaaa aaaaaaaa aaaaaa</p>
+                                    <p><?php echo  $Detelle; ?></p>
                                   </th>
                                   <th hidden class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">$3,312.00</th>
-
-                                  <th class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">$19,752.00</th>
-                                  <th class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">$19,752.00</th>
-                                  <th class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">$19,752.00</th>
+                                  <th class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><?php echo  $tarifa; ?></th>
+                                  <th class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><?php echo number_format($Unitario, 2, ".", ","); ?></th>
+                                  <th class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><?php echo  number_format($TotalL, 2, ".", ","); ?></th>
                                 </tr>
                               <?php break;
                               } else {
