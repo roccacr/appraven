@@ -10,6 +10,7 @@
 </head>
 
 <body>
+  
   <?php
   $tabla = isset($routesArray[2]) ? $routesArray[3] : '';
   $tipo  = isset($routesArray[3]) ? $routesArray[4] : '';
