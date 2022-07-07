@@ -117,6 +117,7 @@
               $telefono = $receptor['telefono'];
               if (empty($receptor['dirEnvio'])) {
                 $dirEnvio = "";
+
               } else {
                 $dirEnvio = $receptor['dirEnvio'];
               }
@@ -124,17 +125,17 @@
               $venta =   $json_app['venta'];
               $plazo =   $venta['plazo'];
               if (empty($json_app['vendedor'])) {
-                $vendedor = 0;
+                $vendedor = "-";
               } else {
                 $vendedor = $json_app['vendedor'];
               }
               if (empty($receptor['nombreComercial'])) {
-                $nombreComercial = 0;
+                $nombreComercial ="-";
               } else {
                 $nombreComercial = $receptor['nombreComercial'];
               }
               if (empty($receptor['nombreComercial'])) {
-                $nombreComercial = 0;
+                $nombreComercial = "-";
               } else {
                 $nombreComercial = $receptor['nombreComercial'];
               }
