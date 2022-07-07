@@ -348,13 +348,13 @@
                     <br>
                     <br>
                     <br>
-
+                    <br>
                     <br><?php echo number_format($impuesto_valor_2, 2, ".", ","); ?>
                     <br>
                     <br><?php echo number_format($impuesto_valor_13, 2, ".", ","); ?>
                     <br>
                     <br><?php echo number_format($impuesto_valor_1, 2, ".", ","); ?>
-                    <br>
+                  
                   </div>
                   <div class="div12" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"> </div>
                   <div class="div13" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"> <strong>SUB TOTAL ₡</strong><br>
