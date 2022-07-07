@@ -347,7 +347,7 @@
                     <br>
                     <br>
                     <br>
-                 
+                    <br>
 
                     <br><?php echo number_format($impuesto_valor_2, 2, ".", ","); ?>
                     <br>
