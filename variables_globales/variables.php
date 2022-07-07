@@ -87,7 +87,7 @@ $TotalVenta_xml_factura               = "TotalVenta";
 $TotalVentaNeta_xml_factura           = "TotalVentaNeta";
 $TotalImpuesto_xml_factura            = "TotalImpuesto";
 $TotalComprobante_xml_factura         ="TotalComprobante";
-
+$TotalDescuentos_xml_factura         ="TotalDescuentos";
 
 
 
