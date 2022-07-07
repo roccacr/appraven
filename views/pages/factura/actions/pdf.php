@@ -6,11 +6,10 @@
   <title>PDF</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
   <link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
-  <link rel="stylesheet" href="../../../app-assets/css/pdf.css">
+  <link rel="stylesheet" href="../../../app-assets/css/pdf.css?12">
 </head>
 
 <body>
-
   <?php
   $tabla = isset($routesArray[2]) ? $routesArray[3] : '';
   $tipo  = isset($routesArray[3]) ? $routesArray[4] : '';
@@ -118,6 +117,7 @@
               $telefono = $receptor['telefono'];
               if (empty($receptor['dirEnvio'])) {
                 $dirEnvio = "";
+
               } else {
                 $dirEnvio = $receptor['dirEnvio'];
               }
@@ -125,17 +125,17 @@
               $venta =   $json_app['venta'];
               $plazo =   $venta['plazo'];
               if (empty($json_app['vendedor'])) {
-                $vendedor ="-";
+                $vendedor = "-";
               } else {
                 $vendedor = $json_app['vendedor'];
               }
               if (empty($receptor['nombreComercial'])) {
-                $nombreComercial = "-";
+                $nombreComercial ="-";
               } else {
                 $nombreComercial = $receptor['nombreComercial'];
               }
               if (empty($receptor['nombreComercial'])) {
-                $nombreComercial ="-";
+                $nombreComercial = "-";
               } else {
                 $nombreComercial = $receptor['nombreComercial'];
               }
@@ -356,6 +356,7 @@
                     <br><?php echo number_format($impuesto_valor_1, 2, ".", ","); ?>
                     <br>
                   </div>
+                  </div>
                   <div class="div12" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"> </div>
                   <div class="div13" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"> <strong>SUB TOTAL ₡</strong><br>
                     <br><strong>DECUENTO </strong>
@@ -393,7 +394,7 @@
                   <div class="div116" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"> <strong>No. DE CÉDULA</strong></div>
                 </div>
                 <div class="parent3">
-                  <div class="divfinal" style="  text-align: center;"> ***FACTURA***</div>
+                <div class="divfinal" style="  text-align: center;"> ***FACTURA***</div>
                 </div>
                 <hr>
               </div>
