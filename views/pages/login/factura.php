@@ -49,6 +49,7 @@ if (isset($routesArray[2]) == false) {
     /* Recorriendo la matriz de respuesta y asignando cada elemento a la variable . */
     foreach ($response as $data) {
       if ($data->$estado_factura == "$estado_fac_var") {
+        
         $arrayData = $data->$xml_firmado_factura;/* Extraemos los datos de la fima y la descodificamos . */
         $xml_string = $data->$xml_factura;
         $xml = simplexml_load_string($xml_string, "SimpleXMLElement", LIBXML_NOCDATA);
@@ -333,7 +334,8 @@ if (isset($routesArray[2]) == false) {
                     </a>
                     <?php }?>
 
-                    <a class="btn btn-outline-secondary w-100 mb-75" href="/pdf/<?php echo base64_encode("$tbl_facturas");?>/<?php echo base64_encode($clave_factura);?>/<?php echo base64_encode($routesArray);?>"><i data-feather='file-text'></i> Generar PDF </a>
+                    <a class="btn btn-outline-secondary w-100 mb-75" href="/pdf/<?php echo base64_encode("$tbl_facturas");?>/<?php echo base64_encode("$clave_factura");?>/<?php echo base64_encode("$routesArray");?>"><i data-feather='file-text'></i> Generar PDF </a>
+
                  <?php } else {
                   echo '<div class="alert alert-danger" role="alert">
                <h4 class="alert-heading">Lo sentimos</h4>
