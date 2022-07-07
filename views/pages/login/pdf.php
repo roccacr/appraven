@@ -189,21 +189,21 @@
                       <p style=" font-size:16px"> &nbsp; &nbsp;<strong>TELEFONO:</strong> <?php echo  $telefono; ?> </p><br></div>
                 <div class="div3pri3" style="  text-align: left;  border-image: initial; border: 2px solid black; border-radius: 5px"> <br>
                       <p style=" font-size:16px"> &nbsp; &nbsp;<strong>CJ:</strong> <?php echo $cedula; ?></p><br></div>
-                <div hidden class="div4pri4" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><strong><br>
-                        <p style="font-size:18px">CODIGO CLIENTE:</p>
+                <div  class="div4pri4" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><strong><br>
+                        <p style="font-size:18px"> CLIENTE: <?php echo $Nombre_Receptor ?></p>
                       </strong></div>
                 <div class="div5pri5" style="  text-align: left;  border-image: initial; border: 2px solid black; border-radius: 5px"> <br>
                       <p style=" font-size:18px"> &nbsp; &nbsp;<strong>DIRECCION:</strong> <?php echo  $dirEnvio; ?></p><br></div>
                 <div class="div6pri6" style="  text-align: left;  border-image: initial; border: 2px solid black; border-radius: 5px"><br>  &nbsp; &nbsp;<strong>PLAZO:</strong> <?php echo $plazo; ?></p><br></div>
                 <div class="div7pri7"style="  text-align: left;  border-image: initial; border: 2px solid black; border-radius: 5px"><br>  &nbsp; &nbsp;<strong>PEDIDO:</strong> <?php echo $pedido; ?></p><br></div>
                 <div class="div8pri8"style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"> <br><strong>
-                        <p style="font-size:18px">NOTAS:</p>
+                        <p style="font-size:18px">NOTAS: --</p>
                       </strong>
-                      <p style="font-size:18px">--</p><br></div>
+                     </div>
                 <div class="div9pri9"style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><br><strong>
-                        <p style="font-size:18px">Exento al: </p>
+                        <p style="font-size:18px">Exento al: -%</p>
                       </strong>
-                      <p style="font-size:18px">-%</p><br></div>
+                     </div>
                 </div>
 
                 </div>
