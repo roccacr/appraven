@@ -116,7 +116,7 @@
               $idAdmCloud = $json_app['idAdmCloud'];
               $telefono = $receptor['telefono'];
               if (empty($receptor['dirEnvio'])) {
-                $dirEnvio = 0;
+                $dirEnvio = "";
               } else {
                 $dirEnvio = $receptor['dirEnvio'];
               }
@@ -147,10 +147,10 @@
                 <div class="col-xs-8">
                   <div class="parent">
                     <div class="divuno">
-                      <h4><strong>CORPORACION RAVEN</strong></h4>
-                      <h7>Cédula Jurídica: 3-101-014445-33</h7>
+                      <h4><strong>CORPORACIÓN RAVEN</strong></h4>
+                      <h7>Cédula Jurídica: 3-101-014445</h7>
                       <br>
-                      <h7>Km 6 Autopista Prosperó Fernández</h7>
+                      <h7>Km 6 Autopista Prósper Fernández</h7>
                     </div>
                     <div class="divdos">
                       <h7>San José, Costa Rica</h7>
@@ -213,7 +213,7 @@
                       <p style=" font-size:16px; height:10px"> &nbsp; &nbsp;<strong>CONTACTO:</strong>-</p><br>
                     </div>
                     <div class="div2pri2" style="  text-align: left;  border-image: initial; border: 2px solid black; border-radius: 5px"> <br>
-                      <p style=" font-size:16px"> &nbsp; &nbsp;<strong>TELEFONO:</strong> <?php echo  $telefono; ?> </p><br>
+                      <p style=" font-size:16px"> &nbsp; &nbsp;<strong>TELÉFONO:</strong> <?php echo  $telefono; ?> </p><br>
                     </div>
                     <div class="div3pri3" style="  text-align: left;  border-image: initial; border: 2px solid black; border-radius: 5px"> <br>
                       <p style=" font-size:16px"> &nbsp; &nbsp;<strong>CJ:</strong> <?php echo $cedula; ?></p><br>
@@ -222,7 +222,7 @@
                         <p style="font-size:18px"> CLIENTE: <?php echo $Nombre_Receptor ?></p>
                       </strong></div>
                     <div class="div5pri5" style="  text-align: left;  border-image: initial; border: 2px solid black; border-radius: 5px"> <br>
-                      <p style=" font-size:18px"> &nbsp; &nbsp;<strong>DIRECCION:</strong> <?php echo  $dirEnvio; ?></p><br>
+                      <p style=" font-size:18px"> &nbsp; &nbsp;<strong>DIRECCIÓN:</strong> <?php echo  $dirEnvio; ?></p><br>
                     </div>
                     <div class="div6pri6" style="  text-align: left;  border-image: initial; border: 2px solid black; border-radius: 5px"><br> &nbsp; &nbsp;<strong>PLAZO:</strong> <?php echo $plazo; ?></p><br></div>
                     <div class="div7pri7" style="  text-align: left;  border-image: initial; border: 2px solid black; border-radius: 5px"><br> &nbsp; &nbsp;<strong>PEDIDO:</strong> <?php echo $pedido; ?></p><br></div>
@@ -246,8 +246,8 @@
                   <thead style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">
                     <tr>
                       <td class="text-center col-xs-1" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">CANTIDAD</td>
-                      <td class="text-center col-xs-1" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">CODIGO</td>
-                      <td class="text-center col-xs-0" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">DESCRIPCION</td>
+                      <td class="text-center col-xs-1" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">CÓDIGO</td>
+                      <td class="text-center col-xs-0" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">DESCRIPCIÓN</td>
                       <td class="text-center col-xs-" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">IVA%</td>
                       <td class="text-center col-xs-1" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">PRECIO UNITARIO</td>
                       <td class="text-center col-xs-1" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">VALOR TOTAL</td>
@@ -346,7 +346,7 @@
                     <br>
                     <br>
                     <br>
-                    <br>
+                 
 
                     <br><?php echo number_format($impuesto_valor_2, 2, ".", ","); ?>
                     <br>
@@ -356,30 +356,30 @@
                     <br>
                   </div>
                   <div class="div12" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"> </div>
-                  <div class="div13" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"> <strong>SUB TOTAL $</strong><br>
-                    <br><strong>DECUENTO $</strong>
+                  <div class="div13" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"> <strong>SUB TOTAL ₡</strong><br>
+                    <br><strong>DECUENTO </strong>
                   </div>
-                  <div class="div14" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><strong>IMP.VENTAS(*) 2% </strong><br>
-                    <br><strong>IMP.VENTAS(*) 13% </strong>
+                  <div class="div14" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><strong>IVA(*) 2% </strong><br>
+                    <br><strong>IVA(*) 13% </strong>
                     <br>
-                    <br><strong>IMP.VENTAS() 1% </strong>
+                    <br><strong>IVA() 1% </strong>
                   </div>
                   <div class="div15" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><strong>TOTAL</strong></div>
                   <div class="div16" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><?php echo number_format($TotalComprobante, 2, ".", ","); ?> </div>
                   <div class="div17" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"> </div>
                   <div class="div18"> <strong>
-                      <p style="font-size:15px"><br>&nbsp; &nbsp;CUENTA BANCARIA: </p>
+                      <p style="font-size:15px"><br>&nbsp; &nbsp;CUENTAS BANCARIAS: </p>
                     </strong>
                     <p style="font-size:15px">&nbsp; &nbsp;Davivienda</p>
                     <p style="font-size:15px"><strong>&nbsp; &nbsp;COLONES</strong>: CR13010409142212308116</p>
-                    <p style="font-size:15px"><strong>&nbsp; &nbsp;COLONES</strong>: CR13010409142212308116</p>
+                    <p style="font-size:15px"><strong>&nbsp; &nbsp;DÓLARES</strong>: CR96010409142212309920</p>
                   </div>
                   <div class="div19"> <strong>
-                      <p style=" text-align: right; font-size:15px"><br>FACTURA ELECONICA: &nbsp; &nbsp; </p>
+                      <p style=" text-align: right; font-size:15px"><br>FACTURA ELECTRÓNICA: &nbsp; &nbsp; </p>
                     </strong>
                     <p style=" text-align: right;font-size:15px"><?php echo  $NumeroConsecutivo; ?>&nbsp; &nbsp; </p>
                     <strong>
-                      <p style="  text-align: right;font-size:15px"><br>CLAVE ELECTRONICA: &nbsp; &nbsp; </p>
+                      <p style="  text-align: right;font-size:15px"><br>CLAVE ELECTRÓNICA: &nbsp; &nbsp; </p>
                     </strong>
                     <p style="  text-align: right;font-size:15px"><?php echo  $clave_array; ?>&nbsp; &nbsp; </p>
                   </div>
@@ -389,7 +389,7 @@
                   <div class="div113" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"> </div>
                   <div class="div114" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><strong>HECHO POR</strong> </div>
                   <div class="div115" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><strong>RECIBIDO CONFORME</strong> </div>
-                  <div class="div116" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"> <strong>No. DE CEDULA</strong></div>
+                  <div class="div116" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"> <strong>No. DE CÉDULA</strong></div>
                 </div>
                 <div class="parent3">
                   <div class="divfinal" style="  text-align: center;"> ***FACTURA EN COLONES***</div>

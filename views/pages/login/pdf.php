@@ -7,12 +7,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
   <link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
   <link rel="stylesheet" href="../../../app-assets/css/pdf.css">
-
 </head>
 
 <body>
-  <!-- partial:index.partial.html -->
-
   <?php
   $tabla = isset($routesArray[2]) ? $routesArray[2] : '';
   $tipo  = isset($routesArray[3]) ? $routesArray[3] : '';
@@ -58,13 +55,12 @@
           $Nombre_Receptor    = $Receptor[$Nombre_Receptor_xml_factura];
           $DetalleServicio    = $arr[$DetalleServicio_xml_factura];
           $LineaDetalle       = $DetalleServicio[$LineaDetalle_xml_factura];
-          $ResumenFactura        = $arr[$ResumenFactura_xml_factura];
-          $TotalVenta          = $ResumenFactura[$TotalVenta_xml_factura];
-          $TotalVentaNeta = $ResumenFactura[$TotalVentaNeta_xml_factura];
-          $TotalImpuesto = $ResumenFactura[$TotalImpuesto_xml_factura];
-          $TotalComprobante = $ResumenFactura[$TotalComprobante_xml_factura];
-          $TotalDescuentos          = $ResumenFactura["TotalDescuentos"];
-
+          $ResumenFactura     = $arr[$ResumenFactura_xml_factura];
+          $TotalVenta         = $ResumenFactura[$TotalVenta_xml_factura];
+          $TotalVentaNeta     = $ResumenFactura[$TotalVentaNeta_xml_factura];
+          $TotalImpuesto      = $ResumenFactura[$TotalImpuesto_xml_factura];
+          $TotalComprobante   = $ResumenFactura[$TotalComprobante_xml_factura];
+          $TotalDescuentos    = $ResumenFactura[$TotalDescuentos_xml_factura];
           $fech = explode('T', $FechaEmision);
           if ($table == "$tbl_facturas") {
             $select = "*";
@@ -80,27 +76,27 @@
               $receptor = $json_app['receptor'];
               $idAdmCloud = $json_app['idAdmCloud'];
               $telefono = $receptor['telefono'];
-              if(empty( $receptor['dirEnvio'])){
-                $dirEnvio =0;
-              }else{
+              if (empty($receptor['dirEnvio'])) {
+                $dirEnvio = 0;
+              } else {
                 $dirEnvio = $receptor['dirEnvio'];
               }
               $cedula =   $receptor['cedula'];
               $venta =   $json_app['venta'];
               $plazo =   $venta['plazo'];
-              if(empty($json_app['vendedor'])){
-                $vendedor =0;
-              }else{
+              if (empty($json_app['vendedor'])) {
+                $vendedor = 0;
+              } else {
                 $vendedor = $json_app['vendedor'];
               }
-              if(empty($receptor['nombreComercial'])){
-                $nombreComercial =0;
-              }else{
+              if (empty($receptor['nombreComercial'])) {
+                $nombreComercial = 0;
+              } else {
                 $nombreComercial = $receptor['nombreComercial'];
               }
-              if(empty($receptor['nombreComercial'])){
-                $nombreComercial =0;
-              }else{
+              if (empty($receptor['nombreComercial'])) {
+                $nombreComercial = 0;
+              } else {
                 $nombreComercial = $receptor['nombreComercial'];
               }
             }
@@ -112,6 +108,36 @@
             $fields = array();
             $response = CurlController::request($url, $method, $fields);
             if ($response->status == 200) {
+              $response = $response->results[0];
+              $arrayData_app = $response->$json_aprfac_va;
+              $json_app = json_decode($arrayData_app, true);
+              $pedido = $json_app['pedido'];
+              $receptor = $json_app['receptor'];
+              $idAdmCloud = $json_app['idAdmCloud'];
+              $telefono = $receptor['telefono'];
+              if (empty($receptor['dirEnvio'])) {
+                $dirEnvio = "";
+              } else {
+                $dirEnvio = $receptor['dirEnvio'];
+              }
+              $cedula =   $receptor['cedula'];
+              $venta =   $json_app['venta'];
+              $plazo =   $venta['plazo'];
+              if (empty($json_app['vendedor'])) {
+                $vendedor = 0;
+              } else {
+                $vendedor = $json_app['vendedor'];
+              }
+              if (empty($receptor['nombreComercial'])) {
+                $nombreComercial = 0;
+              } else {
+                $nombreComercial = $receptor['nombreComercial'];
+              }
+              if (empty($receptor['nombreComercial'])) {
+                $nombreComercial = 0;
+              } else {
+                $nombreComercial = $receptor['nombreComercial'];
+              }
             }
           }
   ?>
@@ -121,10 +147,10 @@
                 <div class="col-xs-8">
                   <div class="parent">
                     <div class="divuno">
-                      <h4><strong>CORPORACION RAVEN</strong></h4>
-                      <h7>Cédula Jurídica: 3-101-014445-33</h7>
+                      <h4><strong>CORPORACIÓN RAVEN</strong></h4>
+                      <h7>Cédula Jurídica: 3-101-014445</h7>
                       <br>
-                      <h7>Km 6 Autopista Prosperó Fernández</h7>
+                      <h7>Km 6 Autopista Prósper Fernández</h7>
                     </div>
                     <div class="divdos">
                       <h7>San José, Costa Rica</h7>
@@ -182,191 +208,194 @@
             <div class="invoice-body">
               <div class="row">
                 <div class="col-xs-5">
-                <div class="parent" style="width:900px;">
-                <div class="divpri1" style="  text-align: left;  border-image: initial; border: 2px solid black; border-radius: 5px"> <br>
-                      <p style=" font-size:16px; height:10px"> &nbsp; &nbsp;<strong>CONTACTO:</strong>-</p><br> </div>
-                <div class="div2pri2" style="  text-align: left;  border-image: initial; border: 2px solid black; border-radius: 5px">  <br>
-                      <p style=" font-size:16px"> &nbsp; &nbsp;<strong>TELEFONO:</strong> <?php echo  $telefono; ?> </p><br></div>
-                <div class="div3pri3" style="  text-align: left;  border-image: initial; border: 2px solid black; border-radius: 5px"> <br>
-                      <p style=" font-size:16px"> &nbsp; &nbsp;<strong>CJ:</strong> <?php echo $cedula; ?></p><br></div>
-                <div  class="div4pri4" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><strong><br>
+                  <div class="parent" style="width:900px;">
+                    <div class="divpri1" style="  text-align: left;  border-image: initial; border: 2px solid black; border-radius: 5px"> <br>
+                      <p style=" font-size:16px; height:10px"> &nbsp; &nbsp;<strong>CONTACTO:</strong>-</p><br>
+                    </div>
+                    <div class="div2pri2" style="  text-align: left;  border-image: initial; border: 2px solid black; border-radius: 5px"> <br>
+                      <p style=" font-size:16px"> &nbsp; &nbsp;<strong>TELÉFONO:</strong> <?php echo  $telefono; ?> </p><br>
+                    </div>
+                    <div class="div3pri3" style="  text-align: left;  border-image: initial; border: 2px solid black; border-radius: 5px"> <br>
+                      <p style=" font-size:16px"> &nbsp; &nbsp;<strong>CJ:</strong> <?php echo $cedula; ?></p><br>
+                    </div>
+                    <div class="div4pri4" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><strong><br>
                         <p style="font-size:18px"> CLIENTE: <?php echo $Nombre_Receptor ?></p>
                       </strong></div>
-                <div class="div5pri5" style="  text-align: left;  border-image: initial; border: 2px solid black; border-radius: 5px"> <br>
-                      <p style=" font-size:18px"> &nbsp; &nbsp;<strong>DIRECCION:</strong> <?php echo  $dirEnvio; ?></p><br></div>
-                <div class="div6pri6" style="  text-align: left;  border-image: initial; border: 2px solid black; border-radius: 5px"><br>  &nbsp; &nbsp;<strong>PLAZO:</strong> <?php echo $plazo; ?></p><br></div>
-                <div class="div7pri7"style="  text-align: left;  border-image: initial; border: 2px solid black; border-radius: 5px"><br>  &nbsp; &nbsp;<strong>PEDIDO:</strong> <?php echo $pedido; ?></p><br></div>
-                <div class="div8pri8"style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"> <br><strong>
+                    <div class="div5pri5" style="  text-align: left;  border-image: initial; border: 2px solid black; border-radius: 5px"> <br>
+                      <p style=" font-size:18px"> &nbsp; &nbsp;<strong>DIRECCIÓN:</strong> <?php echo  $dirEnvio; ?></p><br>
+                    </div>
+                    <div class="div6pri6" style="  text-align: left;  border-image: initial; border: 2px solid black; border-radius: 5px"><br> &nbsp; &nbsp;<strong>PLAZO:</strong> <?php echo $plazo; ?></p><br></div>
+                    <div class="div7pri7" style="  text-align: left;  border-image: initial; border: 2px solid black; border-radius: 5px"><br> &nbsp; &nbsp;<strong>PEDIDO:</strong> <?php echo $pedido; ?></p><br></div>
+                    <div class="div8pri8" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"> <br><strong>
                         <p style="font-size:18px">NOTAS: --</p>
                       </strong>
-                     </div>
-                <div class="div9pri9"style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><br><strong>
+                    </div>
+                    <div class="div9pri9" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><br><strong>
                         <p style="font-size:18px">Exento al: -%</p>
                       </strong>
-                     </div>
-                </div>
+                    </div>
+                  </div>
 
                 </div>
               </div>
 
             </div>
             <div class="invoice-body">
-            <div class="panel panel-default">
-            <table class="table table-bordered table-condensed" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">
-                          <thead style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">
-                            <tr>
-                              <td class="text-center col-xs-1" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">CANTIDAD</td>
-                              <td class="text-center col-xs-1" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">CODIGO</td>
-                              <td class="text-center col-xs-0" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">DESCRIPCION</td>
-                              <td class="text-center col-xs-" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">IVA%</td>
-                              <td class="text-center col-xs-1" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">PRECIO UNITARIO</td>
-                              <td class="text-center col-xs-1" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">VALOR TOTAL</td>
-                            </tr>
-                          </thead>
-                          <tbody>
+              <div class="panel panel-default">
+                <table class="table table-bordered table-condensed" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">
+                  <thead style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">
+                    <tr>
+                      <td class="text-center col-xs-1" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">CANTIDAD</td>
+                      <td class="text-center col-xs-1" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">CÓDIGO</td>
+                      <td class="text-center col-xs-0" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">DESCRIPCIÓN</td>
+                      <td class="text-center col-xs-" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">IVA%</td>
+                      <td class="text-center col-xs-1" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">PRECIO UNITARIO</td>
+                      <td class="text-center col-xs-1" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">VALOR TOTAL</td>
+                    </tr>
+                  </thead>
+                  <tbody>
 
-                            <?php
-                            $impuesto_valor_1  = 0;
-                            $impuesto_valor_2  = 0;
-                            $impuesto_valor_13 = 0;
-                            foreach ($LineaDetalle  as $data) {
-                          
-                              if ($data == 1) {
-                                $Cantidad     = $LineaDetalle[$Cantidad_xml_factura];
-                                $comercial     = $LineaDetalle[$codigo_xml_factura];
-                                $codigoRest   = $comercial[$codigoRest_xml_factura];
-                                $Impuesto     = $LineaDetalle[$Impuesto_xml_factura];
-                                $Monto        = $Impuesto[$Monto_xml_factura];
-                                $Detelle        = $LineaDetalle[$Detalle_xml_factura];
-                                $Unitario        = $LineaDetalle[$PrecioUnitario_xml_factura];
-                                $impuesto       = $LineaDetalle[$Impuesto_xml_factura];
-                                $tarifa         = $impuesto[$Tarifa_xml_factura];
-                                $monto          = $impuesto[$Monto_xml_factura];
-                                $TotalL        = $LineaDetalle[$MontoTotalLinea_xml_factura];
-                                if ($tarifa == 1) {
-                                  $impuesto_valor_1  += $monto;
-                                }
-                                if ($tarifa == 2) {
-                                  $impuesto_valor_2  += $monto;
-                                }
-                                if ($tarifa == 13) {
-                                  $impuesto_valor_13  += $monto;
-                                }
-                            ?>
-                                  <tr>
-                                  <th class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><?php echo  $Cantidad; ?></th>
-                                  <th class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><?php echo  $codigoRest; ?></th>
-                                  <th class="text-center rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">
-                                    <p><?php echo  $Detelle; ?></p>
-                                  </th>
-                                  <th hidden class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">$3,312.00</th>
-                                  <th class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><?php echo  $tarifa; ?></th>
-                                  <th class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><?php echo number_format($Unitario, 2, ".", ","); ?></th>
-                                  <th class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><?php echo  number_format($TotalL, 2, ".", ","); ?></th>
-                                </tr>
-                              <?php break;
-                              } else {
-                                $Cantidad       = $data[$Cantidad_xml_factura];
-                                $comercial     = $data[$codigo_xml_factura];
-                                $codigoRest     = $comercial[$codigoRest_xml_factura];
-                                $Detelle        = $data[$Detalle_xml_factura];
-                                $Unitario        = $data[$PrecioUnitario_xml_factura];
-                                $TotalL        = $data[$MontoTotalLinea_xml_factura];
-                                $impuesto       = $data[$Impuesto_xml_factura];
-                                $tarifa         = $impuesto[$Tarifa_xml_factura];
-                                $monto          = $impuesto[$Monto_xml_factura];
-                                if ($tarifa == 1) {
-                                  $impuesto_valor_1  += $monto;
-                                }
-                                if ($tarifa == 2) {
-                                  $impuesto_valor_2  += $monto;
-                                }
-                                if ($tarifa == 13) {
-                                  $impuesto_valor_13  += $monto;
-                                }
-                              ?>
-                                <tr>
-                                  <th class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><?php echo  $Cantidad; ?></th>
-                                  <th class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><?php echo  $codigoRest; ?></th>
-                                  <th class="text-center rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">
-                                    <p><?php echo  $Detelle; ?></p>
-                                  </th>
-                                  <th hidden class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">$3,312.00</th>
-                                  <th class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><?php echo  $tarifa; ?></th>
-                                  <th class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><?php echo number_format($Unitario, 2, ".", ","); ?></th>
-                                  <th class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><?php echo  number_format($TotalL, 2, ".", ","); ?></th>
-                                </tr>
-                            <?php }
-                            } ?>
-                          </tbody>
-                        </table>
-            </div>
+                    <?php
+                    $impuesto_valor_1  = 0;
+                    $impuesto_valor_2  = 0;
+                    $impuesto_valor_13 = 0;
+                    foreach ($LineaDetalle  as $data) {
+                      if ($data == 1) {
+                        $Cantidad     = $LineaDetalle[$Cantidad_xml_factura];
+                        $comercial    = $LineaDetalle[$codigo_xml_factura];
+                        $codigoRest   = $comercial[$codigoRest_xml_factura];
+                        $Impuesto     = $LineaDetalle[$Impuesto_xml_factura];
+                        $Monto        = $Impuesto[$Monto_xml_factura];
+                        $Detelle      = $LineaDetalle[$Detalle_xml_factura];
+                        $Unitario     = $LineaDetalle[$PrecioUnitario_xml_factura];
+                        $impuesto     = $LineaDetalle[$Impuesto_xml_factura];
+                        $tarifa       = $impuesto[$Tarifa_xml_factura];
+                        $monto        = $impuesto[$Monto_xml_factura];
+                        $TotalL       = $LineaDetalle[$MontoTotalLinea_xml_factura];
+                        if ($tarifa == 1) {
+                          $impuesto_valor_1  += $monto;
+                        }
+                        if ($tarifa == 2) {
+                          $impuesto_valor_2  += $monto;
+                        }
+                        if ($tarifa == 13) {
+                          $impuesto_valor_13  += $monto;
+                        }
+                    ?>
+                        <tr>
+                          <th class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><?php echo  $Cantidad; ?></th>
+                          <th class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><?php echo  $codigoRest; ?></th>
+                          <th class="text-center rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">
+                            <p><?php echo  $Detelle; ?></p>
+                          </th>
+                          <th hidden class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">$3,312.00</th>
+                          <th class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><?php echo  $tarifa; ?></th>
+                          <th class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><?php echo number_format($Unitario, 2, ".", ","); ?></th>
+                          <th class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><?php echo  number_format($TotalL, 2, ".", ","); ?></th>
+                        </tr>
+                      <?php break;
+                      } else {
+                        $Cantidad       = $data[$Cantidad_xml_factura];
+                        $comercial     = $data[$codigo_xml_factura];
+                        $codigoRest     = $comercial[$codigoRest_xml_factura];
+                        $Detelle        = $data[$Detalle_xml_factura];
+                        $Unitario        = $data[$PrecioUnitario_xml_factura];
+                        $TotalL        = $data[$MontoTotalLinea_xml_factura];
+                        $impuesto       = $data[$Impuesto_xml_factura];
+                        $tarifa         = $impuesto[$Tarifa_xml_factura];
+                        $monto          = $impuesto[$Monto_xml_factura];
+                        if ($tarifa == 1) {
+                          $impuesto_valor_1  += $monto;
+                        }
+                        if ($tarifa == 2) {
+                          $impuesto_valor_2  += $monto;
+                        }
+                        if ($tarifa == 13) {
+                          $impuesto_valor_13  += $monto;
+                        }
+                      ?>
+                        <tr>
+                          <th class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><?php echo  $Cantidad; ?></th>
+                          <th class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><?php echo  $codigoRest; ?></th>
+                          <th class="text-center rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">
+                            <p><?php echo  $Detelle; ?></p>
+                          </th>
+                          <th hidden class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">$3,312.00</th>
+                          <th class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><?php echo  $tarifa; ?></th>
+                          <th class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><?php echo number_format($Unitario, 2, ".", ","); ?></th>
+                          <th class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><?php echo  number_format($TotalL, 2, ".", ","); ?></th>
+                        </tr>
+                    <?php }
+                    } ?>
+                  </tbody>
+                </table>
+              </div>
             </div>
             <div class="panel panel-default">
-            
+
             </div>
             <div class="row">
 
-                        <div class="invoice-body">
-                          <div class="parent2"  style="width:920px;">
-                            <div class="div11" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><?php echo number_format($TotalVenta, 2, ".", ","); ?><br>
-                      
-                              <br><?php echo number_format($TotalDescuentos, 2, ".", ","); ?>
-                              <br>
-                              <br>
-                              <br>
-                              <br>
-                            <br>
-                            <br>
-                            
-                              <br><?php echo number_format($impuesto_valor_2, 2, ".", ","); ?>
-                              <br>
-                              <br><?php echo number_format($impuesto_valor_13, 2, ".", ","); ?>
-                              <br>
-                              <br><?php echo number_format($impuesto_valor_1, 2, ".", ","); ?>
-                              <br>
-                            </div>
-                            <div class="div12" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"> </div>
-                            <div class="div13" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"> <strong>SUB TOTAL $</strong><br>
-                              <br><strong>DECUENTO $</strong>
-                            </div>
-                            <div class="div14" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><strong>IMP.VENTAS(*) 2% </strong><br>
-                              <br><strong>IMP.VENTAS(*) 13% </strong>
-                              <br>
-                              <br><strong>IMP.VENTAS() 1% </strong>
-                            </div>
-                            <div class="div15" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><strong>TOTAL</strong></div>
-                            <div class="div16" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><?php echo number_format($TotalComprobante, 2, ".", ","); ?> </div>
-                            <div class="div17" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"> </div>
-                            <div class="div18"> <strong>
-                                <p style="font-size:15px"><br>&nbsp; &nbsp;CUENTA BANCARIA: </p>
-                              </strong>
-                              <p style="font-size:15px">&nbsp; &nbsp;Davivienda</p>
-                              <p style="font-size:15px"><strong>&nbsp; &nbsp;COLONES</strong>: CR13010409142212308116</p>
-                              <p style="font-size:15px"><strong>&nbsp; &nbsp;COLONES</strong>: CR13010409142212308116</p>
-                            </div>
-                            <div class="div19"> <strong>
-                                <p style=" text-align: right; font-size:15px"><br>FACTURA ELECONICA: &nbsp; &nbsp; </p>
-                              </strong>
-                              <p style=" text-align: right;font-size:15px"><?php echo  $NumeroConsecutivo; ?>&nbsp; &nbsp; </p>
-                              <strong>
-                                <p style="  text-align: right;font-size:15px"><br>CLAVE ELECTRONICA: &nbsp; &nbsp; </p>
-                              </strong>
-                              <p style="  text-align: right;font-size:15px"><?php echo  $clave_array; ?>&nbsp; &nbsp; </p>
-                            </div>
-                            <div class="div110" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">-</div>
-                            <div class="div111" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">-</div>
-                            <div class="div112" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">-</div>
-                            <div class="div113" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"> </div>
-                            <div class="div114" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><strong>HECHO POR</strong> </div>
-                            <div class="div115" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><strong>RECIBIDO CONFORME</strong> </div>
-                            <div class="div116" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"> <strong>No. DE CEDULA</strong></div>
-                          </div>
-                          <div class="parent3">
-                            <div class="divfinal" style="  text-align: center;"> ***FACTURA EN COLONES***</div>
-                          </div>
-                          <hr>
-                        </div>
+              <div class="invoice-body">
+                <div class="parent2" style="width:920px;">
+                  <div class="div11" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><?php echo number_format($TotalVenta, 2, ".", ","); ?><br>
+
+                    <br><?php echo number_format($TotalDescuentos, 2, ".", ","); ?>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                 
+
+                    <br><?php echo number_format($impuesto_valor_2, 2, ".", ","); ?>
+                    <br>
+                    <br><?php echo number_format($impuesto_valor_13, 2, ".", ","); ?>
+                    <br>
+                    <br><?php echo number_format($impuesto_valor_1, 2, ".", ","); ?>
+                    <br>
+                  </div>
+                  <div class="div12" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"> </div>
+                  <div class="div13" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"> <strong>SUB TOTAL ₡</strong><br>
+                    <br><strong>DECUENTO </strong>
+                  </div>
+                  <div class="div14" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><strong>IVA(*) 2% </strong><br>
+                    <br><strong>IVA(*) 13% </strong>
+                    <br>
+                    <br><strong>IVA() 1% </strong>
+                  </div>
+                  <div class="div15" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><strong>TOTAL</strong></div>
+                  <div class="div16" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><?php echo number_format($TotalComprobante, 2, ".", ","); ?> </div>
+                  <div class="div17" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"> </div>
+                  <div class="div18"> <strong>
+                      <p style="font-size:15px"><br>&nbsp; &nbsp;CUENTAS BANCARIAS: </p>
+                    </strong>
+                    <p style="font-size:15px">&nbsp; &nbsp;Davivienda</p>
+                    <p style="font-size:15px"><strong>&nbsp; &nbsp;COLONES</strong>: CR13010409142212308116</p>
+                    <p style="font-size:15px"><strong>&nbsp; &nbsp;DÓLARES</strong>: CR96010409142212309920</p>
+                  </div>
+                  <div class="div19"> <strong>
+                      <p style=" text-align: right; font-size:15px"><br>FACTURA ELECTRÓNICA: &nbsp; &nbsp; </p>
+                    </strong>
+                    <p style=" text-align: right;font-size:15px"><?php echo  $NumeroConsecutivo; ?>&nbsp; &nbsp; </p>
+                    <strong>
+                      <p style="  text-align: right;font-size:15px"><br>CLAVE ELECTRÓNICA: &nbsp; &nbsp; </p>
+                    </strong>
+                    <p style="  text-align: right;font-size:15px"><?php echo  $clave_array; ?>&nbsp; &nbsp; </p>
+                  </div>
+                  <div class="div110" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">-</div>
+                  <div class="div111" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">-</div>
+                  <div class="div112" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">-</div>
+                  <div class="div113" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"> </div>
+                  <div class="div114" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><strong>HECHO POR</strong> </div>
+                  <div class="div115" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><strong>RECIBIDO CONFORME</strong> </div>
+                  <div class="div116" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"> <strong>No. DE CÉDULA</strong></div>
+                </div>
+                <div class="parent3">
+                  <div class="divfinal" style="  text-align: center;"> ***FACTURA EN COLONES***</div>
+                </div>
+                <hr>
+              </div>
             </div>
 
           </div>

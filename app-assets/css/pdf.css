@@ -53,15 +53,12 @@ body {
 .rowamount {
   padding-top: 15px !important;
 }
-
 .rowtotal {
   font-size: 1.3em;
 }
-
 .colfix {
   width: 12%;
 }
-
 .mono {
   font-family: monospace;
 }
@@ -72,7 +69,6 @@ body {
   grid-column-gap: 0px;
   grid-row-gap: 0px;
   }
-  
   .divpri1 { grid-area: 3 / 1 / 4 / 3; }
   .div2pri2  { grid-area: 3 / 3 / 4 / 5; }
   .div3pri3  { grid-area: 3 / 5 / 4 / 7; }
@@ -113,7 +109,7 @@ body {
 }
 
 .div11 {
-  grid-area: 1 / 9 / 5 / 10;
+  grid-area: 1 / 9 / 5 / 51;
 }
 
 .div12 {
@@ -133,7 +129,7 @@ body {
 }
 
 .div16 {
-  grid-area: 4 / 9 / 5 / 10;
+  grid-area: 4 / 12 / 8 / 47 ;
 }
 
 .div17 {
