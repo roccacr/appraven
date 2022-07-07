@@ -27,7 +27,8 @@
   <link rel="stylesheet" type="text/css" href="app-assets/css/plugins/charts/chart-apex.min.css">
   <link rel="stylesheet" type="text/css" href="app-assets/css/plugins/extensions/ext-component-toastr.min.css">
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-  <link rel="stylesheet" type="text/css" href="app-assets/css/plugins/forms/form-validati
+  <link rel="stylesheet" type="text/css" href="app-assets/css/plugins/forms/form-validation.css">
+  <link rel="stylesheet" type="text/css" href="app-assets/css/pages/authentication.css">
 
 <?php require './variables_globales/variables.php'; ?>
 <!-- BEGIN: Header-->
