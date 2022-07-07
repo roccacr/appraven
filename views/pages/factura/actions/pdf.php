@@ -10,7 +10,7 @@
 </head>
 
 <body>
-  
+
   <?php
   $tabla = isset($routesArray[2]) ? $routesArray[3] : '';
   $tipo  = isset($routesArray[3]) ? $routesArray[4] : '';
@@ -393,7 +393,7 @@
                   <div class="div116" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"> <strong>No. DE CÉDULA</strong></div>
                 </div>
                 <div class="parent3">
-                  <div class="divfinal" style="  text-align: center;"> ***FACTURA EN COLONES***</div>
+                  <div class="divfinal" style="  text-align: center;"> ***FACTURA***</div>
                 </div>
                 <hr>
               </div>
