@@ -349,7 +349,7 @@
                     <br>
                     <br>
                     <br>
-                    <br>
+                    
                     <div class="div14" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><strong>I<?php echo number_format($impuesto_valor_2, 2, ".", ","); ?> </strong><br>
                     <br><strong><?php echo number_format($impuesto_valor_13, 2, ".", ","); ?> </strong>
                     <br>
