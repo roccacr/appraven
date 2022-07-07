@@ -372,8 +372,8 @@
                       <p style="font-size:15px"><br>&nbsp; &nbsp;CUENTAS BANCARIAS: </p>
                     </strong>
                     <p style="font-size:15px">&nbsp; &nbsp;Davivienda</p>
-                    <p style="font-size:15px"><strong>&nbsp; &nbsp;COLONES</strong>: &nbsp;&nbsp;CR13010409142212308116</p>
-                    <p style="font-size:15px"><strong>&nbsp; &nbsp;DÓLARES</strong>: &nbsp;&nbsp;&nbsp;&nbsp;CR96010409142212309920</p>
+                    <p style="font-size:15px"><strong>&nbsp; &nbsp;COLONES: </strong>: &nbsp;&nbsp;CR13010409142212308116</p>
+                    <p style="font-size:15px"><strong>&nbsp; &nbsp;DÓLARES: </strong>   &nbsp;&nbsp;CR96010409142212309920</p>
                   </div>
                   <div class="div19"> <strong>
                       <p style=" text-align: right; font-size:15px"><br>FACTURA ELECTRÓNICA: &nbsp; &nbsp; </p>
