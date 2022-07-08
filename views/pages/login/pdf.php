@@ -6,14 +6,14 @@
   <title>PDF</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
   <link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
-  <link rel="stylesheet" href="../../../app-assets/css/pdf.css?12">
+  <link rel="stylesheet" href="../../../app-assets/css/pdf.css">
 </head>
 
 <body>
   <?php
-  $tabla = isset($routesArray[2]) ? $routesArray[2] : '';
-  $tipo  = isset($routesArray[3]) ? $routesArray[3] : '';
-  $clave = isset($routesArray[4]) ? $routesArray[4] : '';
+  $tabla = isset($routesArray[2]) ? $routesArray[3] : '';
+  $tipo  = isset($routesArray[3]) ? $routesArray[4] : '';
+  $clave = isset($routesArray[4]) ? $routesArray[5] : '';
 
   if ($tabla === '' ||  $tipo === '' || $clave === '') {
     echo '<div class="alert alert-danger" role="alert">
@@ -117,7 +117,6 @@
               $telefono = $receptor['telefono'];
               if (empty($receptor['dirEnvio'])) {
                 $dirEnvio = "";
-
               } else {
                 $dirEnvio = $receptor['dirEnvio'];
               }
@@ -125,17 +124,17 @@
               $venta =   $json_app['venta'];
               $plazo =   $venta['plazo'];
               if (empty($json_app['vendedor'])) {
-                $vendedor = "-";
+                $vendedor = 0;
               } else {
                 $vendedor = $json_app['vendedor'];
               }
               if (empty($receptor['nombreComercial'])) {
-                $nombreComercial ="-";
+                $nombreComercial = 0;
               } else {
                 $nombreComercial = $receptor['nombreComercial'];
               }
               if (empty($receptor['nombreComercial'])) {
-                $nombreComercial = "-";
+                $nombreComercial = 0;
               } else {
                 $nombreComercial = $receptor['nombreComercial'];
               }
@@ -347,7 +346,7 @@
                     <br>
                     <br>
                     <br>
-                 
+                    <br>
 
                     <br><?php echo number_format($impuesto_valor_2, 2, ".", ","); ?>
                     <br>
@@ -355,7 +354,6 @@
                     <br>
                     <br><?php echo number_format($impuesto_valor_1, 2, ".", ","); ?>
                     <br>
-                  </div>
                   </div>
                   <div class="div12" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"> </div>
                   <div class="div13" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"> <strong>SUB TOTAL ₡</strong><br>
@@ -373,8 +371,8 @@
                       <p style="font-size:15px"><br>&nbsp; &nbsp;CUENTAS BANCARIAS: </p>
                     </strong>
                     <p style="font-size:15px">&nbsp; &nbsp;Davivienda</p>
-                    <p style="font-size:15px"><strong>&nbsp; &nbsp;COLONES: </strong>: &nbsp;&nbsp;CR13010409142212308116</p>
-                    <p style="font-size:15px"><strong>&nbsp; &nbsp;DÓLARES: </strong>   &nbsp;&nbsp;CR96010409142212309920</p>
+                    <p style="font-size:15px"><strong>&nbsp; &nbsp;COLONES</strong>: &nbsp; &nbsp;CR13010409142212308116</p>
+                    <p style="font-size:15px"><strong>&nbsp; &nbsp;DÓLARES</strong>: &nbsp; &nbsp;CR96010409142212309920</p>
                   </div>
                   <div class="div19"> <strong>
                       <p style=" text-align: right; font-size:15px"><br>FACTURA ELECTRÓNICA: &nbsp; &nbsp; </p>
