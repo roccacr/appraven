@@ -11,9 +11,9 @@
 
 <body>
   <?php
-  $tabla = isset($routesArray[2]) ? $routesArray[3] : '';
-  $tipo  = isset($routesArray[3]) ? $routesArray[4] : '';
-  $clave = isset($routesArray[4]) ? $routesArray[5] : '';
+  $tabla = isset($routesArray[2]) ? $routesArray[2] : '';
+  $tipo  = isset($routesArray[3]) ? $routesArray[3] : '';
+  $clave = isset($routesArray[4]) ? $routesArray[4] : '';
 
   if ($tabla === '' ||  $tipo === '' || $clave === '') {
     echo '<div class="alert alert-danger" role="alert">
