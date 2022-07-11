@@ -149,6 +149,11 @@
               } else {
                 $notas = $json_app['notas'];
               }
+              if (empty($json_app['lineas'][0]['pedidoNum'])) {
+                $pedidoNum = " ";
+              } else {
+                $pedidoNum = $json_app['lineas'][0]['pedidoNum'];
+              }
               if (empty($receptor['nombreComercial'])) {
                 $nombreComercial = 0;
               } else {
