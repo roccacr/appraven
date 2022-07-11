@@ -11,10 +11,10 @@
 
 <body>
   <?php
+  /** Declaración de variables básicas para llenar el documento ============================================================================= */
   $tabla = isset($routesArray[2]) ? $routesArray[2] : '';
   $tipo  = isset($routesArray[3]) ? $routesArray[3] : '';
   $clave = isset($routesArray[4]) ? $routesArray[4] : '';
-
   if ($tabla === '' ||  $tipo === '' || $clave === '') {
     echo '<div class="alert alert-danger" role="alert">
               <h4 class="alert-heading">Lo sentimos</h4>
@@ -74,6 +74,9 @@
               $json_app = json_decode($arrayData_app, true);
               $pedido = $json_app['pedido'];
               $receptor = $json_app['receptor'];
+              $moneda = $json_app['moneda'] == 'CRC' ? '¢' : '$';
+              $tipoC = $json_app['tipoCambio'] == 1 ? "" : " | TIPO DE CAMBIO: " . $json_app['tipoCambio'];
+              $facturaEn = $json_app['moneda'] == 'CRC' ? 'COLONES' : 'DÓLARES';
               $idAdmCloud = $json_app['idAdmCloud'];
               $telefono = $receptor['telefono'];
               if (empty($receptor['dirEnvio'])) {
@@ -88,6 +91,16 @@
                 $vendedor = 0;
               } else {
                 $vendedor = $json_app['vendedor'];
+              }
+              if (empty($json_app['notas'])) {
+                $notas = " ";
+              } else {
+                $notas = $json_app['notas'];
+              }
+              if (empty($json_app['lineas'][0]['pedidoNum'])) {
+                $pedidoNum = " ";
+              } else {
+                $pedidoNum = $json_app['lineas'][0]['pedidoNum'];
               }
               if (empty($receptor['nombreComercial'])) {
                 $nombreComercial = 0;
@@ -113,6 +126,9 @@
               $json_app = json_decode($arrayData_app, true);
               $pedido = $json_app['pedido'];
               $receptor = $json_app['receptor'];
+              $moneda = $json_app['moneda'] == 'CRC' ? '¢' : '$';
+              $tipoC = $json_app['tipoCambio'] == 1 ? "" : " | TIPO DE CAMBIO: " . $json_app['tipoCambio'];
+              $facturaEn = $json_app['moneda'] == 'CRC' ? 'COLONES' : 'DÓLARES';
               $idAdmCloud = $json_app['idAdmCloud'];
               $telefono = $receptor['telefono'];
               if (empty($receptor['dirEnvio'])) {
@@ -128,6 +144,11 @@
               } else {
                 $vendedor = $json_app['vendedor'];
               }
+              if (empty($json_app['notas'])) {
+                $notas = " ";
+              } else {
+                $notas = $json_app['notas'];
+              }
               if (empty($receptor['nombreComercial'])) {
                 $nombreComercial = 0;
               } else {
@@ -141,29 +162,27 @@
             }
           }
   ?>
-          <div class="container invoice">
-            <div class="invoice-header">
-              <div class="row">
-                <div class="col-xs-8">
-                  <div class="parent">
-                    <div class="divuno">
-                      <h4><strong>CORPORACIÓN RAVEN</strong></h4>
-                      <h7>Cédula Jurídica: 3-101-014445</h7>
-                      <br>
-                      <h7>Km 6 Autopista Próspero Fernández</h7>
-                    </div>
-                    <div class="divdos">
-                      <h7>San José, Costa Rica</h7>
-                      <br>
-                      <h7>Telf:(506) 4032-6600 / Fax:(506)2215-1961</h7>
-                      <br>
-                      <h7>Apartado Postal: 10228-1000 / www.laboratorioraven.com</h7>
-                    </div>
-                    <div class="divtres"> <img style="float: left;" class="media-object logo" src="../../../app-assets/images/logos/eite.png" /></div>
-                  </div>
-
-
-                </div>
+    <div class="container invoice">
+      <div class="invoice-header">
+        <div class="row">
+          <div class="col-xs-8">
+            <div class="parent">
+              <div class="divuno">
+                <h4><strong>CORPORACIÓN RAVEN SA.</strong></h4>
+                <h7>Cédula Jurídica: 3-101-014445</h7>
+                <br>
+                <h7>Km 6 Autopista Próspero Fernández</h7>
+              </div>
+              <div class="divdos">
+                <h7>San José, Costa Rica</h7>
+                <br>
+                <h7>Telf:(506) 4032-6600 / Fax:(506)2215-1961</h7>
+                <br>
+                <h7>Apartado Postal: 10228-1000 / www.laboratorioraven.com</h7>
+              </div>
+            <div class="divtres"> <img style="float: left;" class="media-object logo" src="../../../app-assets/images/logos/eite.png" /></div>
+          </div>
+        </div>
                 <script src="https://unpkg.com/qrious@4.0.2/dist/qrious.js"></script>
                 <div class="col-xs-4">
                   <div class="media">
@@ -175,7 +194,7 @@
                         new QRious({
                           element: $imagen,
                           value: "https://appraven.appsngs.com/factura/<?php echo  $key; ?>", // La URL o el texto
-                          size: 150,
+                          size: 155,
                           backgroundAlpha: 50, // 0 para fondo transparente
                           foreground: "#000", // Color del QR
                           level: "H", // Puede ser L,M,Q y H (L es el de menor nivel, H el mayor)
@@ -192,12 +211,11 @@
                     </div>
                     <ul class="media-body list-unstyled">
                       <li style="  text-align: center; "> <strong>ORIGINAL</strong></li>
-                      <li style="text-align: center;  border-width: 2px; border-style: solid; border-color: rgb(10, 10, 10); border-radius: 8px"><br> <strong>FACTURA No.<?php echo $idAdmCloud; ?></strong><br><br></li>
+                      <li style="text-align: center;  border-width: 1px; border-style: solid; border-color: rgb(10, 10, 10); border-radius: 8px"><br> <strong>FACTURA No.<?php echo $idAdmCloud; ?></strong><br><br></li>
                       <br>
-                      <li style="  text-align: center;  border-image: initial; border: 2px solid black;   border-radius: 5px">FECHA</li>
-                      <li style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><?php echo  $fech[0]; ?></li>
+                      <li style="  text-align: center;  border-image: initial; border: 1px solid black;   border-radius: 5px">FECHA</li>
+                      <li style="  text-align: center;  border-image: initial; border: 1px solid black; border-radius: 5px"><?php echo  $fech[0]; ?></li>
                     </ul>
-
                   </div>
                 </div>
               </div>
@@ -206,55 +224,53 @@
 
             </style>
             <div class="invoice-body">
-              <div class="row">
-                <div class="col-xs-5">
-                  <div class="parent" style="width:900px;">
-                    <div class="divpri1" style="  text-align: left;  border-image: initial; border: 2px solid black; border-radius: 5px"> <br>
-                      <p style=" font-size:16px; height:10px"> &nbsp; &nbsp;<strong>CONTACTO:</strong>-</p><br>
+                  <div class="encabezado">
+                    <div class="cliente" style="border-image: initial; border: 1px solid black; border-radius: 5px">
+                    <label> <strong>CLIENTE:</strong> <?php echo $nombreComercial ?></label>
                     </div>
-                    <div class="div2pri2" style="  text-align: left;  border-image: initial; border: 2px solid black; border-radius: 5px"> <br>
-                      <p style=" font-size:16px"> &nbsp; &nbsp;<strong>TELÉFONO:</strong> <?php echo  $telefono; ?> </p><br>
+                    <div class="cliente-comercial" style="border-image: initial; border: 1px solid black; border-radius: 5px">
+                    <label><strong> RAZÓN SOCIAL: </strong><?php echo $Nombre_Receptor ?></label>
                     </div>
-                    <div class="div3pri3" style="  text-align: left;  border-image: initial; border: 2px solid black; border-radius: 5px"> <br>
-                      <p style=" font-size:16px"> &nbsp; &nbsp;<strong>CJ:</strong> <?php echo $cedula; ?></p><br>
+                    <div class="direccion" style="border-image: initial; border: 1px solid black; border-radius: 5px">
+                      <label><strong>DIRECCIÓN:</strong> <?php echo  $dirEnvio; ?></label>
                     </div>
-                    <div class="div4pri4" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><strong><br>
-                        <p style="font-size:18px"> CLIENTE: <?php echo $Nombre_Receptor ?></p>
-                      </strong></div>
-                    <div class="div5pri5" style="  text-align: left;  border-image: initial; border: 2px solid black; border-radius: 5px"> <br>
-                      <p style=" font-size:18px"> &nbsp; &nbsp;<strong>DIRECCIÓN:</strong> <?php echo  $dirEnvio; ?></p><br>
+                    <div class="contacto" style="border-image: initial; border: 1px solid black; border-radius: 5px">
+                      <label><strong>CONTACTO:</strong></label>
                     </div>
-                    <div class="div6pri6" style="  text-align: left;  border-image: initial; border: 2px solid black; border-radius: 5px"><br> &nbsp; &nbsp;<strong>PLAZO:</strong> <?php echo $plazo; ?></p><br></div>
-                    <div class="div7pri7" style="  text-align: left;  border-image: initial; border: 2px solid black; border-radius: 5px"><br> &nbsp; &nbsp;<strong>PEDIDO:</strong> <?php echo $pedido; ?></p><br></div>
-                    <div class="div8pri8" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"> <br><strong>
-                        <p style="font-size:18px">NOTAS: --</p>
-                      </strong>
+                    <div class="telefono" style="border-image: initial; border: 1px solid black; border-radius: 5px">
+                      <label><strong>TELÉFONO:</strong> <?php echo  $telefono; ?></label>
                     </div>
-                    <div class="div9pri9" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><br><strong>
-                        <p style="font-size:18px">Exento al: -%</p>
-                      </strong>
+                    <div class="vendedor" style="border-image: initial; border: 1px solid black; border-radius: 5px">
+                      <label><strong>VENDEDOR:</strong> <?php echo  $vendedor; ?></label>
+                    </div>
+                    <div class="cedula" style="border-image: initial; border: 1px solid black; border-radius: 5px">
+                      <label><strong>CÉDULA:</strong> <?php echo $cedula; ?></label>
+                    </div>
+                    <div class="plazo" style="border-image: initial; border: 1px solid black; border-radius: 5px">
+                      <label><strong>PLAZO:</strong> <?php echo $plazo; ?></label>
+                    </div>
+                    <div class="pedidoRef" style="border-image: initial; border: 1px solid black; border-radius: 5px">
+                      <label><strong>PEDIDO:</strong> <?php echo $pedidoNum; ?></label>
+                    </div>
+                    <div class="observaciones" style="border-image: initial; border: 1px solid black; border-radius: 5px">
+                      <label><strong><label>OBSERVACIONES:</strong> <?php echo $notas; ?> </label>
                     </div>
                   </div>
-
-                </div>
-              </div>
-
             </div>
             <div class="invoice-body">
-              <div class="panel panel-default">
-                <table class="table table-bordered table-condensed" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">
-                  <thead style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">
+              <div class="panel panel-lineas">
+                <table class="table table-bordered table-condensed tabla-articulos" style="  text-align: center;  border-image: initial; border: 1px solid black; border-radius: 5px">
+                  <thead style="  text-align: center;  border-image: initial; border: 1px solid black; border-radius: 5px">
                     <tr>
-                      <td class="text-center col-xs-1" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">CANTIDAD</td>
-                      <td class="text-center col-xs-1" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">CÓDIGO</td>
-                      <td class="text-center col-xs-0" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">DESCRIPCIÓN</td>
-                      <td class="text-center col-xs-" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">IVA%</td>
-                      <td class="text-center col-xs-1" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">PRECIO UNITARIO</td>
-                      <td class="text-center col-xs-1" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">VALOR TOTAL</td>
+                      <td class="text-center col-xs-1" style="  text-align: center;  border-image: initial; border: 1px solid black; border-radius: 5px">CANTIDAD</td>
+                      <td class="text-center col-xs-1" style="  text-align: center;  border-image: initial; border: 1px solid black; border-radius: 5px">CÓDIGO</td>
+                      <td class="col-xs-0" style="border-image: initial; border: 1px solid black; border-radius: 5px">DESCRIPCIÓN</td>
+                      <td class="text-center col-xs-" style="  text-align: center;  border-image: initial; border: 1px solid black; border-radius: 5px">IVA%</td>
+                      <td class="text-center col-xs-1" style="  text-align: center;  border-image: initial; border: 1px solid black; border-radius: 5px">PRECIO UNITARIO</td>
+                      <td class="text-center col-xs-1" style="  text-align: center;  border-image: initial; border: 1px solid black; border-radius: 5px">VALOR TOTAL</td>
                     </tr>
                   </thead>
                   <tbody>
-
                     <?php
                     $impuesto_valor_1  = 0;
                     $impuesto_valor_2  = 0;
@@ -283,15 +299,15 @@
                         }
                     ?>
                         <tr>
-                          <th class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><?php echo  $Cantidad; ?></th>
-                          <th class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><?php echo  $codigoRest; ?></th>
-                          <th class="text-center rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">
-                            <p><?php echo  $Detelle; ?></p>
+                          <th class="text-left" style="  text-align: center;  border-image: initial; border: 1px solid black; border-radius: 5px"><?php echo  number_format($Cantidad,3,".",","); ?></th>
+                          <th class="text-left" style="  text-align: center;  border-image: initial; border: 1px solid black; border-radius: 5px"><?php echo  $codigoRest; ?></th>
+                          <th class="" style="border-image: initial; border: 1px solid black; border-radius: 5px;">
+                            <label style="font-weight: 400;"><?php echo  $Detelle; ?></label>
                           </th>
-                          <th hidden class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">$3,312.00</th>
-                          <th class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><?php echo  $tarifa; ?></th>
-                          <th class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><?php echo number_format($Unitario, 2, ".", ","); ?></th>
-                          <th class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><?php echo  number_format($TotalL, 2, ".", ","); ?></th>
+                          <th hidden class="text-left" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">$3,312.00</th>
+                          <th class="text-left" style="  text-align: center;  border-image: initial; border: 1px solid black; border-radius: 5px"><?php echo number_format($Unitario, 4, ".", ","); ?></th>
+                          <th class="text-left" style="  text-align: center;  border-image: initial; border: 1px solid black; border-radius: 5px"><?php echo  number_format($TotalL, 4, ".", ","); ?></th>
+                          <th class="text-left" style="  text-align: center;  border-image: initial; border: 1px solid black; border-radius: 5px"><?php echo  $tarifa; ?></th>
                         </tr>
                       <?php break;
                       } else {
@@ -315,15 +331,15 @@
                         }
                       ?>
                         <tr>
-                          <th class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><?php echo  $Cantidad; ?></th>
-                          <th class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><?php echo  $codigoRest; ?></th>
-                          <th class="text-center rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">
-                            <p><?php echo  $Detelle; ?></p>
+                          <th class="text-left" style="  text-align: center;  border-image: initial; border: 1px solid black; border-radius: 5px"><?php echo  number_format($Cantidad,3,".",","); ?></th>
+                          <th class="text-left" style="  text-align: center;  border-image: initial; border: 1px solid black; border-radius: 5px"><?php echo  $codigoRest; ?></th>
+                          <th class="" style="border-image: initial; border: 1px solid black; border-radius: 5px;" >
+                            <label style="font-weight: 400;"><?php echo  $Detelle; ?></label>
                           </th>
-                          <th hidden class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">$3,312.00</th>
-                          <th class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><?php echo  $tarifa; ?></th>
-                          <th class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><?php echo number_format($Unitario, 2, ".", ","); ?></th>
-                          <th class="text-left rowtotal mono" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><?php echo  number_format($TotalL, 2, ".", ","); ?></th>
+                          <th hidden class="text-left" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">$3,312.00</th>
+                          <th class="text-left" style="  text-align: center;  border-image: initial; border: 1px solid black; border-radius: 5px"><?php echo  $tarifa; ?></th>
+                          <th class="text-left" style="  text-align: center;  border-image: initial; border: 1px solid black; border-radius: 5px"><?php echo number_format($Unitario, 4, ".", ","); ?></th>
+                          <th class="text-left" style="  text-align: center;  border-image: initial; border: 1px solid black; border-radius: 5px"><?php echo  number_format($TotalL, 4, ".", ","); ?></th>
                         </tr>
                     <?php }
                     } ?>
@@ -331,74 +347,75 @@
                 </table>
               </div>
             </div>
-            <div class="panel panel-default">
-
-            </div>
-            <div class="row">
-
               <div class="invoice-body">
-                <div class="parent2" style="width:920px;">
-                  <div class="div11" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><?php echo number_format($TotalVenta, 2, ".", ","); ?><br>
-
-                    <br><?php echo number_format($TotalDescuentos, 2, ".", ","); ?>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-
-                    <br><?php echo number_format($impuesto_valor_2, 2, ".", ","); ?>
-                    <br>
-                    <br><?php echo number_format($impuesto_valor_13, 2, ".", ","); ?>
-                    <br>
-                    <br><?php echo number_format($impuesto_valor_1, 2, ".", ","); ?>
-                    <br>
+                <div class="parent2">
+                  <!-- El div 11 podría quedar de la siguiente manera: -->
+                  <div class="montos">
+                      <div class="totalizacion" style="">
+                          <label class="identificador">Subtotal <?php echo $moneda; ?></label>
+                          <label class="monto"> <?php echo number_format($TotalVenta,4,".",","); ?> </label>
+                      </div>
+                      <div class="totalizacion">
+                          <label class="identificador">Descuento <?php echo $moneda; ?></label>
+                          <label class="monto"> <?php echo number_format($TotalDescuentos,4,".",","); ?> </label>
+                      </div>
+                      <div class="totalizacion">
+                          <label class="identificador">IVA (1%) <?php echo $moneda; ?></label>
+                          <label class="monto"> <?php echo number_format($impuesto_valor_1,4,".",","); ?> </label>
+                      </div>
+                      <div class="totalizacion">
+                          <label class="identificador">IVA(2%) <?php echo $moneda; ?></label>
+                          <label class="monto"> <?php echo number_format($impuesto_valor_2,4,".",","); ?> </label>
+                      </div>
+                      <div class="totalizacion">
+                          <label class="identificador">IVA(13%) <?php echo $moneda; ?></label>
+                          <label class="monto"> <?php echo number_format($impuesto_valor_13,4,".",","); ?> </label>
+                      </div>
+                      <div class="totalizacion total">
+                          <label class="identificador">Total <?php echo $moneda; ?></label>
+                          <label class="monto"> <?php echo number_format($TotalComprobante,4,".",","); ?> </label>
+                      </div>
                   </div>
-                  <div class="div12" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"> </div>
-                  <div class="div13" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"> <strong>SUB TOTAL ₡</strong><br>
-                    <br><strong>DECUENTO </strong>
+                  <div class="info-fe">
+                    <div class="cuentas">
+                      <div class="izquierda">
+                        <label for=""> <strong> CUENTAS BANCARIAS: </strong> </label>
+                      </div>
+                      <div class="izquierda">
+                        <label for=""> BANCO DAVIVIENDA SA.</label>
+                      </div>
+                      <div class="izquierda">
+                        <label for=""> <strong>COLONES:</strong> CR13010409142212308116 </label>
+                      </div>
+                      <div class="izquierda">
+                        <label for=""> <strong>DOLARES:</strong> CR96010409142212039920</label>
+                      </div>
+                    </div>
+                    <div class="numeros">
+                      <div class="derecha">
+                        <label class="lnumeros"> <strong>FACTURA ELECTRÓNICA</strong> </label>
+                        <label class="lnumeros"> <?php echo  $NumeroConsecutivo; ?> </label>
+                      </div>
+                      <div class="derecha"> 
+                        <label class="lnumeros"> <strong>CLAVE ELECTRÓNICA</strong> </label>
+                        <label class="lnumeros"> <?php echo  $clave_array; ?> </label>
+                      </div>
+                    </div>
                   </div>
-                  <div class="div14" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><strong>IVA(*) 2% </strong><br>
-                    <br><strong>IVA(*) 13% </strong>
-                    <br>
-                    <br><strong>IVA() 1% </strong>
-                  </div>
-                  <div class="div15" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><strong>TOTAL</strong></div>
-                  <div class="div16" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><?php echo number_format($TotalComprobante, 2, ".", ","); ?> </div>
-                  <div class="div17" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"> </div>
-                  <div class="div18"> <strong>
-                      <p style="font-size:15px"><br>&nbsp; &nbsp;CUENTAS BANCARIAS: </p>
-                    </strong>
-                    <p style="font-size:15px">&nbsp; &nbsp;Davivienda</p>
-                    <p style="font-size:15px"><strong>&nbsp; &nbsp;COLONES</strong>: &nbsp; &nbsp;CR13010409142212308116</p>
-                    <p style="font-size:15px"><strong>&nbsp; &nbsp;DÓLARES</strong>: &nbsp; &nbsp;CR96010409142212309920</p>
-                  </div>
-                  <div class="div19"> <strong>
-                      <p style=" text-align: right; font-size:15px"><br>FACTURA ELECTRÓNICA: &nbsp; &nbsp; </p>
-                    </strong>
-                    <p style=" text-align: right;font-size:15px"><?php echo  $NumeroConsecutivo; ?>&nbsp; &nbsp; </p>
-                    <strong>
-                      <p style="  text-align: right;font-size:15px"><br>CLAVE ELECTRÓNICA: &nbsp; &nbsp; </p>
-                    </strong>
-                    <p style="  text-align: right;font-size:15px"><?php echo  $clave_array; ?>&nbsp; &nbsp; </p>
-                  </div>
-                  <div class="div110" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">-</div>
-                  <div class="div111" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">-</div>
-                  <div class="div112" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">-</div>
-                  <div class="div113" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"> </div>
-                  <div class="div114" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><strong>HECHO POR</strong> </div>
-                  <div class="div115" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"><strong>RECIBIDO CONFORME</strong> </div>
-                  <div class="div116" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px"> <strong>No. DE CÉDULA</strong></div>
+                  <div class="div110" style="  text-align: center;  border-image: initial; border: 1px solid black; border-radius: 5px">-</div>
+                  <div class="div111" style="  text-align: center;  border-image: initial; border: 1px solid black; border-radius: 5px">-</div>
+                  <div class="div112" style="  text-align: center;  border-image: initial; border: 1px solid black; border-radius: 5px">-</div>
+                  <div class="div114" style="  text-align: center;  border-image: initial; border: 1px solid black; border-radius: 5px"><strong>HECHO POR</strong> </div>
+                  <div class="div115" style="  text-align: center;  border-image: initial; border: 1px solid black; border-radius: 5px"><strong>RECIBIDO CONFORME</strong> </div>
+                  <div class="div116" style="  text-align: center;  border-image: initial; border: 1px solid black; border-radius: 5px"> <strong>No. DE CÉDULA</strong></div>
                 </div>
-                <div class="parent3">
-                <div class="divfinal" style="  text-align: center;"> ***FACTURA***</div>
+                <div class="parent4">
+                <div class="divinfofeTC" style="  text-align: center;"> ***FACTURA EN : <?php echo $facturaEn ?> <?php echo $tipoC ?> *** </div>
+                <div class="divresolucion" style="  text-align: center;"> <label style="font-weight: 400; font-size: 11px"> Autorizado mediante resolución DGT-R-033-2019 del veinte de junio de dos mil diecinueve.</label> </div>
                 </div>
                 <hr>
               </div>
             </div>
-
-          </div>
 
           <!-- partial -->
   <?php }
@@ -406,6 +423,7 @@
     }
   } ?>
 </body>
+<footer></footer>
 
 </html>
 <script src="../../../app-assets/js/scripts/pages/app-invoice-print.min.js?112"></script>
