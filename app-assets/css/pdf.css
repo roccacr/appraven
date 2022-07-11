@@ -1,32 +1,26 @@
 body {
   background: #EEE;
-  /* font-size:0.9em !important; */
+  font-family: sans-serif;
 }
 
 .invoice {
-  width: 970px !important;
-  margin: 50px auto;
+  width: 1000px !important;
+  margin: 40px auto;
 }
 .invoice .invoice-header {
-  padding: 25px 25px 15px;
+  padding: 15px 15px 15px;
 }
 .invoice .invoice-header h1 {
   margin: 0;
 }
 .invoice .invoice-header .media .media-body {
-  font-size: 0.9em;
+  font-size: 13px;
   margin: 0;
 }
 .invoice .invoice-body {
   border-radius: 10px;
-  padding: 25px;
+  padding: 10px 20px;
   background: #FFF;
-}
-.invoice .invoice-footer {
-  padding: 15px;
-  font-size: 0.9em;
-  text-align: left;
-  color: #999;
 }
 
 .logo {
@@ -34,58 +28,47 @@ body {
   border-radius: 10px;
 }
 
-.dl-horizontal {
-  margin: 0;
-}
-.dl-horizontal dt {
-  float: left;
-  width: 80px;
-  overflow: hidden;
-  clear: left;
-  text-align: right;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.dl-horizontal dd {
-  margin-left: 90px;
-}
-
-.rowamount {
-  padding-top: 15px !important;
-}
-.rowtotal {
-  font-size: 1.3em;
-}
-.colfix {
-  width: 12%;
-}
-.mono {
-  font-family: monospace;
-}
-
-.parent {
+/*Diseño CSS correspondiente al encabezadodel formato PDF*/
+.parent{
   display: grid;
 
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
+  grid-column-gap: 1.5px;
+  grid-row-gap: 1.5px;
   }
-  .divpri1 { grid-area: 3 / 1 / 4 / 3; }
-  .div2pri2  { grid-area: 3 / 3 / 4 / 5; }
-  .div3pri3  { grid-area: 3 / 5 / 4 / 7; }
-  .div4pri4  { grid-area: 1 / 1 / 2 / 9; }
-  .div5pri5  { grid-area: 2 / 1 / 3 / 9; }
-  .div6pri6  { grid-area: 3 / 7 / 4 / 8; }
-  .div7pri7  { grid-area: 3 / 8 / 4 / 9; }
-  .div8pri8  { grid-area: 4 / 1 / 5 / 7; }
-  .div9pri9  { grid-area: 4 / 7 / 5 / 9; }
+
+.encabezado{
+  font-size: 13px;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(7, 1fr);
+  grid-column-gap: 1.5px;
+  grid-row-gap: 1.5px;
+}
+
+.encabezado label{
+  padding: 0 5px;
+  font-weight: 400;
+}
+
+.cliente  { grid-area: 1 / 1 / 2 / 10; }
+.cliente-comercial  { grid-area: 2 / 1 / 3 / 14; }
+.direccion  { grid-area: 3 / 1 / 5 / 13; }
+.contacto { grid-area: 5 / 1 / 6 / 4; }
+.telefono  { grid-area: 5 / 4 / 6 / 7; }
+.vendedor  { grid-area: 5 / 7 / 6 / 13; }
+.cedula  { grid-area: 1 / 10 / 2 / 13; }
+.plazo  { grid-area: 6 / 11 / 7 / 13; }
+.pedidoRef  { grid-area: 7 / 11 / 8 / 13; }
+.observaciones  { grid-area: 6 / 1 / 8 / 11; }
+.div9pri9  { grid-area: 4 / 7 / 5 / 9; }
   
 
 .parentheader {
   display: grid;
   grid-template-columns: 1fr 6fr;
   grid-template-rows: repeat(6, 1fr);
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
+  grid-column-gap: 1.5px;
+  grid-row-gap: 1.5px;
 }
 
 .divuno {
@@ -101,75 +84,95 @@ body {
 }
 
 
+/*Diseño CSS correspondiente al panel de artículos del formato PDF*/
+.panel-lineas{
+  font-size: 12px !important;
+}
 
+.tabla-articulos thead {
+  font-weight: 700;
+}
+
+
+
+
+/*Diseño CSS correspondiente a la parte del FOOTER del formato PDF*/
 .parent2 {
   display: grid;
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
+  grid-template-columns: repeat(15, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  grid-column-gap: 1.5px;
+  grid-row-gap: 1.5px;
+  font-size: 12px;
 }
 
-.div11 {
-  grid-area: 1 / 9 / 5 / 51;
+.montos {
+  grid-area: 1 / 12 / 7 / 16;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 5px;
 }
 
-.div12 {
-  grid-area: 1 / 8 / 5 / 9;
+.montos .totalizacion{
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
 }
 
-.div13 {
-  grid-area: 1 / 8 / 2 / 9;
+.montos .total{
+  border-top: 1px solid black;
 }
 
-.div14 {
-  grid-area: 2 / 8 / 3 / 9;
+.info-fe {
+  grid-area: 1 / 1 / 4 / 12;
+  border: 1px solid black;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
 }
 
-.div15 {
-  grid-area: 4 / 8 / 5 / 9;
+.info-fe label{
+  font-weight: 400;
 }
 
-.div16 {
-  grid-area: 4 / 12 / 8 / 47 ;
+.numeros .izquierda{
+  text-align: left;
 }
 
-.div17 {
-  grid-area: 1 / 1 / 2 / 8;
+.numeros .derecha{
+  text-align: right;
 }
 
-.div18 {
-  grid-area: 1 / 1 / 2 / 4;
+.numeros .lnumeros{
+  display: block;
 }
-
-.div19 {
-  grid-area: 1 / 5 / 2 / 8;
-}
-
 .div110 {
-  grid-area: 2 / 1 / 3 / 3;
+  grid-area: 4 / 9 / 6 / 12;
 }
 
 .div111 {
-  grid-area: 2 / 3 / 3 / 6;
+  grid-area: 4 / 1 / 6 / 4;
 }
 
 .div112 {
-  grid-area: 2 / 6 / 3 / 8;
+  grid-area: 4 / 4 / 6 / 9;
 }
 
 .div113 {
-  grid-area: 2 / 1 / 3 / 8;
+  grid-area: 3 / 1 / 4 / 4;
 }
 
 .div114 {
-  grid-area: 4 / 1 / 5 / 3;
+  grid-area: 6 / 1 / 7 / 4;
 }
 
 .div115 {
-  grid-area: 4 / 3 / 5 / 6;
+  grid-area: 6 / 4 / 6 / 9;
 }
 
 .div116 {
-  grid-area: 4 / 6 / 5 / 8;
+  grid-area: 6 / 9 / 6 / 12;
 }
 
 
@@ -194,4 +197,19 @@ hr {
   margin-right: auto;
   border-style: inset;
   border-width: 1px;
+}
+
+.parent4 {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+
+.divinfofeTC  { grid-area: 1 / 1 / 2 / 11; }
+.divresolucion  { grid-area: 2 / 1 / 3 / 11; }
+
+footer{
+  display: none;
 }
