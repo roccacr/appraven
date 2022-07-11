@@ -149,10 +149,10 @@
               } else {
                 $notas = $json_app['notas'];
               }
-              if (empty($json_app['REFNUMERO'])) {
+              if (empty($json_app['referencia']['numero'])) {
                 $pedidoNum = " ";
               } else {
-                $pedidoNum = $json_app['REFNUMERO'];
+                $pedidoNum = $json_app['referencia']['numero'];
               }
               if (empty($receptor['nombreComercial'])) {
                 $nombreComercial = 0;
