@@ -122,7 +122,7 @@
             $response = CurlController::request($url, $method, $fields);
             if ($response->status == 200) {
               $response = $response->results[0];
-              $arrayData_app = $response->$json_aprfac_va;
+              $arrayData_app = $response->$json_aprnc_va;
               $json_app = json_decode($arrayData_app, true);
               $pedido = $json_app['pedido'];
               $receptor = $json_app['receptor'];
