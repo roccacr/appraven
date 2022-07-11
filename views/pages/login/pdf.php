@@ -124,7 +124,7 @@
               $response = $response->results[0];
               $arrayData_app = $response->$json_aprnc_va;
               $json_app = json_decode($arrayData_app, true);
-              $pedido = $json_app['pedido'];
+              //$pedido = $json_app['pedido'];
               $receptor = $json_app['receptor'];
               $moneda = $json_app['moneda'] == 'CRC' ? '¢' : '$';
               $tipoC = $json_app['tipoCambio'] == 1 ? "" : " | TIPO DE CAMBIO: " . $json_app['tipoCambio'];
@@ -149,10 +149,10 @@
               } else {
                 $notas = $json_app['notas'];
               }
-              if (empty($json_app['lineas'][0]['pedidoNum'])) {
+              if (empty($json_app['REFNUMERO'])) {
                 $pedidoNum = " ";
               } else {
-                $pedidoNum = $json_app['lineas'][0]['pedidoNum'];
+                $pedidoNum = $json_app['REFNUMERO'];
               }
               if (empty($receptor['nombreComercial'])) {
                 $nombreComercial = 0;
