@@ -97,6 +97,7 @@
               } else {
                 $notas = $json_app['notas'];
               }
+              $tipoRef = "PEDIDO";
               if (empty($json_app['lineas'][0]['pedidoNum'])) {
                 $pedidoNum = " ";
               } else {
@@ -136,6 +137,9 @@
               } else {
                 $dirEnvio = $receptor['dirEnvio'];
               }
+              if ($dirEnvio = " , ,") {
+                $dirEnvio = " ";
+              }
               $cedula =   $receptor['cedula'];
               $venta =   $json_app['venta'];
               $plazo =   $venta['plazo'];
@@ -149,6 +153,7 @@
               } else {
                 $notas = $json_app['notas'];
               }
+              $tipoRef = "FACTURA";
               if (empty($json_app['referencia']['numero'])) {
                 $pedidoNum = " ";
               } else {
@@ -255,7 +260,7 @@
                       <label><strong>PLAZO:</strong> <?php echo $plazo; ?></label>
                     </div>
                     <div class="pedidoRef" style="border-image: initial; border: 1px solid black; border-radius: 5px">
-                      <label><strong>PEDIDO:</strong> <?php echo $pedidoNum; ?></label>
+                      <label><strong><?php echo $tipoRef; ?> :</strong> <?php echo $pedidoNum; ?></label>
                     </div>
                     <div class="observaciones" style="border-image: initial; border: 1px solid black; border-radius: 5px">
                       <label><strong><label>OBSERVACIONES:</strong> <?php echo $notas; ?> </label>

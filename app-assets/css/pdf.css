@@ -57,9 +57,9 @@ body {
 .telefono  { grid-area: 5 / 4 / 6 / 7; }
 .vendedor  { grid-area: 5 / 7 / 6 / 13; }
 .cedula  { grid-area: 1 / 10 / 2 / 13; }
-.plazo  { grid-area: 6 / 11 / 7 / 13; }
-.pedidoRef  { grid-area: 7 / 11 / 8 / 13; }
-.observaciones  { grid-area: 6 / 1 / 8 / 11; }
+.plazo  { grid-area: 6 / 10 / 7 / 13; }
+.pedidoRef  { grid-area: 7 / 10 / 8 / 13; }
+.observaciones  { grid-area: 6 / 1 / 8 / 10; }
 .div9pri9  { grid-area: 4 / 7 / 5 / 9; }
   
 
