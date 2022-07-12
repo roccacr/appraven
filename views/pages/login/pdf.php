@@ -263,7 +263,7 @@
                       <label><strong><?php echo $tipoRef; ?> :</strong> <?php echo $pedidoNum; ?></label>
                     </div>
                     <div class="observaciones" style="border-image: initial; border: 1px solid black; border-radius: 5px">
-                      <label><strong><label>OBSERVACIONES:</strong> <?php echo $notas; ?> </label>
+                      <label><strong>OBSERVACIONES:</strong> <?php echo $notas; ?> </label>
                     </div>
                   </div>
             </div>
