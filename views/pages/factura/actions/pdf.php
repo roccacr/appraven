@@ -97,6 +97,7 @@
               } else {
                 $notas = $json_app['notas'];
               }
+              $tipoRef = "PEDIDO";
               if (empty($json_app['lineas'][0]['pedidoNum'])) {
                 $pedidoNum = " ";
               } else {
@@ -122,9 +123,9 @@
             $response = CurlController::request($url, $method, $fields);
             if ($response->status == 200) {
               $response = $response->results[0];
-              $arrayData_app = $response->$json_aprfac_va;
+              $arrayData_app = $response->$json_aprnc_va;
               $json_app = json_decode($arrayData_app, true);
-              $pedido = $json_app['pedido'];
+              //$pedido = $json_app['pedido'];
               $receptor = $json_app['receptor'];
               $moneda = $json_app['moneda'] == 'CRC' ? '¢' : '$';
               $tipoC = $json_app['tipoCambio'] == 1 ? "" : " | TIPO DE CAMBIO: " . $json_app['tipoCambio'];
@@ -135,6 +136,9 @@
                 $dirEnvio = "";
               } else {
                 $dirEnvio = $receptor['dirEnvio'];
+              }
+              if ($dirEnvio = " , ,") {
+                $dirEnvio = " ";
               }
               $cedula =   $receptor['cedula'];
               $venta =   $json_app['venta'];
@@ -148,6 +152,12 @@
                 $notas = " ";
               } else {
                 $notas = $json_app['notas'];
+              }
+              $tipoRef = "FACTURA";
+              if (empty($json_app['referencia']['numero'])) {
+                $pedidoNum = " ";
+              } else {
+                $pedidoNum = $json_app['referencia']['numero'];
               }
               if (empty($receptor['nombreComercial'])) {
                 $nombreComercial = 0;
@@ -250,10 +260,10 @@
                       <label><strong>PLAZO:</strong> <?php echo $plazo; ?></label>
                     </div>
                     <div class="pedidoRef" style="border-image: initial; border: 1px solid black; border-radius: 5px">
-                      <label><strong>PEDIDO:</strong> <?php echo $pedidoNum; ?></label>
+                      <label><strong><?php echo $tipoRef; ?> :</strong> <?php echo $pedidoNum; ?></label>
                     </div>
                     <div class="observaciones" style="border-image: initial; border: 1px solid black; border-radius: 5px">
-                      <label><strong><label>OBSERVACIONES:</strong> <?php echo $notas; ?> </label>
+                      <label><strong>OBSERVACIONES:</strong> <?php echo $notas; ?> </label>
                     </div>
                   </div>
             </div>
