@@ -162,7 +162,7 @@
                                                     $boton = document.querySelector("#btnDescargar");
                                                 new QRious({
                                                     element: $imagen,
-                                                    value: "https://appraven.appsngs.com/factura/<?php echo $clave_array; ?>", // La URL o el texto
+                                                    value: "https://appraven.appsngs.com/credito/<?php echo $clave_array; ?>", // La URL o el texto
                                                     size: 110,
                                                     backgroundAlpha: 50, // 0 para fondo transparente
                                                     foreground: "#000", // Color del QR
@@ -359,7 +359,7 @@
                                     <div class="card-body">
                                         <a href="<?php echo $ruta_xmlFacturaNc; ?><?php echo $clave_array; ?>.xml"
                                             class="btn btn-outline-secondary w-100 btn-download-invoice mb-75"
-                                            download="<?php echo $sufix_fac; ?><?php echo $clave_array; ?>.xml">
+                                            download="<?php echo $sufix_CRE; ?><?php echo $clave_array; ?>.xml">
                                             <i class="fa fa-cloud-download" aria-hidden="true"></i></i>Factura
                                         </a>
                                         <?php if ($EstadoHaciendaDescargar == 1) { ?>
