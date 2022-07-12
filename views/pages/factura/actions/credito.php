@@ -54,7 +54,7 @@ if(isset($routesArray[3])==false ){
       $response = $response->results;
      foreach ($response as $data) {
 
-      if($data->estado=="Aceptada"){
+      if($data->estado=="Aceptado"){
         echo '<div class="alert alert-success" role="alert">
         <h4 class="alert-heading">Estado</h4>
         <div class="alert-body">
