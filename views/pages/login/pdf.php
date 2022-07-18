@@ -324,9 +324,9 @@
                             <label style="font-weight: 400;"><?php echo  $Detelle; ?></label>
                           </th>
                           <th hidden class="text-left" style="  text-align: center;  border-image: initial; border: 2px solid black; border-radius: 5px">$3,312.00</th>
+                          <th class="text-left" style="  text-align: center;  border-image: initial; border: 1px solid black; border-radius: 5px"><?php echo  $tarifa; ?></th>
                           <th class="text-left" style="  text-align: center;  border-image: initial; border: 1px solid black; border-radius: 5px"><?php echo number_format($Unitario, 4, ".", ","); ?></th>
                           <th class="text-left" style="  text-align: center;  border-image: initial; border: 1px solid black; border-radius: 5px"><?php echo  number_format($TotalL, 4, ".", ","); ?></th>
-                          <th class="text-left" style="  text-align: center;  border-image: initial; border: 1px solid black; border-radius: 5px"><?php echo  $tarifa; ?></th>
                         </tr>
                       <?php break;
                       } else {
