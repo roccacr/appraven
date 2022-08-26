@@ -56,7 +56,7 @@ if (isset($routesArray[3]) == false) {
     foreach ($response as $data) {
       if ($data->$estado_factura == "$estado_fac_var") {
         $arrayData = $data->$xml_firmado_factura;/* Extraemos los datos de la fima y la descodificamos . */
-        $xml_string = str_replace('&', '&amp', $data->$xml_factura);
+        $xml_string = str_replace('&', '&amp;', $data->$xml_factura);
         $xml = simplexml_load_string($xml_string, "SimpleXMLElement", LIBXML_NOCDATA);
         $json = json_encode($xml); // convert the XML string to JSON
         $arr = json_decode($json, TRUE);
