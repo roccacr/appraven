@@ -50,7 +50,7 @@ if (isset($routesArray[2]) == false) {
     foreach ($response as $data) {
       if ($data->$estado_creditonotas == "$estado_creditonotas_var") {
         $arrayData = $data->$xml_firmado_creditonotas;/* Extraemos los datos de la fima y la descodificamos . */
-        $xml_string = $data->$xml_creditonotas;
+        $xml_string = str_replace('&', '&amp;', $data->$xml_creditonotas);
         $xml = simplexml_load_string($xml_string, "SimpleXMLElement", LIBXML_NOCDATA);
         $json = json_encode($xml); // convert the XML string to JSON
         $arr = json_decode($json, TRUE);

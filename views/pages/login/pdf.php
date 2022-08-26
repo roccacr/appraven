@@ -46,7 +46,7 @@
       foreach ($response as $data) {
         if ($data->estado == "Aceptado") {
           $arrayData = $data->$xml_firmado_PDF;
-          $xml_string = $data->$xml_PDF;
+          $xml_string = str_replace('&', '&amp;', $data->$xml_PDF);
           $xml = simplexml_load_string($xml_string, "SimpleXMLElement", LIBXML_NOCDATA);
           $json = json_encode($xml); // convert the XML string to JSON
           $arr = json_decode($json, TRUE);
