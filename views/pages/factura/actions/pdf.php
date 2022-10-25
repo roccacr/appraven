@@ -454,13 +454,16 @@
                                 <label for=""> <strong> CUENTAS BANCARIAS: </strong> </label>
                             </div>
                             <div class="izquierda">
-                                <label for=""> BANCO DAVIVIENDA SA.</label>
+                                <label for=""> <strong>BAC SAN JOSÉ ¢:</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                <label>CR36010100009177993307</label>
                             </div>
                             <div class="izquierda">
-                                <label for=""> <strong>COLONES:</strong> CR13010409142212308116 </label>
+                                <label for=""> <strong>BANCO COSTA RICA ¢:</strong> &nbsp;&nbsp;</label>
+                                <label>CR70015201001002403971</label>
                             </div>
                             <div class="izquierda">
-                                <label for=""> <strong>DOLARES:</strong> CR96010409142212039920</label>
+                                <label for=""> <strong>BANCO NACIONAL ¢:</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label>
+                                <label>CR89015100010010334534</label>
                             </div>
                         </div>
                         <div class="numeros">
