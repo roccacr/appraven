@@ -25,6 +25,17 @@ class CurlController
 		$response = curl_exec($curl);
 		curl_close($curl);
 		$response = json_decode($response);
+		//Mostramos la respuesta de la API en caso de error
+		if ($response->status != 200) {
+			echo '<div class="alert alert-danger" role="alert">
+				<h4 class="alert-heading">Algo salio mal!!</h4>
+				<div class="alert-body">
+					' . $response->results . '
+				</div>
+			</div>';
+			return;
+		}
+		//Si la respuesta es correcta, retornamos el resultado
 		return $response;
 	}
 }
