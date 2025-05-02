@@ -22,13 +22,6 @@ class AdminsController
                     "$password_user_va" => $_POST["loginPassword"]
                 );
                 $response = CurlController::request($url, $method, $fields);
-                echo '<div class="alert alert-danger" role="alert">
-                    <h4 class="alert-heading">Prueba con Roberto!!</h4>
-                    <div class="alert-body">
-                        '.$response.'
-                    </div>
-                </div>';
-                return;
                 /*=============================================
                 Validamos que si escriba correctamente los datos
                 =============================================*/
