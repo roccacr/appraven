@@ -2,8 +2,8 @@
 class CurlController
 {
 	/*============================================
-				   Peticiones a la API
-				   =============================================*/
+		Peticiones a la API
+	=============================================*/
 
 	static public function request($url, $method, $fields)
 	{
@@ -23,16 +23,9 @@ class CurlController
 			),
 		));
 		$response = curl_exec($curl);
-		//Mostramos la respuesta de la API para debuguear
-		//Mostramos la respuesta de la API en caso de error
-		echo '<div class="alert alert-danger" role="alert">
-				<h4 class="alert-heading">Respuesta Curl!!</h4>
-				<div class="alert-body">
-					' . $response . '
-				</div>
-			</div>';
-		curl_close($curl);
+
 		$response = json_decode($response);
+		curl_close($curl);
 		//Si la respuesta es correcta, retornamos el resultado
 		return $response;
 	}
